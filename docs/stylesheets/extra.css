@@ -1,0 +1,6 @@
+:root {
+  /* 将顶部导航栏改为浙大蓝 */
+  --md-primary-fg-color: #003f88;
+  /* 将链接颜色改为深蓝色 */
+  --md-accent-fg-color: #002a5c;
+}
