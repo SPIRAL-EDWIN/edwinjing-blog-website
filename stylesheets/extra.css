@@ -1,6 +1,76 @@
-:root {
-  /* 将顶部导航栏改为浙大蓝 */
-  --md-primary-fg-color: #003f88;
-  /* 将链接颜色改为深蓝色 */
-  --md-accent-fg-color: #002a5c;
+/* 
+ * 文件路径: docs/stylesheets/extra.css
+ * 描述: 针对 MkDocs Material 主题的深度定制
+ * 目标: 仅在亮色模式下应用“浙大蓝”与“护眼米色”
+ */
+
+/* 
+ * 选择器 [data-md-color-scheme="default"] 确保这些改动
+ * 仅在用户选择“亮色”或系统默认为“亮色”时生效。
+ * 当用户切换到暗色模式时，这些设置会被自动忽略，从而保护暗色体验。
+ */
+[data-md-color-scheme="default"] {
+  
+  /* ==============================================
+     主色调配置 (Primary Colors) - 浙大蓝 #003F88
+     ============================================== */
+  /* 
+   * --md-primary-fg-color: 
+   * 控制页眉(Header)、侧边栏激活项、链接文字等核心元素的颜色。
+   */
+  --md-primary-fg-color:        #003F88;
+  
+  /* 
+   * --md-primary-fg-color--light:
+   * 控制鼠标悬停(Hover)时的颜色，通常比主色稍亮。
+   */
+  --md-primary-fg-color--light: #0050AA; 
+  
+  /* 
+   * --md-primary-fg-color--dark:
+   * 控制被点击或激活状态的颜色，通常比主色稍暗。
+   */
+  --md-primary-fg-color--dark:  #002E66; 
+
+  /* ==============================================
+     背景色配置 (Background Colors) - 米黄色 #FAF7F0
+     ============================================== */
+  /* 
+   * --md-default-bg-color:
+   * 控制页面主体的背景颜色。
+   */
+  --md-default-bg-color:        #FAF7F0;
+  
+  /* 
+   * --md-code-bg-color:
+   * (可选) 调整行内代码块的背景色，使其与米色背景融合得更自然。
+   * 使用半透明的深色，保持对比度。
+   */
+  --md-code-bg-color:           rgba(0, 63, 136, 0.05);
+
+  /* ==============================================
+     强调色配置 (Accent Colors)
+     ============================================== */
+  /* 
+   * --md-accent-fg-color:
+   * 控制按钮、滑动条、高亮文本的颜色。建议与主色保持一致或互补。
+   */
+  --md-accent-fg-color:         #003F88;
+}
+
+/* 
+ * 特殊修复：页眉背景
+ * 在某些 Material 主题版本中，页眉背景可能需要显式指定
+ * 才能正确应用自定义的 Hex 颜色值。
+ */
+[data-md-color-scheme="default"].md-header {
+  background-color: var(--md-primary-fg-color);
+}
+
+/* 
+ * 特殊修复：移动端导航栏
+ * 确保移动端的标签页背景也同步为浙大蓝。
+ */
+[data-md-color-scheme="default"].md-tabs {
+  background-color: var(--md-primary-fg-color);
 }
