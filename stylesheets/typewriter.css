@@ -1,0 +1,68 @@
+/* 容器：使用 Flexbox 实现垂直和水平居中 */
+.typewriter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh; /* 占据屏幕高度的 40%，确保视觉重心在上方 */
+    text-align: center;
+    font-family: 'Roboto Mono', 'Courier New', monospace; /* 打字机风格字体 */
+    padding: 2rem;
+}
+
+/* 第一行：大字号 */
+.typewriter-line-1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2.5rem; /* 桌面端默认大小 */
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--md-primary-fg-color); /* 使用 MkDocs 主题的主色调 */
+    min-height: 3rem; /* 预留高度，防止页面跳动 */
+}
+
+/* 第二行：小字号 */
+.typewriter-line-2 {
+    margin: 1rem 0 0 0;
+    padding: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--md-default-fg-color); /* 使用默认字体颜色 */
+    min-height: 2rem;
+}
+
+/* 光标样式 */
+.typing-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1em;
+    background-color: var(--md-primary-fg-color);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 5px;
+}
+
+/* 光标闪烁动画 */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* 隐藏光标的辅助类 */
+.hidden-cursor {
+    display: none;
+    animation: none;
+}
+
+/* 移动端适配：屏幕宽度小于 768px 时调整字号 */
+@media screen and (max-width: 768px) {
+   .typewriter-line-1 {
+        font-size: 1.8rem;
+    }
+   .typewriter-line-2 {
+        font-size: 1.2rem;
+    }
+   .typing-cursor {
+        width: 6px;
+    }
+}

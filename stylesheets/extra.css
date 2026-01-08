@@ -74,3 +74,36 @@
 [data-md-color-scheme="default"].md-tabs {
   background-color: var(--md-primary-fg-color);
 }
+
+/* --- 页脚定制开始 --- */
+
+/* 强制页脚内部容器两端对齐 */
+.md-footer-meta__inner {
+    display: flex;
+    justify-content: space-between!important; /* 覆盖默认样式 */
+    align-items: center; /* 垂直居中 */
+    flex-wrap: wrap; /* 移动端自动换行 */
+}
+
+/* 针对版权信息区域 */
+.md-copyright {
+    margin: 0!important;
+    text-align: left;
+}
+
+/* 针对社交图标区域 */
+.md-social {
+    margin: 0!important;
+    padding: 0;
+    text-align: right;
+}
+
+/* 移动端适配：屏幕小于 40rem (约640px) 时，恢复堆叠布局，防止挤压 */
+@media screen and (max-width: 40rem) {
+   .md-footer-meta__inner {
+        flex-direction: column-reverse; /* 图标在下，版权在上，或者反过来 */
+        gap: 10px;
+        justify-content: center!important;
+    }
+}
+/* --- 页脚定制结束 --- */
