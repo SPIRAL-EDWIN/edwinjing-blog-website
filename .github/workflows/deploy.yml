@@ -46,6 +46,7 @@ jobs:
           pip install mkdocs mkdocs-material mkdocs-glightbox jieba
           pip install mkdocs-minify-plugin mkdocs-rss-plugin
           pip install mkdocs-git-revision-date-localized-plugin
+          pip install mkdocs-callouts mkdocs-roamlinks-plugin
 
       - name: Build site
         run: mkdocs build --clean --strict

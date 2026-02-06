@@ -148,8 +148,8 @@ markdown_extensions:
       custom_checkbox: true
       
   - pymdownx.emoji:             # Emoji 表情支持
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - markdown.extensions.nl2br
   - pymdownx.magiclink   #自动识别URL
   
