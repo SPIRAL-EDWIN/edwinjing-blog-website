@@ -1,11 +1,50 @@
 ---
 hide:
   - toc
+title: ""
 ---
 
 <div class="hero-section">
 <div class="hero-bg-grid"></div>
 <div class="hero-glow"></div>
+<div class="hero-particles">
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+</div>
+
+<div class="hello-animation">
+<svg class="hello-svg" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="helloGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#3b82f6"/>
+<stop offset="25%" stop-color="#a855f7"/>
+<stop offset="50%" stop-color="#ec4899"/>
+<stop offset="72%" stop-color="#f59e0b"/>
+<stop offset="88%" stop-color="#10b981"/>
+<stop offset="100%" stop-color="#38bdf8"/>
+</linearGradient>
+<filter id="helloGlow">
+<feGaussianBlur stdDeviation="2.5" result="blur"/>
+<feMerge>
+<feMergeNode in="blur"/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+<filter id="penGlow">
+<feGaussianBlur stdDeviation="4"/>
+</filter>
+</defs>
+<text class="hello-text" font-family="'Sacramento', cursive" font-size="150" text-anchor="middle" x="280" y="150" fill="none" stroke="url(#helloGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#helloGlow)" opacity="0">Hello!</text>
+<circle class="pen-cursor" r="5" fill="white" opacity="0" filter="url(#penGlow)"/>
+</svg>
+</div>
+
 <div class="typewriter-container">
 <div class="terminal-window">
 <div class="terminal-header">

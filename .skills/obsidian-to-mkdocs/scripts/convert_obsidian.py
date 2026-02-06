@@ -35,8 +35,28 @@ def convert_wiki_links(content: str) -> str:
     [[Page#Header]] -> [Header](Page.md#header)
     
     Note: Links with ^block-id are left for roamlinks plugin.
+    Note: [[]] inside inline code or code blocks is array/list syntax,
+          NOT wiki-links. These are protected and not converted.
     """
     
+    # Step 1: Protect code blocks and inline code from conversion.
+    # [[]] inside code is array/list syntax (e.g. Python/NumPy), not wiki-links.
+    # We also insert zero-width space to prevent roamlinks from misinterpreting them.
+    placeholders = []
+    
+    def protect_code(match):
+        """Replace code with placeholder, also fix [[]] inside for roamlinks."""
+        code = match.group(0)
+        # Insert zero-width space between [[ to prevent roamlinks warnings
+        code = code.replace('[[', '[\u200b[')
+        placeholders.append(code)
+        return f'\x00CODE{len(placeholders) - 1}\x00'
+    
+    # Protect fenced code blocks first (``` ... ```), then inline code (` ... `)
+    protected = re.sub(r'```[\s\S]*?```', protect_code, content)
+    protected = re.sub(r'`[^`\n]+`', protect_code, protected)
+    
+    # Step 2: Convert wiki links in non-code text
     def replace_wiki_link(match):
         full_match = match.group(1)
         
@@ -70,7 +90,13 @@ def convert_wiki_links(content: str) -> str:
     
     # Match [[...]] but not ![[...]] (images)
     pattern = r'(?<!!)\[\[([^\]]+)\]\]'
-    return re.sub(pattern, replace_wiki_link, content)
+    result = re.sub(pattern, replace_wiki_link, protected)
+    
+    # Step 3: Restore code placeholders
+    for i, code in enumerate(placeholders):
+        result = result.replace(f'\x00CODE{i}\x00', code)
+    
+    return result
 
 
 def convert_image_embeds(content: str, images_dir: str = "images") -> str:

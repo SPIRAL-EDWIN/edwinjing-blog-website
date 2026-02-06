@@ -38,6 +38,18 @@ Keep `^block-id` markers in place. The `block-links.js` script handles them at r
 | `[[Page\|Display]]` | `[Display](Page.md)` |
 | `[[folder/Page]]` | `[Page](folder/Page.md)` |
 
+### `[[]]` in Code Contexts (Important)
+
+**Rule**: `[[]]` inside inline code (`` ` ``) or fenced code blocks (`` ``` ``) is array/list syntax (e.g. Python/NumPy), NOT wiki-links. Do NOT convert or escape these.
+
+However, the `roamlinks` plugin may still misparse `[[]]` inside code blocks and generate warnings. Workaround: insert a zero-width space (`\u200b`) between `[` and `[` to break the pattern: `[\u200b[1,2,3]]`. This is invisible to the reader but prevents RoamLinks from treating it as a wiki-link.
+
+| Context | Example | Action |
+|---------|---------|--------|
+| Inline code | `` `np.array([[1,2,3]])` `` | May need `[\u200b[` if RoamLinks warns |
+| Fenced code block | ` ```python\nnp.array([[1,2,3]])\n``` ` | May need `[\u200b[` if RoamLinks warns |
+| Regular text | `[[Page Name]]` | Convert (wiki-link) |
+
 ### Image Embeds
 
 | Obsidian | MkDocs |

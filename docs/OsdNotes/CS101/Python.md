@@ -335,7 +335,7 @@ numpy提供数组和矢量化运算 - 而list只能逐个元素进行操作
 ```
 data = np.loadtxt( 'inflammation.csv',delimiter=',' )
 
-x = np.array([[1, 2, 3], [4, 5, 6]])
+x = np.array([​[1, 2, 3], [4, 5, 6]])
 print(x.shape) 
 >>>(2, 3)    #元组
 ```
@@ -349,12 +349,12 @@ mysquare[ 1,2 ]   # cannot be done by `list`
 
 > [!INFO]  **`:`表示全部**
 ```
-mysquare = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+mysquare = np.array([​[0, 1, 2], [3, 4, 5], [6, 7, 8]])
 mysquare[:,1]  >>> [1 4 7]
 mysquare[:][1]  >>> [3 4 5]  #这里的[:]由于在前面，对mysquare没有任何影响，相当于取了mysquare全部，后面跟的[1]则依旧从行开始
 mysquare[1,:]  >>> [3 4 5]
 mysquare[1][:]  >>> [3 4 5]
-mysquare[ 0:2,0:2 ]  >>> array([[0, 1],
+mysquare[ 0:2,0:2 ]  >>> array([​[0, 1],
 							    [3, 4]])
 ```
 

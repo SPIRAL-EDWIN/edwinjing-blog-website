@@ -85,6 +85,26 @@ Valid block IDs: alphanumeric + hyphens + underscores
 
 **Links in code blocks**: Do NOT convert - leave as-is.
 
+### `[[]]` as Array/List Syntax in Code
+
+**Critical Rule**: In Obsidian, `[[]]` inside inline code (single backticks) or fenced code blocks (triple backticks) represents array/list syntax (Python, NumPy, MATLAB comments, etc.), NOT wiki-links.
+
+**Problem**: The `roamlinks` plugin does not distinguish `[[]]` in code from wiki-links. It parses ALL `[[...]]` patterns, including those inside code, causing build warnings like:
+```
+WARNING - [roamlinks] - RoamLinksPlugin unable to find '1,2,3' in directory
+```
+
+**Workaround**: Insert a zero-width space (Unicode `\u200b`) between `[` and `[` to break the wiki-link pattern:
+
+| Before (triggers warning) | After (no warning) |
+|---------------------------|--------------------|
+| `np.array([[1,2,3]])` | `np.array([\u200b[1,2,3]])` |
+| `[[0, 1, 2], [3, 4, 5]]` | `[\u200b[0, 1, 2], [3, 4, 5]]` |
+
+The zero-width space is invisible in rendered output, so code display is unaffected.
+
+**When to apply**: Only when `mkdocs build`/`mkdocs serve` produces RoamLinks warnings about array-like patterns. Not all `[[]]` in code will trigger warnings — only those the plugin happens to parse.
+
 ---
 
 ## Image Embeds
