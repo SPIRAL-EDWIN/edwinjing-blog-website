@@ -7,17 +7,17 @@
 # ==============================================================================
 
 # --- 1. 基础项目信息 (Project Information) ---
-site_name: 我的数字花园  # 网站标题，将显示在浏览器标签页
-site_url: https://www.yourdomain.com/  # 生产环境的域名，用于生成 SEO 规范链接 (Canonical URL) [13]
-site_author: 您的姓名
+site_name: "Edwin JING's World"  # 网站标题，将显示在浏览器标签页
+site_url: https://edwinjing-blog.com/  # 生产环境的域名，用于生成 SEO 规范链接 (Canonical URL) [13]
+site_author: Edwin Jing
 site_description: "基于 MkDocs 构建的个人学术知识库与技术文档。"
-copyright: "Copyright &copy; 2024-2025 您的姓名 - 本站内容遵循 CC BY-NC-SA 4.0 协议"
-
+copyright: >-
+  Copyright &copy; 2025-2026 Edwin Jing. This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 
+  
 # --- 2. 代码仓库链接 (Repository) ---
 # 配置后，页面右上角会出现 GitHub 图标，方便快速跳转到源码或编辑页面 [13]
-repo_name: GitHub
-repo_url: https://github.com/yourusername/your-repo-name
-edit_uri: edit/main/docs/ # 允许读者直接点击“编辑此页”跳转到 GitHub 对应文件
+repo_name: "GitHub: SPIRAL-EDWIN"
+repo_url: https://github.com/SPIRAL-EDWIN/edwinjing-blog-website
 
 # --- 3. 主题配置 (Theme Configuration) ---
 theme:
@@ -44,23 +44,28 @@ theme:
 
   # 功能特性开关 (Feature Flags) [1, 16]
   features:
+    - announce.dismiss #呈现可标记为由用户读取的临时公告，可以包含一个用于取消当前公告的按钮
+    - navigation.tracking #地址栏中的 URL 将自动更新为在目录中突出显示的活动锚点
     - navigation.tabs          # 启用顶部导航栏标签页模式 (适合大型文档)
     - navigation.tabs.sticky   # 标签页在滚动时吸顶固定
     - navigation.sections      # 侧边栏自动分组
+    - navigation.indexes       # 允许点击文件夹名称直接跳转到该文件夹下的index.md
     - navigation.top           # 添加“回到顶部”按钮
     - navigation.tracking      # 滚动时 URL 锚点自动更新
+    - navigation.expand        # 右侧目录跟随滚动
     - toc.follow               # 右侧目录随内容滚动高亮
     - content.code.copy        # 代码块添加“一键复制”按钮 [17]
     - search.suggest           # 搜索框提供输入建议
-    - search.highlight         # 搜索结果关键词高亮显示
+    - search.highlight         # 搜索结果关键词高亮显示、
+    - search.share #搜索分享按钮
 
   # 色彩方案 (Palette) - 支持明暗模式切换
   palette:
     # 亮色模式配置
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: teal            # 主色调 (顶部导航栏颜色)
-      accent: purple           # 强调色 (链接、按钮颜色)
+      primary: custom           # 主色调 (顶部导航栏颜色)
+      accent: custom           # 强调色 (链接、按钮颜色)
       toggle:
         icon: material/weather-night
         name: 切换至深色模式
@@ -77,7 +82,7 @@ theme:
   # 字体配置 (Font) - 自动引用 Google Fonts
   font:
     text: Noto Sans SC         # 正文字体，推荐 Noto Sans SC 以优化中文显示
-    code: Roboto Mono          # 代码字体
+    code: JetBrains Mono          # 代码字体
 
 # --- 4. 插件系统 (Plugins) ---
 plugins:
@@ -86,6 +91,13 @@ plugins:
   - search:
       lang: ['en', 'zh']       # 启用英文和中文索引
       separator: '[\s\u200b\-]' # 自定义分词分隔符，优化中文切词精度
+
+  # Obsidian Callouts 转换插件
+  # 将 Obsidian 风格的 > [!NOTE] 转换为 MkDocs 的 admonition 格式
+  - callouts
+  
+  # Obsidian 风格链接支持 (![[image.png]] 和 [[page]])
+  - roamlinks
 
   # 图片灯箱插件：点击图片可放大查看 [11, 18]
   # 安装：pip install mkdocs-glightbox
@@ -96,7 +108,20 @@ plugins:
       width: 100%
       height: auto
       zoomable: true
-
+  - blog:
+      post_dir: blog_posts   # 指定存放文章的文件夹名字
+      archive: true          # 开启归档功能
+      categories: true       # 开启分类功能
+extra:
+  generator: false
+  social: 
+    - icon: fontawesome/brands/bilibili   #b站图标
+      link: https://space.bilibili.com/3493263893858624   #个人主页
+    - icon: fontawesome/regular/envelope #联系方式图标
+      link: mailto:<edwin2025661@gmail.com> #邮件联系方式
+    - icon: fontawesome/brands/weixin
+      link: https://i.ibb.co/qL5gbz2F/qrcode-for-gh-ea6e88fc6fb6-258.jpg
+      name: Wechat Public Account
   # (可选) 博客插件：如果需要独立的博客板块 [5, 19]
   # - blog
 
@@ -121,9 +146,12 @@ markdown_extensions:
   - def_list                    # 定义列表支持
   - pymdownx.tasklist:          # 任务列表 (Checkbox) 支持
       custom_checkbox: true
+      
   - pymdownx.emoji:             # Emoji 表情支持
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - markdown.extensions.nl2br
+  - pymdownx.magiclink   #自动识别URL
   
   # 5.4 代码高亮 [21]
   - pymdownx.highlight:
@@ -149,18 +177,25 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/typewriter.js
 
 extra_css:
   - stylesheets/extra.css       # 用于自定义 CSS 样式调整
+  - stylesheets/typewriter.css  # 首页打字效果
 
 # --- 7. 导航结构 (Navigation) ---
 # 如果不配置此项，MkDocs 会按文件目录自动生成。建议手动配置以控制顺序。
 nav:
-  - 首页: index.md
-  - Osd笔记:
-      - CS101-Python.md
-      - CS101-MATLAB.md
-  - 经验分享:
-      - machineLearning.md
-  - 关于我: 
-      - resume.md
+  - HOME:
+      - HOME: index.md
+      - Archive: HOME/Archive/index.md
+      - Friends: HOME/friends.md
+  - AboutMe:
+      - AboutMe/RESUME.md
+  - OsdNotes:
+      - 概览: OsdNotes/index.md
+      - CS101:
+          - OsdNotes/CS101/Python.md
+          - OsdNotes/CS101/MATLAB.md
+  - Experiences:
+      - 经验分享/machineLearning.md
