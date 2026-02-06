@@ -9,12 +9,12 @@ hide:
 <div class="typewriter-container">
 <div class="terminal-window">
 <div class="terminal-header">
-<span class="terminal-icon">⌨️</span>
+<span class="terminal-icon">&#x2328;&#xFE0F;</span>
 <span class="terminal-title">PowerShell - ~/edwin</span>
 <div class="terminal-controls">
-<span class="terminal-ctrl minimize">─</span>
-<span class="terminal-ctrl maximize">□</span>
-<span class="terminal-ctrl close">×</span>
+<span class="terminal-ctrl minimize">&#x2500;</span>
+<span class="terminal-ctrl maximize">&#x25A1;</span>
+<span class="terminal-ctrl close">&#x00D7;</span>
 </div>
 </div>
 <div class="terminal-body">
@@ -31,19 +31,19 @@ hide:
 </div>
 <div class="hero-actions">
 <a href="./OsdNotes/" class="action-btn primary">
-<span class="btn-icon">📚</span>
+<span class="btn-icon">&#x1F4DA;</span>
 <span class="btn-text">学习笔记</span>
-<span class="btn-arrow">→</span>
+<span class="btn-arrow">&#x2192;</span>
 </a>
 <a href="./经验分享/machineLearning/" class="action-btn secondary">
-<span class="btn-icon">💡</span>
+<span class="btn-icon">&#x1F4A1;</span>
 <span class="btn-text">经验分享</span>
-<span class="btn-arrow">→</span>
+<span class="btn-arrow">&#x2192;</span>
 </a>
 <a href="./AboutMe/RESUME/" class="action-btn secondary">
-<span class="btn-icon">👤</span>
+<span class="btn-icon">&#x1F464;</span>
 <span class="btn-text">关于我</span>
-<span class="btn-arrow">→</span>
+<span class="btn-arrow">&#x2192;</span>
 </a>
 </div>
 <div class="status-bar">
@@ -53,12 +53,12 @@ hide:
 </div>
 <div class="status-divider">|</div>
 <div class="status-item">
-<span class="status-icon">📍</span>
+<span class="status-icon">&#x1F4CD;</span>
 <span class="status-text">China</span>
 </div>
 <div class="status-divider">|</div>
 <div class="status-item">
-<span class="status-icon">🎓</span>
+<span class="status-icon">&#x1F393;</span>
 <span class="status-text">Student</span>
 </div>
 </div>
