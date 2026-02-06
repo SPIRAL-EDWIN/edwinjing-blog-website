@@ -175,7 +175,6 @@ extra_javascript:
   # MathJax 3 配置：实现 LaTeX 公式的浏览器端渲染 
   # 必须在 docs/javascripts/ 目录下创建 mathjax.js 文件 (内容见报告正文)
   - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/typewriter.js
   - javascripts/block-links.js  # Obsidian 风格块引用链接支持
