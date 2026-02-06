@@ -178,6 +178,7 @@ extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/typewriter.js
+  - javascripts/block-links.js  # Obsidian 风格块引用链接支持
 
 extra_css:
   - stylesheets/extra.css       # 用于自定义 CSS 样式调整

@@ -668,3 +668,66 @@ a {
     max-width: none;
     margin: 0;
 }
+
+/* ==============================================
+   Obsidian 风格块引用链接样式
+   ============================================== */
+/* 块锚点标记 */
+.block-anchor {
+    position: relative;
+}
+
+.block-anchor::before {
+    content: '';
+    display: block;
+    height: 80px;
+    margin-top: -80px;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* 块引用链接样式 */
+a.block-link {
+    color: var(--md-accent-fg-color, #003F88);
+    text-decoration: none;
+    background: rgba(0, 63, 136, 0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+
+a.block-link:hover {
+    background: rgba(0, 63, 136, 0.15);
+    color: var(--md-primary-fg-color, #003F88);
+}
+
+/* 块高亮效果 */
+.block-highlight {
+    animation: block-flash 2s ease-out;
+}
+
+@keyframes block-flash {
+    0% { background-color: rgba(0, 63, 136, 0.3); }
+    100% { background-color: transparent; }
+}
+
+/* 暗色模式适配 */
+[data-md-color-scheme="slate"] a.block-link {
+    background: rgba(100, 181, 246, 0.15);
+    color: #64b5f6;
+}
+
+[data-md-color-scheme="slate"] a.block-link:hover {
+    background: rgba(100, 181, 246, 0.25);
+}
+
+[data-md-color-scheme="slate"] .block-highlight {
+    animation: block-flash-dark 2s ease-out;
+}
+
+@keyframes block-flash-dark {
+    0% { background-color: rgba(100, 181, 246, 0.3); }
+    100% { background-color: transparent; }
+}
