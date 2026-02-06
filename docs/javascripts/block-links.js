@@ -9,52 +9,66 @@ document.addEventListener("DOMContentLoaded", function() {
     const content = document.querySelector('.md-content');
     if (!content) return;
 
-    // 1. 处理块 ID 定义 - 使用 innerHTML 替换方式
-    // 匹配模式：空格 + ^block-id（可能后面有空格、<br>、</p>等）
-    const blockIdRegex = /(\s)\^([a-zA-Z0-9_-]+)(\s*(?:<br\s*\/?>|<\/p>|<p><\/p>|$))/gi;
-    
-    // 获取所有可能包含块 ID 的主要内容元素
     const mainContent = content.querySelector('.md-content__inner');
     if (!mainContent) return;
     
     let html = mainContent.innerHTML;
     const foundIds = [];
     
-    // 替换块 ID 为带有 id 属性的 span
-    html = html.replace(blockIdRegex, (match, before, blockId, after) => {
-        foundIds.push(blockId);
-        // 创建一个不可见的锚点 span
-        return `${before}<span id="${blockId}" class="block-anchor"></span>${after}`;
-    });
-    
-    // 还需要处理在 <strong>/<em> 后面的情况
-    // 例如：</em></strong> ^2f6664<p></p>
-    const blockIdRegex2 = /(<\/(?:strong|em|code|b|i)>)\s*\^([a-zA-Z0-9_-]+)/gi;
-    html = html.replace(blockIdRegex2, (match, closingTag, blockId) => {
-        if (!foundIds.includes(blockId)) {
-            foundIds.push(blockId);
-            return `${closingTag}<span id="${blockId}" class="block-anchor"></span>`;
+    // 模式1: 文本后面跟着 ^block-id（可能有空格、<br>等）
+    // 例如: 如： ^6244d2<br>
+    html = html.replace(/(\S)\s*\^([a-zA-Z0-9]{4,})(\s*<br\s*\/?>|\s*<\/p>|\s*$)/gi, 
+        (match, before, blockId, after) => {
+            if (!foundIds.includes(blockId)) {
+                foundIds.push(blockId);
+                return `${before}<span id="${blockId}" class="block-anchor"></span>${after}`;
+            }
+            return match;
         }
-        return match;
-    });
+    );
     
-    // 处理行内的块 ID（在文本中间）
-    // 例如：如： ^6244d2<br>
-    const blockIdRegex3 = /\s\^([a-zA-Z0-9_-]+)(<br\s*\/?>)/gi;
-    html = html.replace(blockIdRegex3, (match, blockId, br) => {
-        if (!foundIds.includes(blockId)) {
-            foundIds.push(blockId);
-            return ` <span id="${blockId}" class="block-anchor"></span>${br}`;
+    // 模式2: </strong></em>等标签后面的 ^block-id
+    // 例如: </em></strong> ^2f6664<p></p>
+    html = html.replace(/(<\/(?:strong|em|code|b|i|span)>)\s*\^([a-zA-Z0-9]{4,})/gi, 
+        (match, closingTag, blockId) => {
+            if (!foundIds.includes(blockId)) {
+                foundIds.push(blockId);
+                return `${closingTag}<span id="${blockId}" class="block-anchor"></span>`;
+            }
+            return match;
         }
-        return match;
-    });
+    );
+    
+    // 模式3: 单独一行/段落的 ^block-id
+    // 例如: <p>^4f0a7f</p> 或在空行后
+    html = html.replace(/<p>\s*\^([a-zA-Z0-9]{4,})\s*<\/p>/gi, 
+        (match, blockId) => {
+            if (!foundIds.includes(blockId)) {
+                foundIds.push(blockId);
+                return `<p><span id="${blockId}" class="block-anchor"></span></p>`;
+            }
+            return match;
+        }
+    );
+    
+    // 模式4: 在文本开头或中间的 ^block-id（更通用的匹配）
+    // 匹配任何剩余的 ^block-id
+    html = html.replace(/([>\s])\^([a-zA-Z0-9]{4,})([<\s])/gi, 
+        (match, before, blockId, after) => {
+            if (!foundIds.includes(blockId)) {
+                foundIds.push(blockId);
+                return `${before}<span id="${blockId}" class="block-anchor"></span>${after}`;
+            }
+            return match;
+        }
+    );
 
     if (foundIds.length > 0) {
         mainContent.innerHTML = html;
         console.log('Block anchors created:', foundIds);
     }
 
-    // 2. 为所有块引用链接添加平滑滚动和高亮效果
+    // 为所有锚点链接添加平滑滚动
     setTimeout(() => {
         const blockLinks = content.querySelectorAll('a[href^="#"]');
         
@@ -67,15 +81,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (target) {
                     e.preventDefault();
                     
-                    // 找到目标元素的父级段落来高亮
-                    let highlightTarget = target.closest('p, li, blockquote, .admonition, tr') || target.parentElement;
+                    // 找到要高亮的目标元素
+                    let highlightTarget = target.closest('p, li, blockquote, .admonition, tr, pre');
+                    if (!highlightTarget) {
+                        // 如果锚点是单独的span，找它的下一个兄弟元素或父元素
+                        highlightTarget = target.nextElementSibling || target.parentElement;
+                    }
                     
                     // 平滑滚动
-                    highlightTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    const scrollTarget = highlightTarget || target;
+                    scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     
                     // 高亮效果
-                    highlightTarget.classList.add('block-highlight');
-                    setTimeout(() => highlightTarget.classList.remove('block-highlight'), 2500);
+                    if (highlightTarget) {
+                        highlightTarget.classList.add('block-highlight');
+                        setTimeout(() => highlightTarget.classList.remove('block-highlight'), 2500);
+                    }
                     
                     // 更新 URL
                     history.pushState(null, null, href);
@@ -86,16 +107,22 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }, 100);
 
-    // 3. 页面加载时检查 URL 锚点
+    // 页面加载时检查 URL 锚点
     if (window.location.hash) {
         const targetId = window.location.hash.substring(1);
         setTimeout(() => {
             const target = document.getElementById(targetId);
             if (target) {
-                let highlightTarget = target.closest('p, li, blockquote, .admonition, tr') || target.parentElement;
-                highlightTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                highlightTarget.classList.add('block-highlight');
-                setTimeout(() => highlightTarget.classList.remove('block-highlight'), 2500);
+                let highlightTarget = target.closest('p, li, blockquote, .admonition, tr, pre');
+                if (!highlightTarget) {
+                    highlightTarget = target.nextElementSibling || target.parentElement;
+                }
+                const scrollTarget = highlightTarget || target;
+                scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (highlightTarget) {
+                    highlightTarget.classList.add('block-highlight');
+                    setTimeout(() => highlightTarget.classList.remove('block-highlight'), 2500);
+                }
             }
         }, 500);
     }
