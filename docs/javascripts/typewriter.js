@@ -1,10 +1,9 @@
-// ===== Hello 手写动画 - 明确笔画顺序逐条书写 =====
+// ===== Hello 手写动画 - 逐笔书写（无独立填充层）=====
 document.addEventListener("DOMContentLoaded", function() {
     var strokeGroup = document.querySelector('.hello-strokes');
     var strokePaths = strokeGroup ? strokeGroup.querySelectorAll('path') : null;
-    var fillText = document.querySelector('.hello-fill');
     var penEl = document.querySelector('.pen-cursor');
-    if (!strokePaths || strokePaths.length === 0 || !fillText || !penEl) return;
+    if (!strokePaths || strokePaths.length === 0 || !penEl) return;
 
     document.fonts.ready.then(function() {
         // 初始化所有笔画：完全隐藏
@@ -14,12 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
             path.style.strokeDashoffset = len;
         });
 
-        // 填充层初始隐藏
-        fillText.style.opacity = '0';
-        fillText.style.fillOpacity = '0';
-
-        var speed = 0.9; // px/ms
-        var pauseAfter = [160, 140, 80, 60, 60, 60, 120, 140, 0];
+        var speed = 0.8; // px/ms（稍慢一点更从容）
+        var pauseAfter = [120, 100, 60, 50, 50, 50, 100, 120, 0];
 
         function easeInOutCubic(t) {
             return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
@@ -83,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         function smoothFillIn() {
-            var fillDuration = 1800;
+            var fillDuration = 1600;
             var start = null;
 
             function tick(ts) {
@@ -91,11 +86,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 var raw = Math.min((ts - start) / fillDuration, 1);
                 var eased = raw < 0.5 ? 2*raw*raw : 1 - Math.pow(-2*raw + 2, 2) / 2;
 
-                fillText.style.opacity = '1';
-                fillText.style.fillOpacity = String(eased);
-
-                // 描边逐渐收细，视觉上更像填充
-                var strokeWidth = 2 - 1.5 * eased;
+                // 描边逐渐加粗到最终宽度，模拟"填满"效果
+                var strokeWidth = 3.5 + 2.5 * eased;
                 strokePaths.forEach(function(path) {
                     path.style.strokeWidth = String(strokeWidth);
                 });
@@ -104,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     requestAnimationFrame(tick);
                 } else {
                     setTimeout(function() {
-                        var container = fillText.closest('.hello-animation');
+                        var container = strokeGroup.closest('.hello-animation');
                         if (container) container.classList.add('writing-done');
                     }, 600);
                 }

@@ -40,18 +40,17 @@ title: ""
 <feGaussianBlur stdDeviation="4"/>
 </filter>
 </defs>
-<g class="hello-strokes" fill="none" stroke="url(#helloGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#helloGlow)">
-<path class="stroke-1" d="M82 50 C76 82 76 122 82 150"/>
-<path class="stroke-2" d="M82 98 C112 90 132 90 156 98"/>
-<path class="stroke-3" d="M156 50 C162 82 162 122 156 150 C158 158 172 158 186 144"/>
-<path class="stroke-4" d="M186 144 C210 118 248 118 254 148 C262 176 224 190 198 170 C178 152 198 134 224 140"/>
-<path class="stroke-5" d="M266 50 C266 92 266 126 266 148 C268 166 284 170 298 160"/>
-<path class="stroke-6" d="M320 50 C320 92 320 126 320 148 C322 166 338 170 352 160"/>
-<path class="stroke-7" d="M370 124 C352 116 338 132 338 152 C338 176 368 192 398 178 C424 166 430 132 406 116 C388 104 372 110 370 124"/>
-<path class="stroke-8" d="M456 56 C456 92 456 118 456 144"/>
-<path class="stroke-9" d="M456 164 C452 164 452 172 456 172 C460 172 460 164 456 164"/>
+<g class="hello-strokes" fill="none" stroke="url(#helloGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#helloGlow)">
+<path class="stroke-1" d="M82 50 C74 82 74 122 82 150"/>
+<path class="stroke-2" d="M82 98 C114 88 136 88 156 98"/>
+<path class="stroke-3" d="M156 50 C164 84 164 122 156 150 C158 160 174 160 190 144"/>
+<path class="stroke-4" d="M190 144 C214 116 254 116 260 150 C268 180 228 196 200 172 C178 152 200 132 228 140"/>
+<path class="stroke-5" d="M268 50 C268 90 268 128 268 150 C270 168 288 172 304 160"/>
+<path class="stroke-6" d="M324 50 C324 90 324 128 324 150 C326 168 344 172 360 160"/>
+<path class="stroke-7" d="M376 124 C356 114 338 132 338 154 C338 180 370 198 402 182 C430 168 436 130 410 114 C392 102 378 110 376 124"/>
+<path class="stroke-8" d="M458 56 C458 92 458 120 458 146"/>
+<path class="stroke-9" d="M458 166 C453 166 453 176 458 176 C463 176 463 166 458 166"/>
 </g>
-<text class="hello-fill" font-family="'Sacramento', cursive" font-size="150" text-anchor="middle" x="280" y="150" fill="url(#helloGrad)" fill-opacity="0" stroke="none" filter="url(#helloGlow)">Hello!</text>
 <circle class="pen-cursor" r="5" fill="white" opacity="0" filter="url(#penGlow)"/>
 </svg>
 </div>
