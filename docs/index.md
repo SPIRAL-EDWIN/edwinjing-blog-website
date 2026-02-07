@@ -41,15 +41,15 @@ title: ""
 </filter>
 </defs>
 <g class="hello-strokes" fill="none" stroke="url(#helloGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#helloGlow)">
-<path class="stroke-1" d="M78 50 C74 78 74 118 78 150"/>
-<path class="stroke-2" d="M78 98 C108 92 128 92 152 98"/>
-<path class="stroke-3" d="M152 50 C156 80 156 120 152 150 C154 156 166 156 178 144"/>
-<path class="stroke-4" d="M178 144 C198 122 234 120 240 148 C246 172 212 184 192 166 C174 150 194 134 218 140"/>
-<path class="stroke-5" d="M254 50 C254 92 254 126 254 148 C256 164 270 168 282 160"/>
-<path class="stroke-6" d="M308 50 C308 92 308 126 308 148 C310 164 324 168 336 160"/>
-<path class="stroke-7" d="M360 126 C346 120 334 132 334 150 C334 172 360 186 388 174 C410 164 416 134 396 120 C382 110 364 114 360 126"/>
-<path class="stroke-8" d="M448 56 C448 90 448 114 448 142"/>
-<path class="stroke-9" d="M448 162 C444 162 444 170 448 170 C452 170 452 162 448 162"/>
+<path class="stroke-1" d="M82 50 C76 82 76 122 82 150"/>
+<path class="stroke-2" d="M82 98 C112 90 132 90 156 98"/>
+<path class="stroke-3" d="M156 50 C162 82 162 122 156 150 C158 158 172 158 186 144"/>
+<path class="stroke-4" d="M186 144 C210 118 248 118 254 148 C262 176 224 190 198 170 C178 152 198 134 224 140"/>
+<path class="stroke-5" d="M266 50 C266 92 266 126 266 148 C268 166 284 170 298 160"/>
+<path class="stroke-6" d="M320 50 C320 92 320 126 320 148 C322 166 338 170 352 160"/>
+<path class="stroke-7" d="M370 124 C352 116 338 132 338 152 C338 176 368 192 398 178 C424 166 430 132 406 116 C388 104 372 110 370 124"/>
+<path class="stroke-8" d="M456 56 C456 92 456 118 456 144"/>
+<path class="stroke-9" d="M456 164 C452 164 452 172 456 172 C460 172 460 164 456 164"/>
 </g>
 <text class="hello-fill" font-family="'Sacramento', cursive" font-size="150" text-anchor="middle" x="280" y="150" fill="url(#helloGrad)" fill-opacity="0" stroke="none" filter="url(#helloGlow)">Hello!</text>
 <circle class="pen-cursor" r="5" fill="white" opacity="0" filter="url(#penGlow)"/>
