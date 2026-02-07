@@ -1,26 +1,24 @@
-// ===== Hello 手写动画 - 逐字揭示 + 平滑填充 =====
+// ===== Hello 手写动画 - CSS clip-path 逐字揭示 + 平滑填充 =====
 document.addEventListener("DOMContentLoaded", function() {
     var textEl = document.querySelector('.hello-text');
     var penEl = document.querySelector('.pen-cursor');
-    var revealRect = document.getElementById('helloRevealRect');
-    if (!textEl || !penEl || !revealRect) return;
+    if (!textEl || !penEl) return;
 
     document.fonts.ready.then(function() {
+        // 获取文字几何尺寸（opacity=0 时 getBBox 仍然有效）
         var bbox = textEl.getBBox();
-        var pad = 15;
+        if (!bbox || bbox.width === 0) return;
 
-        // 设置遮罩矩形覆盖文字区域，初始宽度为 0
-        revealRect.setAttribute('x', String(bbox.x - pad));
-        revealRect.setAttribute('y', String(bbox.y - pad));
-        revealRect.setAttribute('height', String(bbox.height + pad * 2));
-        revealRect.setAttribute('width', '0');
+        // 设置初始状态：描边可见(中空)，填充不可见，用 clip-path 遮住全部
+        textEl.style.fillOpacity = '0';
+        textEl.style.clipPath = 'inset(0 100% 0 0)';
+        textEl.style.webkitClipPath = 'inset(0 100% 0 0)';
+        textEl.setAttribute('opacity', '1'); // 此时仍被 clip-path 隐藏
 
-        var totalWidth = bbox.width + pad * 2;
         var duration = 2800; // 2.8 秒书写
         var startTs = null;
 
         // 笔尖 Y 轴关键帧 —— 模拟各字母笔画高度
-        // yFactor: 0 = bbox 顶部, 1 = bbox 底部
         var penYKeyframes = [
             { at: 0.00, y: 0.30 },  // H 起笔（高处）
             { at: 0.06, y: 0.85 },  // H 左竖落笔
@@ -46,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
             for (var i = 1; i < penYKeyframes.length; i++) {
                 if (progress <= penYKeyframes[i].at) {
                     var t = (progress - penYKeyframes[i-1].at) / (penYKeyframes[i].at - penYKeyframes[i-1].at);
-                    var smooth = t * t * (3 - 2 * t); // smoothstep 插值
+                    var smooth = t * t * (3 - 2 * t);
                     return penYKeyframes[i-1].y + (penYKeyframes[i].y - penYKeyframes[i-1].y) * smooth;
                 }
             }
@@ -63,13 +61,15 @@ document.addEventListener("DOMContentLoaded", function() {
             var raw = Math.min(elapsed / duration, 1);
             var progress = easeInOutCubic(raw);
 
-            // 遮罩从左向右展开 —— 逐字揭示笔画
-            revealRect.setAttribute('width', String(totalWidth * progress));
+            // CSS clip-path 从左向右揭示 —— 逐字揭示笔画
+            var clipRight = (1 - progress) * 100;
+            textEl.style.clipPath = 'inset(0 ' + clipRight + '% 0 0)';
+            textEl.style.webkitClipPath = 'inset(0 ' + clipRight + '% 0 0)';
 
             // 笔尖光标：沿着字母形态移动
-            var penX = (bbox.x - pad) + totalWidth * progress;
+            var penX = bbox.x + bbox.width * progress;
             var yFactor = getPenY(progress);
-            var microWobble = Math.sin(raw * Math.PI * 22) * 1.2; // 微颤模拟手抖
+            var microWobble = Math.sin(raw * Math.PI * 22) * 1.2;
             var penY = bbox.y + bbox.height * yFactor + microWobble;
 
             penEl.setAttribute('cx', String(penX));
@@ -85,7 +85,9 @@ document.addEventListener("DOMContentLoaded", function() {
             if (raw < 1) {
                 requestAnimationFrame(tick);
             } else {
-                // 书写完成 → 启动平滑填充
+                // 书写完成 → 移除 clip-path，启动平滑填充
+                textEl.style.clipPath = 'none';
+                textEl.style.webkitClipPath = 'none';
                 penEl.setAttribute('opacity', '0');
                 smoothFillIn(textEl);
             }
@@ -93,14 +95,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // 平滑填充：中空笔画逐渐变为实心
         function smoothFillIn(el) {
-            var fillDuration = 1800; // 1.8 秒
+            var fillDuration = 1800;
             var fillStart = null;
 
             function fillTick(ts) {
                 if (!fillStart) fillStart = ts;
                 var elapsed = ts - fillStart;
                 var raw = Math.min(elapsed / fillDuration, 1);
-                // 平滑缓动
                 var eased = raw < 0.5 ? 2*raw*raw : 1 - Math.pow(-2*raw + 2, 2) / 2;
 
                 // 渐增填充不透明度（中空 → 实心）
@@ -111,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (raw < 1) {
                     requestAnimationFrame(fillTick);
                 } else {
-                    // 填充完成 → 添加微光呼吸效果
                     setTimeout(function() {
                         var container = el.closest('.hello-animation');
                         if (container) container.classList.add('writing-done');
@@ -119,7 +119,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
 
-            // 书写结束后短暂停顿再开始填充
             setTimeout(function() {
                 requestAnimationFrame(fillTick);
             }, 300);

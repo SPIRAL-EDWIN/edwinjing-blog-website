@@ -39,11 +39,8 @@ title: ""
 <filter id="penGlow">
 <feGaussianBlur stdDeviation="4"/>
 </filter>
-<mask id="helloReveal" maskUnits="userSpaceOnUse" x="0" y="0" width="560" height="200">
-<rect id="helloRevealRect" x="0" y="0" width="0" height="200" fill="white"/>
-</mask>
 </defs>
-<text class="hello-text" font-family="'Sacramento', cursive" font-size="150" text-anchor="middle" x="280" y="150" fill="url(#helloGrad)" fill-opacity="0" stroke="url(#helloGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#helloGlow)" mask="url(#helloReveal)">Hello!</text>
+<text class="hello-text" font-family="'Sacramento', cursive" font-size="150" text-anchor="middle" x="280" y="150" fill="url(#helloGrad)" stroke="url(#helloGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#helloGlow)" opacity="0">Hello!</text>
 <circle class="pen-cursor" r="5" fill="white" opacity="0" filter="url(#penGlow)"/>
 </svg>
 </div>
