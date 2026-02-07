@@ -40,7 +40,18 @@ title: ""
 <feGaussianBlur stdDeviation="4"/>
 </filter>
 </defs>
-<text class="hello-text" font-family="'Sacramento', cursive" font-size="150" text-anchor="middle" x="280" y="150" fill="none" stroke="url(#helloGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#helloGlow)" opacity="0">Hello!</text>
+<g class="hello-strokes" fill="none" stroke="url(#helloGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#helloGlow)">
+<path class="stroke-1" d="M70 40 L70 150"/>
+<path class="stroke-2" d="M70 95 L140 95"/>
+<path class="stroke-3" d="M140 40 L140 150 C140 150 160 150 170 135"/>
+<path class="stroke-4" d="M170 135 C200 110 240 120 230 150 C220 170 185 170 180 145 C175 130 195 120 215 130"/>
+<path class="stroke-5" d="M250 40 L250 150 C250 165 260 170 275 160"/>
+<path class="stroke-6" d="M300 40 L300 150 C300 165 310 170 325 160"/>
+<path class="stroke-7" d="M360 120 C340 120 335 150 355 165 C380 180 410 165 410 140 C410 115 380 105 360 120"/>
+<path class="stroke-8" d="M450 45 L450 135"/>
+<path class="stroke-9" d="M450 155 C445 155 445 165 450 165 C455 165 455 155 450 155"/>
+</g>
+<text class="hello-fill" font-family="'Sacramento', cursive" font-size="150" text-anchor="middle" x="280" y="150" fill="url(#helloGrad)" fill-opacity="0" stroke="none" filter="url(#helloGlow)">Hello!</text>
 <circle class="pen-cursor" r="5" fill="white" opacity="0" filter="url(#penGlow)"/>
 </svg>
 </div>

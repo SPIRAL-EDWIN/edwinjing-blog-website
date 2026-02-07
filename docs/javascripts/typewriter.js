@@ -1,147 +1,120 @@
-// ===== Hello 手写动画 - stroke-dashoffset 描边 + clip-path 强制左到右 =====
+// ===== Hello 手写动画 - 明确笔画顺序逐条书写 =====
 document.addEventListener("DOMContentLoaded", function() {
-    var textEl = document.querySelector('.hello-text');
+    var strokeGroup = document.querySelector('.hello-strokes');
+    var strokePaths = strokeGroup ? strokeGroup.querySelectorAll('path') : null;
+    var fillText = document.querySelector('.hello-fill');
     var penEl = document.querySelector('.pen-cursor');
-    if (!textEl || !penEl) return;
+    if (!strokePaths || strokePaths.length === 0 || !fillText || !penEl) return;
 
     document.fonts.ready.then(function() {
-        // 获取文字几何尺寸（opacity=0 时 getBBox 仍然有效）
-        var bbox = textEl.getBBox();
-        if (!bbox || bbox.width === 0) return;
+        // 初始化所有笔画：完全隐藏
+        strokePaths.forEach(function(path) {
+            var len = path.getTotalLength();
+            path.style.strokeDasharray = len;
+            path.style.strokeDashoffset = len;
+        });
 
-        // ---- 1. 初始化 stroke-dasharray：隐藏所有描边 ----
-        var pathLength = textEl.getComputedTextLength() * 4;
-        textEl.style.strokeDasharray = pathLength;
-        textEl.style.strokeDashoffset = pathLength; // 全部隐藏
+        // 填充层初始隐藏
+        fillText.style.opacity = '0';
+        fillText.style.fillOpacity = '0';
 
-        // ---- 2. 初始化 clip-path：全部遮住（防止字体路径跳跃显示）----
-        textEl.style.clipPath = 'inset(0 100% 0 0)';
-        textEl.style.webkitClipPath = 'inset(0 100% 0 0)';
-
-        // ---- 3. fill 确保为 none（不填充，只描边）----
-        textEl.style.fill = 'none';
-        textEl.style.fillOpacity = '0';
-
-        // 现在安全显示元素（被 dashoffset + clip-path 双重隐藏）
-        textEl.setAttribute('opacity', '1');
-
-        var duration = 3000; // 3 秒书写
-        var startTs = null;
-
-        // 笔尖 Y 轴关键帧 —— 模拟各字母笔画高度
-        var penYKeyframes = [
-            { at: 0.00, y: 0.30 },
-            { at: 0.06, y: 0.85 },
-            { at: 0.10, y: 0.55 },
-            { at: 0.16, y: 0.82 },
-            { at: 0.24, y: 0.50 },
-            { at: 0.32, y: 0.72 },
-            { at: 0.37, y: 0.25 },
-            { at: 0.44, y: 0.82 },
-            { at: 0.49, y: 0.25 },
-            { at: 0.56, y: 0.82 },
-            { at: 0.63, y: 0.50 },
-            { at: 0.73, y: 0.78 },
-            { at: 0.80, y: 0.52 },
-            { at: 0.85, y: 0.25 },
-            { at: 0.92, y: 0.62 },
-            { at: 1.00, y: 0.85 }
-        ];
-
-        function getPenY(progress) {
-            if (progress <= 0) return penYKeyframes[0].y;
-            if (progress >= 1) return penYKeyframes[penYKeyframes.length - 1].y;
-            for (var i = 1; i < penYKeyframes.length; i++) {
-                if (progress <= penYKeyframes[i].at) {
-                    var t = (progress - penYKeyframes[i-1].at) / (penYKeyframes[i].at - penYKeyframes[i-1].at);
-                    var smooth = t * t * (3 - 2 * t);
-                    return penYKeyframes[i-1].y + (penYKeyframes[i].y - penYKeyframes[i-1].y) * smooth;
-                }
-            }
-            return 0.5;
-        }
+        var speed = 0.9; // px/ms
+        var pauseAfter = [160, 140, 80, 60, 60, 60, 120, 140, 0];
 
         function easeInOutCubic(t) {
             return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
         }
 
-        function tick(ts) {
-            if (!startTs) startTs = ts;
-            var elapsed = ts - startTs;
-            var raw = Math.min(elapsed / duration, 1);
-            var progress = easeInOutCubic(raw);
+        function animateStroke(path, duration, fadeIn, fadeOut) {
+            return new Promise(function(resolve) {
+                var length = path.getTotalLength();
+                var start = null;
 
-            // A) stroke-dashoffset：真正地"画出"描边笔画
-            textEl.style.strokeDashoffset = String(pathLength * (1 - progress));
+                function step(ts) {
+                    if (!start) start = ts;
+                    var raw = Math.min((ts - start) / duration, 1);
+                    var progress = easeInOutCubic(raw);
 
-            // B) clip-path：强制只显示从左到右的部分
-            //    clip 比 dash 稍微超前，避免刚画好的笔画被裁掉
-            var clipProgress = Math.min(progress * 1.2 + 0.03, 1);
-            var clipRight = (1 - clipProgress) * 100;
-            textEl.style.clipPath = 'inset(0 ' + clipRight + '% 0 0)';
-            textEl.style.webkitClipPath = 'inset(0 ' + clipRight + '% 0 0)';
+                    path.style.strokeDashoffset = String(length * (1 - progress));
 
-            // 笔尖光标
-            var penX = bbox.x + bbox.width * progress;
-            var yFactor = getPenY(progress);
-            var microWobble = Math.sin(raw * Math.PI * 22) * 1.2;
-            var penY = bbox.y + bbox.height * yFactor + microWobble;
-            penEl.setAttribute('cx', String(penX));
-            penEl.setAttribute('cy', String(penY));
+                    var point = path.getPointAtLength(length * progress);
+                    penEl.setAttribute('cx', String(point.x));
+                    penEl.setAttribute('cy', String(point.y));
 
-            var penOpacity;
-            if (raw < 0.03) penOpacity = raw / 0.03 * 0.85;
-            else if (raw > 0.93) penOpacity = (1 - raw) / 0.07 * 0.85;
-            else penOpacity = 0.85;
-            penEl.setAttribute('opacity', String(penOpacity));
+                    var penOpacity = 0.85;
+                    if (fadeIn && raw < 0.1) penOpacity = (raw / 0.1) * 0.85;
+                    if (fadeOut && raw > 0.9) penOpacity = ((1 - raw) / 0.1) * 0.85;
+                    penEl.setAttribute('opacity', String(penOpacity));
 
-            if (raw < 1) {
-                requestAnimationFrame(tick);
-            } else {
-                // 书写完成 → 清除遮罩，启动填充
-                textEl.style.clipPath = 'none';
-                textEl.style.webkitClipPath = 'none';
-                textEl.style.strokeDasharray = 'none';
-                textEl.style.strokeDashoffset = '0';
-                penEl.setAttribute('opacity', '0');
-                smoothFillIn(textEl);
-            }
+                    if (raw < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        resolve();
+                    }
+                }
+
+                requestAnimationFrame(step);
+            });
         }
 
-        // 平滑填充：中空描边 → 实心文字
-        function smoothFillIn(el) {
-            var fillDuration = 1800;
-            var fillStart = null;
+        function sleep(ms) {
+            return new Promise(function(resolve) { setTimeout(resolve, ms); });
+        }
 
-            function fillTick(ts) {
-                if (!fillStart) fillStart = ts;
-                var elapsed = ts - fillStart;
-                var raw = Math.min(elapsed / fillDuration, 1);
+        async function runStrokes() {
+            // 起笔前隐藏笔尖
+            penEl.setAttribute('opacity', '0');
+
+            for (var i = 0; i < strokePaths.length; i++) {
+                var path = strokePaths[i];
+                var len = path.getTotalLength();
+                var duration = Math.max(220, Math.min(1200, len / speed));
+
+                await animateStroke(path, duration, i === 0, i === strokePaths.length - 1);
+
+                if (pauseAfter[i] > 0) {
+                    await sleep(pauseAfter[i]);
+                }
+            }
+
+            // 收笔
+            penEl.setAttribute('opacity', '0');
+            smoothFillIn();
+        }
+
+        function smoothFillIn() {
+            var fillDuration = 1800;
+            var start = null;
+
+            function tick(ts) {
+                if (!start) start = ts;
+                var raw = Math.min((ts - start) / fillDuration, 1);
                 var eased = raw < 0.5 ? 2*raw*raw : 1 - Math.pow(-2*raw + 2, 2) / 2;
 
-                // 设置 fill 为渐变色，逐渐增加不透明度
-                el.style.fill = 'url(#helloGrad)';
-                el.style.fillOpacity = String(eased);
-                el.style.strokeWidth = String(2 - 1.5 * eased);
+                fillText.style.opacity = '1';
+                fillText.style.fillOpacity = String(eased);
+
+                // 描边逐渐收细，视觉上更像填充
+                var strokeWidth = 2 - 1.5 * eased;
+                strokePaths.forEach(function(path) {
+                    path.style.strokeWidth = String(strokeWidth);
+                });
 
                 if (raw < 1) {
-                    requestAnimationFrame(fillTick);
+                    requestAnimationFrame(tick);
                 } else {
                     setTimeout(function() {
-                        var container = el.closest('.hello-animation');
+                        var container = fillText.closest('.hello-animation');
                         if (container) container.classList.add('writing-done');
                     }, 600);
                 }
             }
 
-            setTimeout(function() {
-                requestAnimationFrame(fillTick);
-            }, 300);
+            requestAnimationFrame(tick);
         }
 
-        // 页面加载后短暂延迟再开始书写
         setTimeout(function() {
-            requestAnimationFrame(tick);
+            runStrokes();
         }, 400);
     });
 });
