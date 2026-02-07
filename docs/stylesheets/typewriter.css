@@ -62,6 +62,15 @@
     align-items: center;
     padding: 2rem;
     overflow: hidden;
+    /* 以全局视口为中心，消除侧边栏偏移 */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    box-sizing: border-box;
+}
+
+/* 防止视口宽度导致水平滚动条 */
+.md-content {
+    overflow-x: clip;
 }
 
 /* 网格背景装饰 - 更精致的点阵网格 */

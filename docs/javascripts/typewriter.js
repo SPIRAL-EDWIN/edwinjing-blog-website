@@ -1,74 +1,131 @@
-// ===== Hello 手写动画 =====
+// ===== Hello 手写动画 - 逐字揭示 + 平滑填充 =====
 document.addEventListener("DOMContentLoaded", function() {
     var textEl = document.querySelector('.hello-text');
     var penEl = document.querySelector('.pen-cursor');
-    if (!textEl || !penEl) return;
+    var revealRect = document.getElementById('helloRevealRect');
+    if (!textEl || !penEl || !revealRect) return;
 
     document.fonts.ready.then(function() {
-        // 测量文字宽度，估算描边轮廓总长度
-        var advanceWidth = textEl.getComputedTextLength();
-        var pathLength = advanceWidth * 4; // 连笔草书轮廓 ≈ 4倍文字宽度
-
-        // 设置 dasharray 隐藏所有笔画
-        textEl.style.strokeDasharray = pathLength;
-        textEl.style.strokeDashoffset = pathLength;
-
-        // 此时笔画被 dashoffset 隐藏，可以安全显示元素
-        textEl.setAttribute('opacity', '1');
-
         var bbox = textEl.getBBox();
-        var duration = 3000; // 3秒书写
+        var pad = 15;
+
+        // 设置遮罩矩形覆盖文字区域，初始宽度为 0
+        revealRect.setAttribute('x', String(bbox.x - pad));
+        revealRect.setAttribute('y', String(bbox.y - pad));
+        revealRect.setAttribute('height', String(bbox.height + pad * 2));
+        revealRect.setAttribute('width', '0');
+
+        var totalWidth = bbox.width + pad * 2;
+        var duration = 2800; // 2.8 秒书写
         var startTs = null;
 
-        function easeInOutQuad(t) {
-            return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        // 笔尖 Y 轴关键帧 —— 模拟各字母笔画高度
+        // yFactor: 0 = bbox 顶部, 1 = bbox 底部
+        var penYKeyframes = [
+            { at: 0.00, y: 0.30 },  // H 起笔（高处）
+            { at: 0.06, y: 0.85 },  // H 左竖落笔
+            { at: 0.10, y: 0.55 },  // H 横划
+            { at: 0.16, y: 0.82 },  // H 右竖落笔，连笔到 e
+            { at: 0.24, y: 0.50 },  // e 中部
+            { at: 0.32, y: 0.72 },  // e 下弧
+            { at: 0.37, y: 0.25 },  // l 上升
+            { at: 0.44, y: 0.82 },  // l 下落
+            { at: 0.49, y: 0.25 },  // l 上升
+            { at: 0.56, y: 0.82 },  // l 下落
+            { at: 0.63, y: 0.50 },  // o 顶部
+            { at: 0.73, y: 0.78 },  // o 底部
+            { at: 0.80, y: 0.52 },  // o 闭合
+            { at: 0.85, y: 0.25 },  // ! 顶部
+            { at: 0.92, y: 0.62 },  // ! 竖身
+            { at: 1.00, y: 0.85 }   // ! 圆点
+        ];
+
+        function getPenY(progress) {
+            if (progress <= 0) return penYKeyframes[0].y;
+            if (progress >= 1) return penYKeyframes[penYKeyframes.length - 1].y;
+            for (var i = 1; i < penYKeyframes.length; i++) {
+                if (progress <= penYKeyframes[i].at) {
+                    var t = (progress - penYKeyframes[i-1].at) / (penYKeyframes[i].at - penYKeyframes[i-1].at);
+                    var smooth = t * t * (3 - 2 * t); // smoothstep 插值
+                    return penYKeyframes[i-1].y + (penYKeyframes[i].y - penYKeyframes[i-1].y) * smooth;
+                }
+            }
+            return 0.5;
+        }
+
+        function easeInOutCubic(t) {
+            return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
         }
 
         function tick(ts) {
             if (!startTs) startTs = ts;
             var elapsed = ts - startTs;
             var raw = Math.min(elapsed / duration, 1);
-            var progress = easeInOutQuad(raw);
+            var progress = easeInOutCubic(raw);
 
-            // 逐步揭示笔画
-            textEl.style.strokeDashoffset = String(pathLength * (1 - progress));
+            // 遮罩从左向右展开 —— 逐字揭示笔画
+            revealRect.setAttribute('width', String(totalWidth * progress));
 
-            // 笔尖光标跟踪
-            var penX = bbox.x + bbox.width * progress;
-            var wobble = Math.sin(raw * Math.PI * 10) * 4;
-            var penY = bbox.y + bbox.height * 0.68 + wobble;
+            // 笔尖光标：沿着字母形态移动
+            var penX = (bbox.x - pad) + totalWidth * progress;
+            var yFactor = getPenY(progress);
+            var microWobble = Math.sin(raw * Math.PI * 22) * 1.2; // 微颤模拟手抖
+            var penY = bbox.y + bbox.height * yFactor + microWobble;
+
             penEl.setAttribute('cx', String(penX));
             penEl.setAttribute('cy', String(penY));
 
-            // 笔尖透明度：渐入 → 可见 → 渐出
+            // 笔尖透明度：渐入 → 书写中 → 渐出
             var penOpacity;
-            if (raw < 0.03) {
-                penOpacity = (raw / 0.03) * 0.85;
-            } else if (raw > 0.93) {
-                penOpacity = ((1 - raw) / 0.07) * 0.85;
-            } else {
-                penOpacity = 0.85;
-            }
+            if (raw < 0.03) penOpacity = raw / 0.03 * 0.85;
+            else if (raw > 0.93) penOpacity = (1 - raw) / 0.07 * 0.85;
+            else penOpacity = 0.85;
             penEl.setAttribute('opacity', String(penOpacity));
 
             if (raw < 1) {
                 requestAnimationFrame(tick);
             } else {
-                // 书写完成：填充颜色，隐藏笔尖
+                // 书写完成 → 启动平滑填充
                 penEl.setAttribute('opacity', '0');
-                textEl.style.transition = 'fill 0.8s ease, stroke-width 0.8s ease';
-                textEl.style.fill = 'url(#helloGrad)';
-                textEl.style.strokeWidth = '0.5';
-
-                // 延迟添加呼吸光效
-                setTimeout(function() {
-                    var container = textEl.closest('.hello-animation');
-                    if (container) container.classList.add('writing-done');
-                }, 1200);
+                smoothFillIn(textEl);
             }
         }
 
-        // 短暂延迟后开始书写
+        // 平滑填充：中空笔画逐渐变为实心
+        function smoothFillIn(el) {
+            var fillDuration = 1800; // 1.8 秒
+            var fillStart = null;
+
+            function fillTick(ts) {
+                if (!fillStart) fillStart = ts;
+                var elapsed = ts - fillStart;
+                var raw = Math.min(elapsed / fillDuration, 1);
+                // 平滑缓动
+                var eased = raw < 0.5 ? 2*raw*raw : 1 - Math.pow(-2*raw + 2, 2) / 2;
+
+                // 渐增填充不透明度（中空 → 实心）
+                el.style.fillOpacity = String(eased);
+                // 渐减描边宽度（轮廓融入实心）
+                el.style.strokeWidth = String(2 - 1.5 * eased);
+
+                if (raw < 1) {
+                    requestAnimationFrame(fillTick);
+                } else {
+                    // 填充完成 → 添加微光呼吸效果
+                    setTimeout(function() {
+                        var container = el.closest('.hello-animation');
+                        if (container) container.classList.add('writing-done');
+                    }, 600);
+                }
+            }
+
+            // 书写结束后短暂停顿再开始填充
+            setTimeout(function() {
+                requestAnimationFrame(fillTick);
+            }, 300);
+        }
+
+        // 页面加载后短暂延迟再开始书写
         setTimeout(function() {
             requestAnimationFrame(tick);
         }, 400);
