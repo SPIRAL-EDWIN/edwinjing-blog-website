@@ -1,114 +1,24 @@
-// ===== Hello 手写动画 - 逐笔书写（无独立填充层）=====
+// ===== Hello 手写动画 - CSS transition + SVG gradient animation =====
 document.addEventListener("DOMContentLoaded", function() {
-    var strokeGroup = document.querySelector('.hello-strokes');
-    var strokePaths = strokeGroup ? strokeGroup.querySelectorAll('path') : null;
-    var penEl = document.querySelector('.pen-cursor');
-    if (!strokePaths || strokePaths.length === 0 || !penEl) return;
+    function helloAnimationStart() {
+        var container = document.getElementById('hello-container');
+        if (container) container.classList.add('fin');
+        // 触发 SVG 渐变色动画
+        try {
+            var a1 = document.getElementById('g1anim');
+            var a2 = document.getElementById('g2anim');
+            var a3 = document.getElementById('g3anim');
+            if (a1 && a1.beginElement) a1.beginElement();
+            if (a2 && a2.beginElement) setTimeout(function(){ a2.beginElement(); }, 5200);
+            if (a3 && a3.beginElement) setTimeout(function(){ a3.beginElement(); }, 6500);
+        } catch (e) { /* silent */ }
 
-    document.fonts.ready.then(function() {
-        // 初始化所有笔画：完全隐藏
-        strokePaths.forEach(function(path) {
-            var len = path.getTotalLength();
-            path.style.strokeDasharray = len;
-            path.style.strokeDashoffset = len;
-        });
-
-        var speed = 0.8; // px/ms（稍慢一点更从容）
-        var pauseAfter = [120, 100, 60, 50, 50, 50, 100, 120, 0];
-
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
-        }
-
-        function animateStroke(path, duration, fadeIn, fadeOut) {
-            return new Promise(function(resolve) {
-                var length = path.getTotalLength();
-                var start = null;
-
-                function step(ts) {
-                    if (!start) start = ts;
-                    var raw = Math.min((ts - start) / duration, 1);
-                    var progress = easeInOutCubic(raw);
-
-                    path.style.strokeDashoffset = String(length * (1 - progress));
-
-                    var point = path.getPointAtLength(length * progress);
-                    penEl.setAttribute('cx', String(point.x));
-                    penEl.setAttribute('cy', String(point.y));
-
-                    var penOpacity = 0.85;
-                    if (fadeIn && raw < 0.1) penOpacity = (raw / 0.1) * 0.85;
-                    if (fadeOut && raw > 0.9) penOpacity = ((1 - raw) / 0.1) * 0.85;
-                    penEl.setAttribute('opacity', String(penOpacity));
-
-                    if (raw < 1) {
-                        requestAnimationFrame(step);
-                    } else {
-                        resolve();
-                    }
-                }
-
-                requestAnimationFrame(step);
-            });
-        }
-
-        function sleep(ms) {
-            return new Promise(function(resolve) { setTimeout(resolve, ms); });
-        }
-
-        async function runStrokes() {
-            // 起笔前隐藏笔尖
-            penEl.setAttribute('opacity', '0');
-
-            for (var i = 0; i < strokePaths.length; i++) {
-                var path = strokePaths[i];
-                var len = path.getTotalLength();
-                var duration = Math.max(220, Math.min(1200, len / speed));
-
-                await animateStroke(path, duration, i === 0, i === strokePaths.length - 1);
-
-                if (pauseAfter[i] > 0) {
-                    await sleep(pauseAfter[i]);
-                }
-            }
-
-            // 收笔
-            penEl.setAttribute('opacity', '0');
-            smoothFillIn();
-        }
-
-        function smoothFillIn() {
-            var fillDuration = 1600;
-            var start = null;
-
-            function tick(ts) {
-                if (!start) start = ts;
-                var raw = Math.min((ts - start) / fillDuration, 1);
-                var eased = raw < 0.5 ? 2*raw*raw : 1 - Math.pow(-2*raw + 2, 2) / 2;
-
-                // 描边逐渐加粗到最终宽度，模拟"填满"效果
-                var strokeWidth = 3.5 + 2.5 * eased;
-                strokePaths.forEach(function(path) {
-                    path.style.strokeWidth = String(strokeWidth);
-                });
-
-                if (raw < 1) {
-                    requestAnimationFrame(tick);
-                } else {
-                    setTimeout(function() {
-                        var container = strokeGroup.closest('.hello-animation');
-                        if (container) container.classList.add('writing-done');
-                    }, 600);
-                }
-            }
-
-            requestAnimationFrame(tick);
-        }
-
+        // 书写完成后添加微光呼吸效果
         setTimeout(function() {
-            runStrokes();
-        }, 400);
-    });
+            if (container) container.classList.add('writing-done');
+        }, 8000);
+    }
+    setTimeout(helloAnimationStart, 400);
 });
 
 // ===== 终端打字机效果 =====

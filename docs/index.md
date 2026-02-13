@@ -18,40 +18,34 @@ title: ""
 <div class="particle"></div>
 </div>
 
-<div class="hello-animation">
-<svg class="hello-svg" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+<div class="hello-animation" id="hello-container">
+<svg id="hello-svg" data-name="hello" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 582 197">
+<title>Hello</title>
 <defs>
-<linearGradient id="helloGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-<stop offset="0%" stop-color="#3b82f6"/>
-<stop offset="25%" stop-color="#a855f7"/>
-<stop offset="50%" stop-color="#ec4899"/>
-<stop offset="72%" stop-color="#f59e0b"/>
-<stop offset="88%" stop-color="#10b981"/>
-<stop offset="100%" stop-color="#38bdf8"/>
+<linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="0">
+<stop offset="0%" stop-color="#ff6b6b"/>
+<stop offset="35%" stop-color="#ffd166"/>
+<stop offset="65%" stop-color="#6bf0c1"/>
+<stop offset="100%" stop-color="#4d3b9e"/>
+<animateTransform id="g1anim" attributeName="gradientTransform" type="translate" from="-400 0" to="400 0" dur="5s" begin="indefinite" fill="freeze"/>
 </linearGradient>
-<filter id="helloGlow">
-<feGaussianBlur stdDeviation="2.5" result="blur"/>
-<feMerge>
-<feMergeNode in="blur"/>
-<feMergeNode in="SourceGraphic"/>
-</feMerge>
-</filter>
-<filter id="penGlow">
-<feGaussianBlur stdDeviation="4"/>
-</filter>
+<linearGradient id="g2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="200" y2="0">
+<stop offset="0%" stop-color="#ff6b6b"/>
+<stop offset="50%" stop-color="#ffd166"/>
+<stop offset="100%" stop-color="#6bf0c1"/>
+<animateTransform id="g2anim" attributeName="gradientTransform" type="translate" from="-200 0" to="200 0" dur="1.2s" begin="indefinite" fill="freeze"/>
+</linearGradient>
+<linearGradient id="g3" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="160" y2="0">
+<stop offset="0%" stop-color="#ffd166"/>
+<stop offset="50%" stop-color="#6bf0c1"/>
+<stop offset="100%" stop-color="#4d3b9e"/>
+<animateTransform id="g3anim" attributeName="gradientTransform" type="translate" from="-160 0" to="160 0" dur="1s" begin="indefinite" fill="freeze"/>
+</linearGradient>
 </defs>
-<g class="hello-strokes" fill="none" stroke="url(#helloGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#helloGlow)">
-<path class="stroke-1" d="M82 50 C74 82 74 122 82 150"/>
-<path class="stroke-2" d="M82 98 C114 88 136 88 156 98"/>
-<path class="stroke-3" d="M156 50 C164 84 164 122 156 150 C158 160 174 160 190 144"/>
-<path class="stroke-4" d="M190 144 C214 116 254 116 260 150 C268 180 228 196 200 172 C178 152 200 132 228 140"/>
-<path class="stroke-5" d="M268 50 C268 90 268 128 268 150 C270 168 288 172 304 160"/>
-<path class="stroke-6" d="M324 50 C324 90 324 128 324 150 C326 168 344 172 360 160"/>
-<path class="stroke-7" d="M376 124 C356 114 338 132 338 154 C338 180 370 198 402 182 C430 168 436 130 410 114 C392 102 378 110 376 124"/>
-<path class="stroke-8" d="M458 56 C458 92 458 120 458 146"/>
-<path class="stroke-9" d="M458 166 C453 166 453 176 458 176 C463 176 463 166 458 166"/>
-</g>
-<circle class="pen-cursor" r="5" fill="white" opacity="0" filter="url(#penGlow)"/>
+<path class="hello-path hello-path-1" stroke="url(#g1)" d="M208,338c38-16.67,73.74-45.72,97.33-66,21.33-18.33,32.67-35.67,37.33-52.67C347.12,203.12,344,192,332,192c-11,0-21,10.33-24.94,27.68-4.52,19.89-22.06,107.82-29.39,149,15.67-72.33,36.33-81.33,53.67-81.33,22.33,0,24.67,18.67,19.42,39-5.43,21.07-7.42,44.32,17.91,44.32,18,0,35.53-8.17,52.67-20,14-9.67,23-24,23-40,0-13.42-8-23.33-20.67-23.33s-24.33,12-24.33,33.33c0,27,16.33,48,44,48,25.67,0,47.67-19.67,62-44.67,13.61-23.74,30.67-64.67,33.33-92.67s-5.33-36-18.67-36-24.67,17.33-28.67,43.33S486,302,491.33,330s28,37.67,46,37.67,38.17-15.67,52-37c16.54-25.51,35.87-67.45,38.67-102,2-24.67-8.67-33.33-20-33.33-14.67,0-23.33,13.33-28,38-4.5,23.81-8,64-2,94,4.64,23.21,25.33,40.33,44.67,40.33s32.67-19,36.67-42.33" transform="translate(-199 -183)"/>
+<path class="hello-path hello-path-2" stroke="url(#g2)" d="M697.33,287.33C672,287.33,661.33,305,659,327c-2.81,26.54,10.33,41.67,29.67,41.67,22,0,34.54-20.78,36.67-40.67,2-18.67-7.39-39.13-28-40.67" transform="translate(-199 -183)"/>
+<path class="hello-path hello-path-3" stroke="url(#g3)" d="M714.8,295.12c12.11,12.26,43.53,9.55,56.53-5.79" transform="translate(-199 -183)"/>
+<line class="hello-path hello-path-4" x1="561" y1="181.67" x2="561" y2="181.67"/>
 </svg>
 </div>
 

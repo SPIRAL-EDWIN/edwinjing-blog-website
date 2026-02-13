@@ -3,51 +3,145 @@
    设计理念: 深邃空间感 + 电子荧光 + 呼吸动效
    ========================================================================== */
 
-/* ===== Google Font for Hello Animation ===== */
-@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
-
-/* ===== Hello 手写动画 - 笔画描绘 ===== */
+/* ===== Hello 手写动画 - CodePen 风格连笔书写 ===== */
 .hello-animation {
     z-index: 1;
     margin-bottom: 28px;
+    width: 100%;
+    max-width: 540px;
     animation: float-in 0.6s ease-out;
 }
 
-.hello-svg {
+#hello-svg {
     width: 100%;
-    max-width: 500px;
     height: auto;
+    display: block;
     overflow: visible;
 }
 
-/* 书写完成后的微光呼吸 - JS 添加 .writing-done 后触发 */
+/* 笔画基础样式 */
+.hello-path {
+    fill: none;
+    stroke: #362f3c;
+    stroke-width: 18px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 笔画 1：Hello 主体连笔 */
+.hello-path-1 {
+    stroke-dasharray: 1850 2000;
+    stroke-dashoffset: 1851;
+    transition: stroke-dashoffset 5s linear;
+}
+
+/* 笔画 2：o 的圆弧 */
+.hello-path-2 {
+    stroke-dasharray: 260 1000;
+    stroke-dashoffset: 261;
+    transition: stroke-dashoffset 1.2s linear 5.2s;
+}
+
+/* 笔画 3：! 的斜划 */
+.hello-path-3 {
+    stroke-dasharray: 100 1000;
+    stroke-dashoffset: 101;
+    transition: stroke-dashoffset 1s linear 6.5s;
+}
+
+/* 笔画 4：! 的圆点 */
+.hello-path-4 {
+    stroke: #362f3c;
+    stroke-width: 0;
+    transition: stroke-width 0.1s linear 7.5s;
+}
+
+/* 触发书写动画 */
+#hello-container.fin .hello-path-1,
+#hello-container.fin .hello-path-2,
+#hello-container.fin .hello-path-3 {
+    stroke-dashoffset: 0;
+}
+
+#hello-container.fin .hello-path-4 {
+    stroke-width: 18px;
+}
+
+/* 颜色流动动画 */
+@keyframes helloColorShift {
+    0%   { stroke: #362f3c; }
+    25%  { stroke: #ff6b6b; }
+    50%  { stroke: #ffd166; }
+    75%  { stroke: #6bf0c1; }
+    100% { stroke: #4d3b9e; }
+}
+
+#hello-container.fin .hello-path-1 {
+    animation: helloColorShift 5s linear 0s both;
+}
+
+#hello-container.fin .hello-path-2 {
+    animation: helloColorShift 1.2s linear 5.2s both;
+}
+
+#hello-container.fin .hello-path-3 {
+    animation: helloColorShift 1s linear 6.5s both;
+}
+
+/* 暗色模式适配 - 初始描边亮一些 */
+[data-md-color-scheme="slate"] .hello-path {
+    stroke: #94a3b8;
+}
+
+[data-md-color-scheme="slate"] .hello-path-4 {
+    stroke: #94a3b8;
+}
+
+@keyframes helloColorShiftDark {
+    0%   { stroke: #94a3b8; }
+    25%  { stroke: #ff6b6b; }
+    50%  { stroke: #ffd166; }
+    75%  { stroke: #6bf0c1; }
+    100% { stroke: #4d3b9e; }
+}
+
+[data-md-color-scheme="slate"] #hello-container.fin .hello-path-1 {
+    animation: helloColorShiftDark 5s linear 0s both;
+}
+
+[data-md-color-scheme="slate"] #hello-container.fin .hello-path-2 {
+    animation: helloColorShiftDark 1.2s linear 5.2s both;
+}
+
+[data-md-color-scheme="slate"] #hello-container.fin .hello-path-3 {
+    animation: helloColorShiftDark 1s linear 6.5s both;
+}
+
+/* 书写完成后的微光呼吸 */
 .hello-animation.writing-done {
     animation: hello-shimmer 4s ease-in-out infinite alternate;
 }
 
 @keyframes hello-shimmer {
-    0%   { filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.2)); }
-    50%  { filter: drop-shadow(0 0 18px rgba(236, 72, 153, 0.3)); }
-    100% { filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.25)); }
+    0%   { filter: drop-shadow(0 0 6px rgba(255, 107, 107, 0.2)); }
+    50%  { filter: drop-shadow(0 0 18px rgba(255, 209, 102, 0.3)); }
+    100% { filter: drop-shadow(0 0 10px rgba(107, 240, 193, 0.25)); }
 }
 
-/* 暗色模式 - 更强烈光效 */
 [data-md-color-scheme="slate"] .hello-animation.writing-done {
     animation: hello-shimmer-dark 4s ease-in-out infinite alternate;
 }
 
 @keyframes hello-shimmer-dark {
-    0%   { filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3)); }
-    50%  { filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.4)); }
-    100% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.35)); }
+    0%   { filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.3)); }
+    50%  { filter: drop-shadow(0 0 25px rgba(255, 209, 102, 0.4)); }
+    100% { filter: drop-shadow(0 0 15px rgba(107, 240, 193, 0.35)); }
 }
 
 /* 移动端 Hello */
 @media screen and (max-width: 768px) {
-    .hello-svg {
-        max-width: 320px;
-    }
     .hello-animation {
+        max-width: 340px;
         margin-bottom: 16px;
     }
 }
