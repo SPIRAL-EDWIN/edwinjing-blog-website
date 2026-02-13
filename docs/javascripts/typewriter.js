@@ -1,22 +1,8 @@
-// ===== Hello 手写动画 - CSS transition + SVG gradient animation =====
+// ===== Hello 手写动画 - CSS transition 触发 =====
 document.addEventListener("DOMContentLoaded", function() {
     function helloAnimationStart() {
         var container = document.getElementById('hello-container');
         if (container) container.classList.add('fin');
-        // 触发 SVG 渐变色动画
-        try {
-            var a1 = document.getElementById('g1anim');
-            var a2 = document.getElementById('g2anim');
-            var a3 = document.getElementById('g3anim');
-            if (a1 && a1.beginElement) a1.beginElement();
-            if (a2 && a2.beginElement) setTimeout(function(){ a2.beginElement(); }, 5200);
-            if (a3 && a3.beginElement) setTimeout(function(){ a3.beginElement(); }, 6500);
-        } catch (e) { /* silent */ }
-
-        // 书写完成后添加微光呼吸效果
-        setTimeout(function() {
-            if (container) container.classList.add('writing-done');
-        }, 8000);
     }
     setTimeout(helloAnimationStart, 400);
 });

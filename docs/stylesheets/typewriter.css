@@ -22,7 +22,6 @@
 /* 笔画基础样式 */
 .hello-path {
     fill: none;
-    stroke: #362f3c;
     stroke-width: 18px;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -51,7 +50,6 @@
 
 /* 笔画 4：! 的圆点 */
 .hello-path-4 {
-    stroke: #362f3c;
     stroke-width: 0;
     transition: stroke-width 0.1s linear 7.5s;
 }
@@ -67,76 +65,11 @@
     stroke-width: 18px;
 }
 
-/* 颜色流动动画 */
-@keyframes helloColorShift {
-    0%   { stroke: #362f3c; }
-    25%  { stroke: #ff6b6b; }
-    50%  { stroke: #ffd166; }
-    75%  { stroke: #6bf0c1; }
-    100% { stroke: #4d3b9e; }
-}
 
-#hello-container.fin .hello-path-1 {
-    animation: helloColorShift 5s linear 0s both;
-}
 
-#hello-container.fin .hello-path-2 {
-    animation: helloColorShift 1.2s linear 5.2s both;
-}
 
-#hello-container.fin .hello-path-3 {
-    animation: helloColorShift 1s linear 6.5s both;
-}
 
-/* 暗色模式适配 - 初始描边亮一些 */
-[data-md-color-scheme="slate"] .hello-path {
-    stroke: #94a3b8;
-}
 
-[data-md-color-scheme="slate"] .hello-path-4 {
-    stroke: #94a3b8;
-}
-
-@keyframes helloColorShiftDark {
-    0%   { stroke: #94a3b8; }
-    25%  { stroke: #ff6b6b; }
-    50%  { stroke: #ffd166; }
-    75%  { stroke: #6bf0c1; }
-    100% { stroke: #4d3b9e; }
-}
-
-[data-md-color-scheme="slate"] #hello-container.fin .hello-path-1 {
-    animation: helloColorShiftDark 5s linear 0s both;
-}
-
-[data-md-color-scheme="slate"] #hello-container.fin .hello-path-2 {
-    animation: helloColorShiftDark 1.2s linear 5.2s both;
-}
-
-[data-md-color-scheme="slate"] #hello-container.fin .hello-path-3 {
-    animation: helloColorShiftDark 1s linear 6.5s both;
-}
-
-/* 书写完成后的微光呼吸 */
-.hello-animation.writing-done {
-    animation: hello-shimmer 4s ease-in-out infinite alternate;
-}
-
-@keyframes hello-shimmer {
-    0%   { filter: drop-shadow(0 0 6px rgba(255, 107, 107, 0.2)); }
-    50%  { filter: drop-shadow(0 0 18px rgba(255, 209, 102, 0.3)); }
-    100% { filter: drop-shadow(0 0 10px rgba(107, 240, 193, 0.25)); }
-}
-
-[data-md-color-scheme="slate"] .hello-animation.writing-done {
-    animation: hello-shimmer-dark 4s ease-in-out infinite alternate;
-}
-
-@keyframes hello-shimmer-dark {
-    0%   { filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.3)); }
-    50%  { filter: drop-shadow(0 0 25px rgba(255, 209, 102, 0.4)); }
-    100% { filter: drop-shadow(0 0 15px rgba(107, 240, 193, 0.35)); }
-}
 
 /* 移动端 Hello */
 @media screen and (max-width: 768px) {
