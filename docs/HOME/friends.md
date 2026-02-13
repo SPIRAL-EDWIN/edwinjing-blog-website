@@ -6,11 +6,11 @@
 
 <div class="friend-links">
 
-<a href="https://example1.com" target="_blank" class="friend-card">
-    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Felix's Avatar" class="friend-avatar">
+<a href="https://tzblog.tech" target="_blank" class="friend-card">
+    <img src="https://tzblog.tech/avatar.jpg" alt="Felix's Avatar" class="friend-avatar">
     <div class="friend-info">
-        <span class="friend-name">Felix 的博客</span>
-        <span class="friend-desc">分享技术与生活的点滴</span>
+        <span class="friend-name">TzBlog: 小周的笔记</span>
+        <span class="friend-desc">Zhou really wants to make something valuable (and profitable!)</span>
     </div>
 </a>
 
