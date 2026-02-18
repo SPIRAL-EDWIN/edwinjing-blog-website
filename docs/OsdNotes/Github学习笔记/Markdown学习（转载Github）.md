@@ -1,4 +1,4 @@
-# Step 1: Add headings
+## Step 1: Add headings
 
 **What is _Markdown_?** Markdown is a [lightweight syntax](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) for communicating on GitHub. You can format text to add a heading, lists, **bold**, _italics_, tables, and many other stylings. You can use Markdown in most places around GitHub such as:
 
@@ -8,7 +8,7 @@
 
 **What is a _heading_?** A heading is a larger bit of text at the beginning of a section. There are six sizes.
 
-## Example
+### Example
 
 ```md
 # This is an `<h1>` heading, which is the largest
@@ -18,7 +18,7 @@
 ###### This is an `<h6>`heading, which is the smallest
 ```
 
-## ⌨️ Activity: Create a markdown file
+### ⌨️ Activity: Create a markdown file
 
 1. Open a new browser tab, and work on the steps in your second tab while you read the instructions in this tab.
     
@@ -55,7 +55,7 @@
     
 9. In the top right, click the **Commit changes** button and commit directly to the `start-blog` branch.
 
-# Step 2: Make a list
+## Step 2: Make a list
 
 Markdown supports 3 types of common lists. They include:
 
@@ -63,7 +63,7 @@ Markdown supports 3 types of common lists. They include:
 - [Ordered](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#lists) - Number list
 - [Task](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#task-lists) - Checkbox list
 
-## Unordered list
+### Unordered list
 
 An unordered list is simple to show. Each item is placed on its own line using a `-`, `*`, or `+` character.
 
@@ -77,7 +77,7 @@ An unordered list is simple to show. Each item is placed on its own line using a
 - Item 2
 - Item 3
 
-## Ordered List
+### Ordered List
 
 A list is changed to ordered by using any number instead of the list character. Notice how markdown automatically handles the counting. Nice!
 
@@ -91,7 +91,7 @@ A list is changed to ordered by using any number instead of the list character. 
 2. Step 2
 3. Step 3
 
-## Task List
+### Task List
 
 A task list is extends the unordered list to use check boxes.  
 Add empty brackets `[ ]` for incomplete tasks and filled brackets `[x]` for complete tasks. Note: The empty required space for empty brackets.
@@ -107,7 +107,7 @@ Add empty brackets `[ ]` for incomplete tasks and filled brackets `[x]` for 
 
 >TIP        Issues and pull requests can use task syntax for [conveying progress](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/about-tasklists).
 
-## ⌨️ Activity: Add ideas and goals to our morning plan
+### ⌨️ Activity: Add ideas and goals to our morning plan
 
 1. On the `start-blog` branch, open the `day-1.md` file for editing.
     
@@ -123,13 +123,13 @@ Add empty brackets `[ ]` for incomplete tasks and filled brackets `[x]` for 
     
 4. In the top right, click the **Commit changes** button and commit directly to the `start-blog` branch.
 
-# Step 3: Add a code sample
+## Step 3: Add a code sample
 
 Let's learn about [code blocks](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#quoting-code) and [syntax highlighting](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks) based on the language.
 
 > TIP     Many programming languages are supported. Try testing out some other file extension types!
 
-## Example: Terminal Command
+### Example: Terminal Command
 
 ```md
 ```bash
@@ -141,7 +141,7 @@ git clone https://github.com/skills/communicate-using-markdown
 git clone https://github.com/skills/communicate-using-markdown
 ```
 
-## Example: Javascript Code
+### Example: Javascript Code
 
 ```js
 var myVar = "Hello, world!";
@@ -149,7 +149,7 @@ var myVar = "Hello, world!";
 var myVar = "Hello, world!";
 ```
 
-## Activity: Adding a code example
+### Activity: Adding a code example
 
 1. On the `start-blog` branch, open the `day-1.md` file for editing.
     
