@@ -198,6 +198,6 @@ nav:
       - OsdNotes/CS101/Python.md
       - OsdNotes/CS101/MATLAB.md
     - Github笔记:
-      - "OsdNotes/Github学习笔记/Markdown学习（转载Github）.md"
+      - "Markdown学习（转载Github）": "OsdNotes/Github学习笔记/Markdown学习（转载Github）.md"
   - Experiences:
     - 经验分享/machineLearning.md
