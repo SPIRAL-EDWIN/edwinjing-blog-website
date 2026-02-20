@@ -8,7 +8,7 @@
 
 这中间唯一印象深刻的就是18岁生日了。二模第一天的生日，考试考的哭笑不得，然后回去过成人礼。没有鲜花、没有庆祝，但是有一个蛋糕，爸爸妈妈写的贺卡和亲人们送的礼物。质朴而动人。尽管第二天还有三门考试就是了:(
 
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/jH1OqBCrFicY6X945xXU0NFgBxXFibp0mVTTFQnxso14zuaq9PDRicXIAZ9fz6oPFTLic7MaRnDaKJbtOzgWjhGthGLFax6mvR3wov6TpNgyCOk/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&watermark=1#imgIndex=0)
+![Image](images/image1.jpg)
 
 每个周五晚，还有英语补习班。和三三两两的同学从班会课溜出来，互相嚷着占座位，然后在地铁上发表对未来的看法（以及被骂说首考续写写偏、不可能三个一样答案的这个能被唠一辈子）。
 
@@ -20,33 +20,33 @@
 
 然后，高考到来了。考语文数学前，可能是心理原因导致生理不适，在化学办公室和H老师畅聊了很久。仍然记得考语文的时候，第一眼看到语文作文的震惊以及看到种树非联文本的诧异；考数学的时候过山车一样的心情；考英语走错考场、极限听力的红温和考化学二十分钟配平方程式的绝望。数学考完之后我就知道折大的三一我是必去不可了，当然了也幸亏面试的超绝高分让我免受80个志愿的“家庭矛盾trigger”荼毒（）
 
-   ![Image](https://mmbiz.qpic.cn/mmbiz_jpg/jH1OqBCrFicbeW4d8ch7mTTNMfwKypVQiccibiazaeaaniaPqggGcDhicjv9fNVScofYu1ao0ggMav0gase5avPPicia2mic8Zbvw9XktuJQXDYkX4v0/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&watermark=1#imgIndex=1)  
+   ![Image](images/image2.jpg)  
 真的很感谢效实的老师大家庭，让我有了新的心态和视角去面对我的人生。在困于挫折的时候，在得志的时候，在规划的时候，给了我那么多的支持！
 
  夏天是多么奇妙的季节呢？2025的这个夏天，好像果真如我们班歌《玻璃夏天》那般纯净透明而梦幻，又那般**易碎**。我清楚的知道，高中有些同学这一辈子都见不到了，就像初中那样，就像小学那样。大家各奔东西，但是被*效实胚子*这个tag又联系在一起。效实很好，无论是中考那会，还是上大学以后和全国各地的同学交流，效实都是我心中**No.1**的高中。
 （当然了，也是希望效实的招牌和特色不要被大环境带坏，我知道这个没有对错，但还是希望届届传下来的校风可以得以延续）
 
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/jH1OqBCrFicYSK6cFLMaaGZbyvh38liaGvlZjscSEURtAVeksCyM9ibD1k585TYNgrF8J7uu7BB51ep1qNGtLuVTBnvzJhXwmWWmZY2YAtVpPw/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&watermark=1#imgIndex=2)
+![Image](images/image3.jpg)
 
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/jH1OqBCrFicbkLkueGOwx6boQDCmXfptFxzGjDlX99OolltKiblPEupNkm8ib3RII1tYsHNFa3JEqASseba2Du41FwJbTGFZQXk5KTrgtd3rX4/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&watermark=1#imgIndex=3)
+![Image](images/image4.jpg)
 
 “人生到处知何似，应似飞鸿踏雪泥。” 然后是暑假，一个期盼了无数年的暑假。之前听到“盛夏蝉鸣”的比喻，就觉得有过之而不不及。真的身处之时，反倒有种拔剑四顾心茫然之感。回小学初中看老师、学聚会、旅游、看球赛、学习视频剪辑和无人机等等，好像要把之前所有探索世界的念头全部实现，然后就发现自己还是懒，本质还是p人，想到啥做啥。其实只想睡觉了。
 
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/jH1OqBCrFicZEWR4HKabFs4nD2xqVPbibeacwu4ARSPsfibcq76xa8TKDugqDg3lUXAaTa9icGYcE0XZfKgpPzfKrpCCBsL2gXT4l3InLRibQFuQ/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&watermark=1#imgIndex=4)
+![Image](images/image5.jpg)
 
 接着，怀着忐忑更多是期待的心情，大学生活从军训拉开了帷幕。最大的感想？好多人啊。从全国各地考过来的同学们，完全不同的口音、地方特色，却都追求进一步的学业进步。导员人很好，军训的时候也遇到了一群可以嬉笑打闹，再后来关系很好的同学们。
 
-![Image](https://mmbiz.qpic.cn/sz_mmbiz_jpg/jH1OqBCrFicauDNgcYzBlIQyB3SYNC24b72f5asKHicYaaxt2vEUcK5fOwoCt9K39kpy5iankWwaGD6jGwyr578jACe3aaN1pnuvicFL7IZW7Eg/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&watermark=1#imgIndex=5)
+![Image](images/image6.jpg)
 
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/jH1OqBCrFicYbV5RP6vKyYJQG0ribg1aB5hDC2lKmGJWWGeRmXFeQ1H9Aq22USpU0RfKDvyY39hSeQ07y0QlUW76UVYOduRc0lPe8tWVzUwC8/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&watermark=1#imgIndex=6)
+![Image](images/image7.jpg)
 
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/jH1OqBCrFicahF6Um9pkwgNiaSfVI41Ou9Xo3UZLV34cYWzv35lrCcLgfTialatO7e2WqYzibWfCxsl8CEhjNrCIVq5S5hfS9zGGPsibBBd2eeuQ/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&watermark=1#imgIndex=7)
+![Image](images/image8.jpg)
 
 要说最有感触的一幕，必须是军训合唱了吧。说实话很久很久没有这样振奋人心的时候了。从声部的选拔到校歌和《纪念》的连夜学习，从排练到十一点多才回寝，第二天六点多起床，到三个声部的不断微调，为了连队的荣誉，大家都拼上了半条命。当结果并不如意的时候，在愤愤不平的同时，我们为了更加纯粹的呈现和展示而守护了初心，我永远也忘不了唱到B4的时候，小林学长和旁听老师偷偷抹眼泪的瞬间。纯粹的团结和拼劲，我什么时候才能不为之湿润眼眶呢？（具体见视频号）
 
 9月到12月，大学生活和学习真正地开始了。这到底是不是我曾经憧憬过的大学生活呢？我有些记不清了。“大学比高中更轻松”倒是彻底被证明成了一句迷惑高中生的咒语。（好想回效东休息几天）全英文环境的教学和联合培养的课程计划毫无疑问是适合我的，不是说我英语有多好，只是这样EMI的环境让我更想学习英语作为第二语言去使用，去沟通，去联系。学习英语，融英语到生活，用英文沟通的感觉很好。不是为了感觉让自己举止像个留子strong哥，而是这种**能够和更多人交流的能力**让我很安心。我想这也是国际联合学院的初心之一吧，我很认可。
 
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/jH1OqBCrFicakia1yhPcf4IyviahHM61DMOZOEhuLJGiaybTSvkkbDtHgGA9gMs99ubT40MGgT6Ev3ppw7krs5bF4mO56jiclDtnbia47sAevEbjw/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1&watermark=1#imgIndex=8)
+![Image](images/image9.jpg)
 
 如果要说大学生活和以前的生活有什么区别的话，我想恋爱的经历是很关键的一点。对于没谈过恋爱的我来说，能够对恋爱祛魅是我的第一想法。无论怎么说，我都需要**学会怎么去爱一个人**，而这不是看看纯爱番就能学会的，需要你有**真诚的感情和认真的态度**。虽然我知道爱情这个事是*顺其自然*，但是也不能因为没有谈过恋爱就*畏手畏脚、不抓住机会*。这绝不是说和谁谈都可以，更不是说自己把恋爱当做一种用之即弃的用品。相反，恋爱对于尤其进入大学生活、半步踏入社会的学生来说，更像是一种**多维的支持和依靠**。
 
@@ -72,17 +72,17 @@
 
 2025年，总结了几点感悟：
 
-1. 做什么事都要有自己的**节奏**，尤其到了大学和社会中，别人的参考不是底线，只是**选择**。
+1.做什么事都要有自己的**节奏**，尤其到了大学和社会中，别人的参考不是底线，只是**选择**。
 
-2. 不要过度放大自己没有的东西，忽视自己已经有的东西。无论成就也好，风格也罢，成为更优秀的人不是复制粘贴别人的源代码。尤其是到了强者云集的环境中，取长补短提升自己的同时必须要坚守一些根本。
+2.不要过度放大自己没有的东西，忽视自己已经有的东西。无论成就也好，风格也罢，成为更优秀的人不是复制粘贴别人的源代码。尤其是到了强者云集的环境中，取长补短提升自己的同时必须要坚守一些根本。
 
-3. ***要做一个值得别人尊敬的人。***
+3.***要做一个值得别人尊敬的人。***
 
-4. 无意义的焦虑往往发生在**停滞不前**和**过度比较**，这样很容易陷入恶性循环。给自己喘息的机会，想想自己究竟要做什么，清晰的计划不一定要拿来严格执行，但是让自己清楚该去往何方。
+4.无意义的焦虑往往发生在**停滞不前**和**过度比较**，这样很容易陷入恶性循环。给自己喘息的机会，想想自己究竟要做什么，清晰的计划不一定要拿来严格执行，但是让自己清楚该去往何方。
 
-5. **自律**和**执行力**将会决定一切。你已经知道怎么样成就一个更好的自己了，不是吗？
+5.**自律**和**执行力**将会决定一切。你已经知道怎么样成就一个更好的自己了，不是吗？
 
-6. 到了大学，能用绝对实力解决的事情在逐渐变少。*人脉资源，处世哲学，认知管理*等等不可或缺。
+6.到了大学，能用绝对实力解决的事情在逐渐变少。*人脉资源，处世哲学，认知管理*等等不可或缺。
 
 这个世界很小，小到足不出户就能看到地球村；这个世界又很大，大到每往外走一点就会有全新的感触。现在我有不顾一切尝试和犯错的底气，有一定的规划和支撑我的资源，有走在世界学术和领域前沿的机会，大可以尝试自己想尝试的，收获自己想收获的。但一切的基础在于“走出去”，走出舒适圈，走出被限制的束缚，到真正能够见识到世界的地方去，攀登到山顶去看看自己能为这个世界做些什么，这个世界的哪个领域真正适合我——
 
