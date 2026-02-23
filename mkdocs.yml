@@ -12,7 +12,7 @@ site_url: https://edwinjing-blog.com/  # 生产环境的域名，用于生成 SE
 site_author: Edwin Jing
 site_description: "基于 MkDocs 构建的个人学术知识库与技术文档。"
 copyright: >-
-  Copyright &copy; 2025-2026 Edwin Jing. This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 
+  Copyright &copy; 2026 Edwin Jing. This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 
   
 # --- 2. 代码仓库链接 (Repository) ---
 # 配置后，页面右上角会出现 GitHub 图标，方便快速跳转到源码或编辑页面 [13]
@@ -202,6 +202,8 @@ nav:
       - "Markdown学习（转载Github）": "OsdNotes/Github学习笔记/Markdown学习（转载Github）.md"
     - Embodied AI:
       - "Hua Chen - Embodied AI & Humanoids Robots": "OsdNotes/Embodied AI/Hua Chen - Embodied AI & Humanoids Robots.md"
+      - Embodied AI
+        - 具身智能基础路线: docs/OsdNotes/Embodied AI/具身智能基础路线.md
   - Experiences:
     - 经验分享/machineLearning.md
     - 年终总结:
