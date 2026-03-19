@@ -85,9 +85,9 @@
     min-height: 90vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    padding: 2rem;
+    padding: 0.4rem 2rem 2rem;
     overflow: hidden;
     /* 以全局视口为中心，消除侧边栏偏移 */
     width: 100vw;
@@ -98,6 +98,16 @@
 /* 防止视口宽度导致水平滚动条 */
 .md-content {
     overflow-x: clip;
+}
+
+/* 首页首屏收紧顶部留白 */
+.md-content:has(.hero-section) {
+    padding-top: 0 !important;
+}
+
+.md-content:has(.hero-section) .md-content__inner {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* 网格背景装饰 - 更精致的点阵网格 */
@@ -378,6 +388,7 @@
     display: flex;
     gap: 18px;
     margin-top: 44px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
     justify-content: center;
     z-index: 1;
@@ -399,6 +410,12 @@
     overflow: hidden;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+}
+
+.action-btn .btn-text {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
 }
 
 .action-btn::before {
@@ -467,8 +484,14 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-top: 0;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 14px 28px;
+    width: fit-content;
+    max-width: min(100%, 860px);
+    flex-wrap: wrap;
+    justify-content: center;
     background: rgba(0, 63, 136, 0.04);
     border: 1px solid rgba(0, 63, 136, 0.08);
     border-radius: 50px;
@@ -520,7 +543,7 @@
 @media screen and (max-width: 768px) {
     .hero-section {
         min-height: 65vh;
-        padding: 1.5rem;
+        padding: 0.35rem 1.5rem 1.5rem;
     }
     
     .terminal-window {
@@ -561,6 +584,7 @@
         justify-content: center;
         padding: 10px 16px;
         gap: 10px;
+        margin-top: 14px;
     }
     
     .hero-glow {

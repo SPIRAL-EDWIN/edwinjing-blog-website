@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
 /* 
  * 文件路径: docs/stylesheets/extra.css
  * 描述: 针对 MkDocs Material 主题的深度定制
@@ -168,6 +170,7 @@
     font-size: 0.85em;
     color: #666;
     line-height: 1.4;
+    line-clamp: 2;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -222,7 +225,7 @@ html {
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
-    font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+    font-family: "Playfair Display", "Noto Serif SC", serif;
     line-height: 1.3;
 }
 
@@ -252,38 +255,6 @@ a {
 
 .md-nav__item--active > .md-nav__link {
     font-weight: 600;
-}
-
-/* 顶部导航栏科技感 */
-.md-header {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-[data-md-color-scheme="default"] .md-header {
-    background: rgba(0, 63, 136, 0.95) !important;
-}
-
-/* 标签页优化 */
-.md-tabs__link {
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.md-tabs__link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #fff;
-    transition: all 0.3s ease;
-}
-
-.md-tabs__link:hover::after,
-.md-tabs__link--active::after {
-    width: 100%;
 }
 
 /* 搜索框优化 */
@@ -380,17 +351,6 @@ a {
 
 .md-typeset table:not([class]) th {
     background: rgba(0, 63, 136, 0.08);
-}
-
-/* 按钮统一样式 */
-.md-button {
-    border-radius: 8px !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.md-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 63, 136, 0.2);
 }
 
 /* 页脚美化 */
@@ -743,15 +703,13 @@ a {
     margin: 0;
 }
 
-/* 首页隐藏页面标题 */
-.md-content__inner > h1:first-child {
+/* 首页兜底：仅在首页（logo href='.'）隐藏正文第一个 H1 */
+body:has(.md-header__button.md-logo[href="."]) .md-content__inner > h1:first-of-type {
     display: none;
 }
 
-/* 隐藏横栏中的 Home tab */
-.md-tabs__link[href="."] ,
-.md-tabs__link[href="./"] ,
-.md-tabs__link[href="../"] {
+/* 首页仅保留刘海主标题，隐藏副标题行，避免出现 Home/页面名闪现 */
+body:has(.md-header__button.md-logo[href="."]) .md-header [data-md-component="header-topic"] {
     display: none;
 }
 
@@ -902,3 +860,425 @@ a.block-link:hover {
     0% { background-color: rgba(100, 181, 246, 0.3); }
     100% { background-color: transparent; }
 }
+
+/* =============================================================
+   Focused UI Sync Layer (Light + Dark)
+   Scope: fonts, texture, fade-in, glass nav, hover-lift,
+          custom scrollbar, desktop tabs + active state,
+          about button, mobile hamburger menu panel.
+   ============================================================= */
+
+/* Fonts */
+html, body {
+    font-family: "Inter", "Noto Sans SC", "Segoe UI", sans-serif;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+    font-family: "Playfair Display", "Noto Serif SC", serif;
+}
+
+.md-header,
+.md-tabs,
+.md-nav,
+.md-button,
+.md-typeset code,
+.md-typeset pre code {
+    font-family: "Inter", "Noto Sans SC", "Segoe UI", sans-serif;
+}
+
+.md-typeset code,
+.md-typeset pre code,
+.md-tabs__link,
+.md-nav__link {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+/* Texture background */
+[data-md-color-scheme="default"] body {
+    background-color: #fafaf9;
+    background-image: radial-gradient(#e7e5e4 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+[data-md-color-scheme="slate"] body {
+    background-color: #0b1120;
+    background-image: radial-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px);
+    background-size: 34px 34px;
+}
+
+/* Fade-in animation */
+.md-content__inner {
+    animation: pageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glass nav effect */
+.md-header,
+.md-tabs {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+[data-md-color-scheme="default"] .md-header,
+[data-md-color-scheme="default"] .md-tabs {
+    background: rgba(250, 250, 249, 0.85) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-md-color-scheme="default"] .md-header .md-header__title,
+[data-md-color-scheme="default"] .md-header .md-header__topic,
+[data-md-color-scheme="default"] .md-header .md-header__title .md-ellipsis,
+[data-md-color-scheme="default"] .md-header .md-header__topic .md-ellipsis,
+[data-md-color-scheme="default"] .md-header .md-logo,
+[data-md-color-scheme="default"] .md-header .md-header__button,
+[data-md-color-scheme="default"] .md-header .md-header__button .md-icon,
+[data-md-color-scheme="default"] .md-header .md-header__option .md-icon,
+[data-md-color-scheme="default"] .md-header [data-md-component="palette"] .md-icon,
+[data-md-color-scheme="default"] .md-header .md-source,
+[data-md-color-scheme="default"] .md-header .md-source__repository,
+[data-md-color-scheme="default"] .md-header .md-source .md-source__repository .md-ellipsis,
+[data-md-color-scheme="default"] .md-header .md-source__fact {
+    color: #292524 !important;
+}
+
+[data-md-color-scheme="default"] .md-header .md-header__button:hover,
+[data-md-color-scheme="default"] .md-header .md-header__button:hover .md-icon,
+[data-md-color-scheme="default"] .md-header .md-header__option:hover .md-icon,
+[data-md-color-scheme="default"] .md-header .md-logo:hover,
+[data-md-color-scheme="default"] .md-header .md-source:hover,
+[data-md-color-scheme="default"] .md-header .md-source:hover .md-source__repository,
+[data-md-color-scheme="default"] .md-header .md-source:hover .md-source__fact {
+    color: #1e3a8a !important;
+}
+
+[data-md-color-scheme="slate"] .md-header,
+[data-md-color-scheme="slate"] .md-tabs {
+    background: rgba(11, 17, 32, 0.8) !important;
+    border-bottom: 1px solid rgba(96, 165, 250, 0.18);
+}
+
+/* Hover lift behavior */
+.md-button,
+.friend-card,
+.admonition,
+.highlight,
+.md-typeset table:not([class]) {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.25s ease;
+}
+
+.md-button:hover,
+.friend-card:hover,
+.admonition:hover,
+.highlight:hover,
+.md-typeset table:not([class]):hover {
+    transform: translateY(-3px);
+}
+
+[data-md-color-scheme="default"] .md-button:hover,
+[data-md-color-scheme="default"] .friend-card:hover,
+[data-md-color-scheme="default"] .admonition:hover,
+[data-md-color-scheme="default"] .highlight:hover,
+[data-md-color-scheme="default"] .md-typeset table:not([class]):hover {
+    box-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.2);
+}
+
+[data-md-color-scheme="slate"] .md-button:hover,
+[data-md-color-scheme="slate"] .friend-card:hover,
+[data-md-color-scheme="slate"] .admonition:hover,
+[data-md-color-scheme="slate"] .highlight:hover,
+[data-md-color-scheme="slate"] .md-typeset table:not([class]):hover {
+    box-shadow: 0 14px 34px -12px rgba(30, 58, 138, 0.45);
+}
+
+/* Custom scrollbar */
+[data-md-color-scheme="default"] ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+[data-md-color-scheme="default"] ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+[data-md-color-scheme="default"] ::-webkit-scrollbar-thumb {
+    background: #a8a29e;
+    border-radius: 3px;
+}
+
+[data-md-color-scheme="default"] ::-webkit-scrollbar-thumb:hover {
+    background: #78716c;
+}
+
+[data-md-color-scheme="slate"] ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+[data-md-color-scheme="slate"] ::-webkit-scrollbar-track {
+    background: rgba(2, 6, 23, 0.7);
+}
+
+[data-md-color-scheme="slate"] ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+}
+
+[data-md-color-scheme="slate"] ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* Desktop tabs + active state */
+.md-tabs__list {
+    gap: 0.2rem;
+}
+
+.md-tabs__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.2rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 8px;
+    transition: color 0.25s ease;
+}
+
+.md-tabs__link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.2rem;
+    width: 0;
+    height: 2px;
+    transition: width 0.3s ease;
+}
+
+[data-md-color-scheme="default"] .md-tabs__link {
+    color: #57534e;
+}
+
+[data-md-color-scheme="default"] .md-tabs__link:hover,
+[data-md-color-scheme="default"] .md-tabs__link--active {
+    background: rgba(255, 255, 255, 0.65);
+}
+
+[data-md-color-scheme="default"] .md-tabs__link::after {
+    background: linear-gradient(90deg, #1e3a8a, #2563eb);
+}
+
+[data-md-color-scheme="default"] .md-tabs__link:hover,
+[data-md-color-scheme="default"] .md-tabs__link--active {
+    color: #0f172a;
+}
+
+[data-md-color-scheme="slate"] .md-tabs__link {
+    color: #94a3b8;
+}
+
+[data-md-color-scheme="slate"] .md-tabs__link:hover,
+[data-md-color-scheme="slate"] .md-tabs__link--active {
+    background: rgba(30, 41, 59, 0.55);
+}
+
+[data-md-color-scheme="slate"] .md-tabs__link::after {
+    background: linear-gradient(90deg, #60a5fa, #93c5fd);
+}
+
+[data-md-color-scheme="slate"] .md-tabs__link:hover,
+[data-md-color-scheme="slate"] .md-tabs__link--active {
+    color: #e2e8f0;
+}
+
+.md-tabs__link:hover::after,
+.md-tabs__link--active::after {
+    width: 100%;
+}
+
+/* Mobile hamburger menu panel */
+@media screen and (max-width: 76.1875em) {
+    [data-md-color-scheme="default"] .md-nav--primary {
+        background: rgba(250, 250, 249, 0.96);
+        border-right: 1px solid #e7e5e4;
+        box-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.35);
+    }
+
+    [data-md-color-scheme="default"] .md-nav--primary .md-nav__title {
+        background: #fafaf9;
+        border-bottom: 1px solid #e7e5e4;
+    }
+
+    [data-md-color-scheme="slate"] .md-nav--primary {
+        background: rgba(11, 17, 32, 0.96);
+        border-right: 1px solid rgba(96, 165, 250, 0.2);
+        box-shadow: 0 20px 45px -20px rgba(30, 58, 138, 0.5);
+    }
+
+    [data-md-color-scheme="slate"] .md-nav--primary .md-nav__title {
+        background: #0b1120;
+        border-bottom: 1px solid rgba(96, 165, 250, 0.18);
+        color: #e2e8f0;
+    }
+
+    .md-header__button[for="__drawer"] {
+        border-radius: 8px;
+        transition: background-color 0.2s ease;
+    }
+
+    [data-md-color-scheme="default"] .md-header__button[for="__drawer"]:hover {
+        background: rgba(231, 229, 228, 0.8);
+    }
+
+    [data-md-color-scheme="slate"] .md-header__button[for="__drawer"]:hover {
+        background: rgba(51, 65, 85, 0.5);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .md-content__inner,
+    .md-button,
+    .friend-card,
+    .admonition,
+    .highlight,
+    .md-typeset table:not([class]),
+    .md-tabs__link,
+    .md-tabs__link::after {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+/* =============================================================
+   Final Conflict Fix Layer (highest priority)
+   Goal: stabilize AboutMe typography, color, composition and CTA
+   ============================================================= */
+
+/* Keep heading hierarchy visible and consistent */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+    font-family: "Playfair Display", "Noto Serif SC", serif;
+}
+
+/* AboutMe composition */
+.about-me-shell {
+    max-width: 58rem;
+    margin: 0 auto;
+    padding: clamp(0.8rem, 2vw, 1.5rem) 0;
+}
+
+.about-me-panel {
+    border-radius: 1.5rem;
+    border: 1px solid rgba(214, 211, 209, 0.9);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 18px 50px rgba(28, 25, 23, 0.07);
+    text-align: center;
+    padding: clamp(1.4rem, 3.5vw, 2.8rem);
+}
+
+[data-md-color-scheme="slate"] .about-me-panel {
+    border-color: rgba(96, 165, 250, 0.22);
+    background: rgba(11, 17, 32, 0.82);
+    box-shadow: 0 18px 48px rgba(2, 6, 23, 0.45);
+}
+
+.about-me-mark {
+    width: 5.2rem;
+    height: 5.2rem;
+    margin: 0 auto 1.1rem auto;
+    border-radius: 999px;
+    border: 1px solid #d6d3d1;
+    background: #fafaf9;
+    color: #1c1917;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Playfair Display", "Noto Serif SC", serif;
+    font-size: 2rem;
+    line-height: 1;
+    box-shadow: 0 0 0 11px rgba(239, 246, 255, 0.65);
+}
+
+[data-md-color-scheme="slate"] .about-me-mark {
+    border-color: rgba(148, 163, 184, 0.4);
+    background: #0f172a;
+    color: #f8fafc;
+    box-shadow: 0 0 0 11px rgba(30, 58, 138, 0.23);
+}
+
+.about-me-subtitle {
+    margin: 0.2rem 0 0.9rem 0;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: #1e3a8a;
+}
+
+[data-md-color-scheme="slate"] .about-me-subtitle {
+    color: #93c5fd;
+}
+
+.about-me-title {
+    margin: 0;
+    font-family: "Playfair Display", "Noto Serif SC", serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: #1c1917;
+}
+
+[data-md-color-scheme="slate"] .about-me-title {
+    color: #f8fafc;
+    text-shadow: 0 0 28px rgba(96, 165, 250, 0.15);
+}
+
+.about-me-lead {
+    max-width: 46rem;
+    margin: 0.9rem auto;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.85;
+    color: #57534e;
+    font-family: "Inter", "Noto Sans SC", "Segoe UI", sans-serif;
+}
+
+[data-md-color-scheme="slate"] .about-me-lead {
+    color: #cbd5e1;
+}
+
+.about-me-email {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e7e5e4;
+    font-family: "Playfair Display", "Noto Serif SC", serif;
+    font-size: clamp(1.25rem, 2.6vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #0f172a !important;
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.about-me-email:hover {
+    color: #1e3a8a !important;
+    transform: translateY(-1px);
+}
+
+[data-md-color-scheme="slate"] .about-me-email {
+    border-top-color: rgba(148, 163, 184, 0.25);
+    color: #e2e8f0 !important;
+}
+
+[data-md-color-scheme="slate"] .about-me-email:hover {
+    color: #93c5fd !important;
+}
+

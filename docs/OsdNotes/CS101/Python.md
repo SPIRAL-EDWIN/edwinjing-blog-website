@@ -22,7 +22,6 @@
 - int
 - float
 - str
- **注意，`'ab'[0]`是`TypeError`**
 - complex
  **注意！`0+1j`中，0和1均为float型**
  对于 complex 型的 c=4+2j，`c.real` 为实部，`c.imag` 为虚部

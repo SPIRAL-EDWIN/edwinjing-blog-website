@@ -1,7 +1,8 @@
 ---
 hide:
   - toc
-title: ""
+  - title
+title: "Edwin JING's World"
 ---
 
 <div class="hero-section">
@@ -62,17 +63,17 @@ title: ""
 <div class="hero-actions">
 <a href="./OsdNotes/" class="action-btn primary">
 <span class="btn-icon">&#x1F4DA;</span>
-<span class="btn-text">学习笔记</span>
+<span class="btn-text">STUDY NOTES</span>
 <span class="btn-arrow">&#x2192;</span>
 </a>
 <a href="./经验分享/machineLearning/" class="action-btn secondary">
 <span class="btn-icon">&#x1F4A1;</span>
-<span class="btn-text">经验分享</span>
+<span class="btn-text">EXPERIENCE</span>
 <span class="btn-arrow">&#x2192;</span>
 </a>
 <a href="./AboutMe/RESUME/" class="action-btn secondary">
 <span class="btn-icon">&#x1F464;</span>
-<span class="btn-text">关于我</span>
+<span class="btn-text">ABOUT ME</span>
 <span class="btn-arrow">&#x2192;</span>
 </a>
 </div>

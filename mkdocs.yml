@@ -12,7 +12,9 @@ site_url: https://edwinjing-blog.com/  # 生产环境的域名，用于生成 SE
 site_author: Edwin Jing
 site_description: "基于 MkDocs 构建的个人学术知识库与技术文档。"
 copyright: >-
-  Copyright &copy; 2026 Edwin Jing. This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 
+  <span class="footer-copyright">Copyright &copy; 2026 Edwin Jing.</span>
+  <span class="site-status"><span class="site-status__dot" aria-hidden="true"></span>Syncing Knowledge Garden</span>
+  <span class="footer-license">This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
   
 # --- 2. 代码仓库链接 (Repository) ---
 # 配置后，页面右上角会出现 GitHub 图标，方便快速跳转到源码或编辑页面 [13]
@@ -73,15 +75,15 @@ theme:
     # 暗色模式配置
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: black
-      accent: lime
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: 切换至浅色模式
 
   # 字体配置 (Font) - 自动引用 Google Fonts
   font:
-    text: Noto Sans SC         # 正文字体，推荐 Noto Sans SC 以优化中文显示
+    text: Inter                # 正文字体：学术极简风
     code: JetBrains Mono          # 代码字体
 
 # --- 4. 插件系统 (Plugins) ---
@@ -179,6 +181,7 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/typewriter.js
   - javascripts/block-links.js  # Obsidian 风格块引用链接支持
+  - javascripts/ui-perf.js
 
 extra_css:
   - stylesheets/extra.css       # 用于自定义 CSS 样式调整
