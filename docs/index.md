@@ -2,8 +2,10 @@
 hide:
   - toc
   - title
-title: "Edwin JING's World"
+title: "Home"
 ---
+
+<h1 class="home-title-hidden"></h1>
 
 <div class="hero-section">
 <div class="hero-bg-grid"></div>
@@ -80,17 +82,17 @@ title: "Edwin JING's World"
 <div class="status-bar">
 <div class="status-item">
 <span class="status-dot online"></span>
-<span class="status-text">在线</span>
+<span class="status-text">ONLINE</span>
 </div>
 <div class="status-divider">|</div>
 <div class="status-item">
 <span class="status-icon">&#x1F4CD;</span>
-<span class="status-text">China</span>
+<span class="status-text">CHINA</span>
 </div>
 <div class="status-divider">|</div>
 <div class="status-item">
 <span class="status-icon">&#x1F393;</span>
-<span class="status-text">Student</span>
+<span class="status-text">STUDENT</span>
 </div>
 </div>
 </div>

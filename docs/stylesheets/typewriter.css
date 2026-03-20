@@ -89,9 +89,8 @@
     align-items: center;
     padding: 0.4rem 2rem 2rem;
     overflow: hidden;
-    /* 以全局视口为中心，消除侧边栏偏移 */
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: min(100%, 1200px);
+    margin-inline: auto;
     box-sizing: border-box;
 }
 
@@ -122,7 +121,6 @@
     background-size: 30px 30px;
     pointer-events: none;
     z-index: 0;
-    animation: grid-drift 20s linear infinite;
 }
 
 @keyframes grid-drift {
@@ -136,8 +134,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 700px;
-    height: 700px;
+    width: 620px;
+    height: 620px;
     background: radial-gradient(
         ellipse at center,
         rgba(0, 63, 136, 0.12) 0%,
@@ -146,7 +144,7 @@
     );
     pointer-events: none;
     z-index: 0;
-    animation: pulse-glow 5s ease-in-out infinite;
+    animation: pulse-glow 10s ease-in-out infinite;
 }
 
 /* 第二层光晕 - 偏移的暖色 */
@@ -162,7 +160,7 @@
         rgba(245, 158, 11, 0.06) 0%,
         transparent 70%
     );
-    animation: warm-drift 8s ease-in-out infinite alternate;
+    animation: none;
 }
 
 @keyframes warm-drift {
@@ -171,8 +169,8 @@
 }
 
 @keyframes pulse-glow {
-    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+    0%, 100% { opacity: 0.52; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.72; transform: translate(-50%, -50%) scale(1.03); }
 }
 
 /* 浮动粒子效果 */
@@ -196,20 +194,17 @@
     animation: float-particle linear infinite;
 }
 
-.particle:nth-child(1) { left: 10%; top: 20%; animation-duration: 15s; animation-delay: 0s; width: 4px; height: 4px; background: rgba(0, 63, 136, 0.2); }
-.particle:nth-child(2) { left: 25%; top: 70%; animation-duration: 12s; animation-delay: -3s; }
-.particle:nth-child(3) { left: 45%; top: 30%; animation-duration: 18s; animation-delay: -6s; width: 2px; height: 2px; }
-.particle:nth-child(4) { left: 60%; top: 80%; animation-duration: 14s; animation-delay: -2s; }
-.particle:nth-child(5) { left: 80%; top: 15%; animation-duration: 16s; animation-delay: -8s; width: 4px; height: 4px; }
-.particle:nth-child(6) { left: 90%; top: 55%; animation-duration: 13s; animation-delay: -4s; }
-.particle:nth-child(7) { left: 35%; top: 90%; animation-duration: 17s; animation-delay: -10s; width: 2px; height: 2px; }
-.particle:nth-child(8) { left: 70%; top: 40%; animation-duration: 11s; animation-delay: -5s; }
+.particle:nth-child(1) { left: 10%; top: 20%; animation-duration: 24s; animation-delay: 0s; width: 4px; height: 4px; background: rgba(0, 63, 136, 0.16); }
+.particle:nth-child(2) { left: 25%; top: 70%; animation-duration: 20s; animation-delay: -3s; }
+.particle:nth-child(3) { left: 45%; top: 30%; animation-duration: 26s; animation-delay: -6s; width: 2px; height: 2px; }
+.particle:nth-child(4) { left: 60%; top: 80%; animation-duration: 22s; animation-delay: -2s; }
+.particle:nth-child(n+5) { display: none; }
 
 @keyframes float-particle {
     0% { transform: translateY(0) rotate(0deg); opacity: 0; }
     10% { opacity: 1; }
     90% { opacity: 1; }
-    100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    100% { transform: translateY(-100vh) rotate(180deg); opacity: 0; }
 }
 
 /* ===== 终端窗口样式 - 蓝宝石光泽 ===== */
@@ -402,7 +397,7 @@
     padding: 16px 36px;
     border-radius: 14px;
     text-decoration: none !important;
-    font-family: "JetBrains Mono", "Noto Sans SC", sans-serif;
+    font-family: "Inter", "Noto Sans SC", "Segoe UI", sans-serif;
     font-size: 1.05rem;
     font-weight: 500;
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -443,7 +438,7 @@
 }
 
 .action-btn.primary:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 
         0 14px 40px rgba(0, 63, 136, 0.5),
         0 0 25px rgba(0, 120, 212, 0.2),
@@ -459,7 +454,7 @@
 
 .action-btn.secondary:hover {
     background: rgba(0, 63, 136, 0.14);
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     border-color: rgba(0, 63, 136, 0.45);
     box-shadow: 0 10px 30px rgba(0, 63, 136, 0.15);
 }
@@ -529,7 +524,7 @@
 }
 
 .status-text {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Inter", "Noto Sans SC", "Segoe UI", sans-serif;
     font-size: 0.85rem;
     color: #666;
 }
@@ -570,13 +565,14 @@
     .hero-actions {
         flex-direction: column;
         width: 100%;
-        max-width: 300px;
+        max-width: 320px;
     }
     
     .action-btn {
         width: 100%;
         justify-content: center;
-        padding: 12px 20px;
+        padding: 11px 18px;
+        font-size: 0.95rem;
     }
     
     .status-bar {
@@ -598,12 +594,11 @@
     background-image: 
         radial-gradient(circle, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
     background-size: 30px 30px;
-    animation: grid-drift 20s linear infinite;
 }
 
 [data-md-color-scheme="slate"] .hero-glow {
-    width: 800px;
-    height: 800px;
+    width: 680px;
+    height: 680px;
     background: radial-gradient(
         ellipse at center,
         rgba(59, 130, 246, 0.18) 0%,
@@ -611,7 +606,7 @@
         rgba(245, 158, 11, 0.04) 50%,
         transparent 75%
     );
-    animation: glow-pulse-dark 8s ease-in-out infinite;
+    animation: glow-pulse-dark 12s ease-in-out infinite;
 }
 
 [data-md-color-scheme="slate"] .hero-glow::after {
@@ -624,16 +619,16 @@
 
 @keyframes glow-pulse-dark {
     0%, 100% { 
-        opacity: 0.5; 
+        opacity: 0.4; 
         transform: translate(-50%, -50%) scale(1); 
     }
     33% { 
-        opacity: 0.8; 
-        transform: translate(-50%, -50%) scale(1.06);
+        opacity: 0.55; 
+        transform: translate(-50%, -50%) scale(1.03);
     }
     66% { 
-        opacity: 0.6; 
-        transform: translate(-50%, -50%) scale(1.03);
+        opacity: 0.48; 
+        transform: translate(-50%, -50%) scale(1.015);
     }
 }
 

@@ -753,7 +753,7 @@ def f(x):
 scipy.optimize.newton( f,x0 )
 ```
 
-## Lec17 - Py-Optimize: brute`
+## Lec17 - Py-Optimize: brute
 
 当我们想对群的每个子集进行分析时，使用组合。例如，要获得集合中的每一对：
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
 /* 
  * 文件路径: docs/stylesheets/extra.css
@@ -641,25 +641,6 @@ a {
     color: #64748b;
 }
 
-/* 暗色模式滚动条 - 蓝调风格 */
-[data-md-color-scheme="slate"] ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-[data-md-color-scheme="slate"] ::-webkit-scrollbar-track {
-    background: #0b1120;
-}
-
-[data-md-color-scheme="slate"] ::-webkit-scrollbar-thumb {
-    background: #1e3050;
-    border-radius: 4px;
-}
-
-[data-md-color-scheme="slate"] ::-webkit-scrollbar-thumb:hover {
-    background: rgba(59, 130, 246, 0.4);
-}
-
 /* 选中文本颜色 */
 [data-md-color-scheme="slate"] ::selection {
     background: rgba(59, 130, 246, 0.35);
@@ -703,14 +684,24 @@ a {
     margin: 0;
 }
 
-/* 首页兜底：仅在首页（logo href='.'）隐藏正文第一个 H1 */
-body:has(.md-header__button.md-logo[href="."]) .md-content__inner > h1:first-of-type {
-    display: none;
+/* 首页隐藏正文第一个 H1 */
+.md-content--home .md-content__inner > h1:first-of-type {
+    display: none !important;
 }
 
-/* 首页仅保留刘海主标题，隐藏副标题行，避免出现 Home/页面名闪现 */
-body:has(.md-header__button.md-logo[href="."]) .md-header [data-md-component="header-topic"] {
-    display: none;
+/* 首页显式辅助标题：仅用于结构，不参与视觉展示 */
+.home-title-hidden {
+    display: none !important;
+}
+
+/* 首页兜底：仅在首页隐藏正文第一个 H1（由 ui-perf.js 注入 body.is-homepage） */
+body.is-homepage .md-content__inner > h1:first-of-type {
+    display: none !important;
+}
+
+/* 首页兜底：如果正文含 hero-section，隐藏自动注入的首个 H1 */
+.md-content__inner:has(.hero-section) > h1:first-of-type {
+    display: none !important;
 }
 
 /* ==============================================
@@ -899,14 +890,14 @@ html, body {
 /* Texture background */
 [data-md-color-scheme="default"] body {
     background-color: #fafaf9;
-    background-image: radial-gradient(#e7e5e4 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-image: radial-gradient(rgba(214, 211, 209, 0.55) 1px, transparent 1px);
+    background-size: 44px 44px;
 }
 
 [data-md-color-scheme="slate"] body {
     background-color: #0b1120;
-    background-image: radial-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px);
-    background-size: 34px 34px;
+    background-image: radial-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+    background-size: 46px 46px;
 }
 
 /* Fade-in animation */
@@ -966,34 +957,22 @@ html, body {
 
 /* Hover lift behavior */
 .md-button,
-.friend-card,
-.admonition,
-.highlight,
-.md-typeset table:not([class]) {
+.friend-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.25s ease;
 }
 
 .md-button:hover,
-.friend-card:hover,
-.admonition:hover,
-.highlight:hover,
-.md-typeset table:not([class]):hover {
+.friend-card:hover {
     transform: translateY(-3px);
 }
 
 [data-md-color-scheme="default"] .md-button:hover,
-[data-md-color-scheme="default"] .friend-card:hover,
-[data-md-color-scheme="default"] .admonition:hover,
-[data-md-color-scheme="default"] .highlight:hover,
-[data-md-color-scheme="default"] .md-typeset table:not([class]):hover {
+[data-md-color-scheme="default"] .friend-card:hover {
     box-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.2);
 }
 
 [data-md-color-scheme="slate"] .md-button:hover,
-[data-md-color-scheme="slate"] .friend-card:hover,
-[data-md-color-scheme="slate"] .admonition:hover,
-[data-md-color-scheme="slate"] .highlight:hover,
-[data-md-color-scheme="slate"] .md-typeset table:not([class]):hover {
+[data-md-color-scheme="slate"] .friend-card:hover {
     box-shadow: 0 14px 34px -12px rgba(30, 58, 138, 0.45);
 }
 
@@ -1216,10 +1195,11 @@ html, body {
 
 .about-me-subtitle {
     margin: 0.2rem 0 0.9rem 0;
-    font-family: "JetBrains Mono", "Fira Code", monospace;
-    letter-spacing: 0.2em;
+    font-family: "Cinzel", "Cormorant Garamond", serif;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    font-size: 0.72rem;
+    font-size: 0.76rem;
+    font-weight: 500;
     color: #1e3a8a;
 }
 
@@ -1229,10 +1209,11 @@ html, body {
 
 .about-me-title {
     margin: 0;
-    font-family: "Playfair Display", "Noto Serif SC", serif;
-    font-size: clamp(1.9rem, 4vw, 3rem);
-    line-height: 1.12;
-    letter-spacing: -0.01em;
+    font-family: "Cormorant Garamond", "Playfair Display", "Noto Serif SC", serif;
+    font-size: clamp(2.05rem, 4.2vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
     color: #1c1917;
 }
 
@@ -1244,10 +1225,11 @@ html, body {
 .about-me-lead {
     max-width: 46rem;
     margin: 0.9rem auto;
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    line-height: 1.85;
+    font-size: clamp(1.08rem, 2.05vw, 1.32rem);
+    line-height: 1.75;
+    letter-spacing: 0.01em;
     color: #57534e;
-    font-family: "Inter", "Noto Sans SC", "Segoe UI", sans-serif;
+    font-family: "Cormorant Garamond", "Noto Serif SC", serif;
 }
 
 [data-md-color-scheme="slate"] .about-me-lead {
@@ -1259,12 +1241,16 @@ html, body {
     margin-top: 1.2rem;
     padding-top: 0.75rem;
     border-top: 1px solid #e7e5e4;
-    font-family: "Playfair Display", "Noto Serif SC", serif;
-    font-size: clamp(1.25rem, 2.6vw, 2rem);
-    font-weight: 700;
-    letter-spacing: 0.01em;
+    font-family: "Cormorant Garamond", "Playfair Display", "Noto Serif SC", serif !important;
+    font-size: clamp(1.25rem, 2.45vw, 2.05rem) !important;
+    font-style: normal;
+    font-weight: 600 !important;
+    letter-spacing: 0.03em;
+    text-transform: lowercase !important;
+    font-feature-settings: "kern" 1, "liga" 1;
     color: #0f172a !important;
     text-decoration: none;
+    text-shadow: 0 1px 0 rgba(15, 23, 42, 0.06);
     transition: color 0.25s ease, transform 0.25s ease;
 }
 
