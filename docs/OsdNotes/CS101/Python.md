@@ -173,7 +173,8 @@ print(y)
 > [!NOTE] 函数参数赋值的其他注意点
 > dec里的参数为 `x` 和 `y` ，那么后面的操作中就不能出现 `dec(t=1)` 否则报错
 
-`lambda` 和 `def` 的作用类似，只不过是在一行内定义函数，如： ^6244d2
+`lambda` 和 `def` 的作用类似，只不过是在一行内定义函数，如：
+<span id="6244d2"></span>
 
 ```python
 xxx = lambda a : a+8 
@@ -186,7 +187,7 @@ print(z)
 >>>['ca','ab,'bc']
 ```
 
-^4f0a7f
+<span id="4f0a7f"></span>
 > [!WARNING] 关于函数局部变量的问题  
 > 函数执行完毕后，其局部命名空间就会被销毁。全局作用域不会保存局部工作区的变量
 > 这个时候如果试图从函数外部访问函数内部的变量，就会引发 `NameError`
@@ -256,7 +257,8 @@ for letter, number in zip( letters,numbers ):
     print( '%s pairs with %i' % ( letter,number ) )
 ```
 
-***`zip()` 和 `enumerate()` 一样，它返回的是一个枚举对象，无法直接被print；但可以通过`list()`转换或loops来获取元组*** ^2f6664
+***`zip()` 和 `enumerate()` 一样，它返回的是一个枚举对象，无法直接被print；但可以通过`list()`转换或loops来获取元组***
+<span id="2f6664"></span>
 
 ### How do we read a `.csv` into python?
 
@@ -421,7 +423,7 @@ mysquare.mean(1)  #按行算平均   0为按列算平均  返回的元素均为f
 > [!INFO] 如何理解括号内是否还要放括号来确定矩阵大小？
 > 事实上，需要两层括号的函数往往获取多个参数，因此如果不严加括号限定，就会让逗号暴露在外，让参数的定义不明确
 > 例如，`np.zeros(shape, dtype=float, order='C', *, like=None)`获取这么多参数，如果在shape处不加小/中括号，原本代表尺寸行列区分的逗号就会被用于分配参数，就会导致***`TypeError`***
-> 关于这一点，[[#Lec13 - Random （实际上并非随机，用函数生成的）]]中的 `size()`也是同理
+> 关于这一点，[Lec13 - Random（实际上并非随机，用函数生成的）](#lec13---random-实际上并非随机用函数生成的)中的 `size()`也是同理
 
 > [!NOTE] 关于NumPy中的`.sort()`和 `.argsort()`
 
@@ -503,6 +505,7 @@ or `plt.plot(x,y,'b-',label = '')`
 
 ![Pasted image 20251105130347.png](images/Pasted image 20251105130347.png)
 
+<span id="lec13---random-实际上并非随机用函数生成的"></span>
 ## Lec13 - Random （实际上并非随机，用函数生成的）
 
 ### 均匀分步 Uniform Distribution
