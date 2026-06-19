@@ -43,13 +43,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          fi
-          pip install mkdocs mkdocs-material mkdocs-glightbox jieba \
-            mkdocs-minify-plugin mkdocs-rss-plugin \
-            mkdocs-git-revision-date-localized-plugin \
-            mkdocs-callouts mkdocs-roamlinks-plugin
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Build site
         run: mkdocs build --clean

@@ -1,6 +1,12 @@
 site/ 
+.venv/ 
 __pycache__/ 
 nul
 ~/
 .sisyphus/
+
+# 操作系统生成的垃圾文件（跨平台）
+.DS_Store
+Thumbs.db
+desktop.ini
 

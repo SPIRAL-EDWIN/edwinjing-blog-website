@@ -1,1 +1,23 @@
+# MkDocs 站点构建依赖
+# 安装：python -m pip install -r requirements.txt
+
+# 核心：MkDocs + Material 主题（内置 blog / search 插件）
+mkdocs
+mkdocs-material
+
+# Markdown 扩展（mkdocs.yml markdown_extensions 使用）
 pymdown-extensions
+
+# 中文搜索分词
+jieba
+
+# Obsidian 风格插件（mkdocs.yml plugins 使用）
+mkdocs-callouts
+mkdocs-roamlinks-plugin
+mkdocs-glightbox
+
+# 与线上 CI (.github/workflows/deploy.yml) 安装列表对齐
+# 目前未在 mkdocs.yml plugins 中启用，仅为环境可复现而保留
+mkdocs-minify-plugin
+mkdocs-rss-plugin
+mkdocs-git-revision-date-localized-plugin
