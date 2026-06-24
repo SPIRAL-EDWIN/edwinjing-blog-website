@@ -111,7 +111,7 @@ a = input( 'Enter a number:' )
 > 升序排序后返回None，但x自身已经排序完成
 > 也就是 `x = x.sort()` 后，x为None
 > ***`.append()` 和 `.reverse()`同理***
-> 括号中为 `reverse = Frue` 时降序排序，不填时默认为False（升序）*`sorted()` 同理*
+> 括号中为 `reverse = True` 时降序排序，不填时默认为False（升序）*`sorted()` 同理*
 > 括号内可以选取排序的参考对象，见[[#^6244d2]]中的`lambda`
 > **sorted()**
 > 返回升序排序后的结果
@@ -206,8 +206,8 @@ print(z)
 > 如果只有文件名，则文件处在代码相同的位置
 > 否则则需要定位：
 > `'C://users//Edwin Jing//Desktop//words.txt'`
-> **1. 可以用\替换/
-> 2. C盘后必须跟两个斜杠**
+> **1. 可以用 `\` 替换 `/`**
+> **2. C盘后必须跟两个斜杠**
 
 `'\n'` - newline   *单纯光标向下一行，列不动*
 `'\r'` - carriage return   *光标回到最左侧*

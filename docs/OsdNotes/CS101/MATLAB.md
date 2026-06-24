@@ -222,7 +222,7 @@ MATLAB uses `1` to indicate `True`, `0` to indicate `False`
 | \|\| or \|  | or  |
 | `~`         | not |
 
-> [!NOTE] `ismenber`
+> [!NOTE] `ismember`
 >
 > ```matlab
 > B = [ 1 2 3 4 5 ];

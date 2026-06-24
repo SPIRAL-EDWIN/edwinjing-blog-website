@@ -1,129 +1,227 @@
 /**
- * Obsidian 风格块引用链接支持
- * 功能：
- * 1. 将 ^block-id 转换为可链接的锚点
- * 2. 支持 roamlinks 插件生成的 <a href="#block-id"> 链接
+ * Obsidian / MkDocs fragment links
+ *
+ * When a URL contains a hash (for example #d098de or a heading slug), highlight
+ * the actual target sentence, paragraph, list item, table row, code block, or
+ * heading instead of leaving readers on a visually ambiguous full page.
  */
+(function () {
+  "use strict";
 
-document.addEventListener("DOMContentLoaded", function() {
-    const content = document.querySelector('.md-content');
-    if (!content) return;
+  var HIGHLIGHT_CLASS = "block-highlight";
+  var HIGHLIGHT_ACTIVE_CLASS = "block-highlight--active";
+  var CONTENT_SELECTOR = ".md-content__inner";
+  var HIGHLIGHTABLE_SELECTOR = [
+    ".admonition-title",
+    "p",
+    "li",
+    "tr",
+    "dt",
+    "dd",
+    "blockquote",
+    "pre",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6"
+  ].join(", ");
 
-    const mainContent = content.querySelector('.md-content__inner');
-    if (!mainContent) return;
-    
-    let html = mainContent.innerHTML;
-    const foundIds = [];
-    
-    // 模式1: 文本后面跟着 ^block-id（可能有空格、<br>等）
-    // 例如: 如： ^6244d2<br>
-    html = html.replace(/(\S)\s*\^([a-zA-Z0-9]{4,})(\s*<br\s*\/?>|\s*<\/p>|\s*$)/gi, 
-        (match, before, blockId, after) => {
-            if (!foundIds.includes(blockId)) {
-                foundIds.push(blockId);
-                return `${before}<span id="${blockId}" class="block-anchor"></span>${after}`;
-            }
-            return match;
-        }
-    );
-    
-    // 模式2: </strong></em>等标签后面的 ^block-id
-    // 例如: </em></strong> ^2f6664<p></p>
-    html = html.replace(/(<\/(?:strong|em|code|b|i|span)>)\s*\^([a-zA-Z0-9]{4,})/gi, 
-        (match, closingTag, blockId) => {
-            if (!foundIds.includes(blockId)) {
-                foundIds.push(blockId);
-                return `${closingTag}<span id="${blockId}" class="block-anchor"></span>`;
-            }
-            return match;
-        }
-    );
-    
-    // 模式3: 单独一行/段落的 ^block-id
-    // 例如: <p>^4f0a7f</p> 或在空行后
-    html = html.replace(/<p>\s*\^([a-zA-Z0-9]{4,})\s*<\/p>/gi, 
-        (match, blockId) => {
-            if (!foundIds.includes(blockId)) {
-                foundIds.push(blockId);
-                return `<p><span id="${blockId}" class="block-anchor"></span></p>`;
-            }
-            return match;
-        }
-    );
-    
-    // 模式4: 在文本开头或中间的 ^block-id（更通用的匹配）
-    // 匹配任何剩余的 ^block-id
-    html = html.replace(/([>\s])\^([a-zA-Z0-9]{4,})([<\s])/gi, 
-        (match, before, blockId, after) => {
-            if (!foundIds.includes(blockId)) {
-                foundIds.push(blockId);
-                return `${before}<span id="${blockId}" class="block-anchor"></span>${after}`;
-            }
-            return match;
-        }
-    );
+  function contentRoot() {
+    return document.querySelector(CONTENT_SELECTOR) || document.querySelector(".md-content") || document.body;
+  }
 
-    if (foundIds.length > 0) {
-        mainContent.innerHTML = html;
-        console.log('Block anchors created:', foundIds);
+  function escapeSelector(value) {
+    if (window.CSS && typeof window.CSS.escape === "function") {
+      return window.CSS.escape(value);
+    }
+    return value.replace(/["\\#.;?+*~':!^$[\]()=>|/@]/g, "\\$&");
+  }
+
+  function decodeHash(hash) {
+    if (!hash) return "";
+    var raw = hash.charAt(0) === "#" ? hash.slice(1) : hash;
+    try {
+      return decodeURIComponent(raw);
+    } catch (_error) {
+      return raw;
+    }
+  }
+
+  function findTarget(hash) {
+    var id = decodeHash(hash);
+    if (!id) return null;
+
+    return (
+      document.getElementById(id) ||
+      document.querySelector("[name=\"" + escapeSelector(id) + "\"]")
+    );
+  }
+
+  function meaningfulTarget(target) {
+    if (!target) return null;
+
+    var root = contentRoot();
+    if (target === root) return target;
+
+    if (target.matches && target.matches(HIGHLIGHTABLE_SELECTOR)) {
+      return target;
     }
 
-    // 为所有锚点链接添加平滑滚动
-    setTimeout(() => {
-        const blockLinks = content.querySelectorAll('a[href^="#"]');
-        
-        blockLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                const targetId = href.substring(1);
-                const target = document.getElementById(targetId);
-                
-                if (target) {
-                    e.preventDefault();
-                    
-                    // 找到要高亮的目标元素
-                    let highlightTarget = target.closest('p, li, blockquote, .admonition, tr, pre');
-                    if (!highlightTarget) {
-                        // 如果锚点是单独的span，找它的下一个兄弟元素或父元素
-                        highlightTarget = target.nextElementSibling || target.parentElement;
-                    }
-                    
-                    // 平滑滚动
-                    const scrollTarget = highlightTarget || target;
-                    scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
-                    // 高亮效果
-                    if (highlightTarget) {
-                        highlightTarget.classList.add('block-highlight');
-                        setTimeout(() => highlightTarget.classList.remove('block-highlight'), 2500);
-                    }
-                    
-                    // 更新 URL
-                    history.pushState(null, null, href);
-                } else {
-                    console.warn('Block anchor not found:', targetId);
-                }
-            });
-        });
-    }, 100);
-
-    // 页面加载时检查 URL 锚点
-    if (window.location.hash) {
-        const targetId = window.location.hash.substring(1);
-        setTimeout(() => {
-            const target = document.getElementById(targetId);
-            if (target) {
-                let highlightTarget = target.closest('p, li, blockquote, .admonition, tr, pre');
-                if (!highlightTarget) {
-                    highlightTarget = target.nextElementSibling || target.parentElement;
-                }
-                const scrollTarget = highlightTarget || target;
-                scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                if (highlightTarget) {
-                    highlightTarget.classList.add('block-highlight');
-                    setTimeout(() => highlightTarget.classList.remove('block-highlight'), 2500);
-                }
-            }
-        }, 500);
+    var closest = target.closest ? target.closest(HIGHLIGHTABLE_SELECTOR) : null;
+    if (closest && root.contains(closest)) {
+      return closest;
     }
-});
+
+    // Heading block anchors are often rendered as:
+    //   <h5 id="heading-slug">Title <span id="blockid"></span>...</h5>
+    var heading = target.closest ? target.closest("h1, h2, h3, h4, h5, h6") : null;
+    if (heading && root.contains(heading)) {
+      return heading;
+    }
+
+    var parent = target.parentElement;
+    while (parent && parent !== root && parent !== document.body) {
+      if (parent.matches && parent.matches(HIGHLIGHTABLE_SELECTOR)) return parent;
+      parent = parent.parentElement;
+    }
+
+    return target;
+  }
+
+  function clearHighlights() {
+    document.querySelectorAll("." + HIGHLIGHT_CLASS).forEach(function (el) {
+      el.classList.remove(HIGHLIGHT_CLASS, HIGHLIGHT_ACTIVE_CLASS);
+    });
+  }
+
+  function highlight(hash, options) {
+    options = options || {};
+
+    var target = findTarget(hash);
+    if (!target) return false;
+
+    var highlightTarget = meaningfulTarget(target);
+    if (!highlightTarget) return false;
+
+    clearHighlights();
+
+    if (options.scroll !== false) {
+      highlightTarget.scrollIntoView({
+        behavior: options.smooth === false ? "auto" : "smooth",
+        block: "center"
+      });
+    }
+
+    // Restart the animation even when the same hash is clicked twice.
+    highlightTarget.classList.remove(HIGHLIGHT_CLASS, HIGHLIGHT_ACTIVE_CLASS);
+    void highlightTarget.offsetWidth;
+    highlightTarget.classList.add(HIGHLIGHT_CLASS, HIGHLIGHT_ACTIVE_CLASS);
+
+    window.setTimeout(function () {
+      highlightTarget.classList.remove(HIGHLIGHT_ACTIVE_CLASS);
+    }, 5000);
+
+    window.setTimeout(function () {
+      highlightTarget.classList.remove(HIGHLIGHT_CLASS);
+    }, 5200);
+
+    return true;
+  }
+
+  function normalizePath(pathname) {
+    return (pathname || window.location.pathname).replace(/\/index\.html$/, "/");
+  }
+
+  function isSamePageHashLink(link) {
+    var href = link.getAttribute("href") || "";
+    if (!href || href === "#") return false;
+
+    var url;
+    try {
+      url = new URL(href, window.location.href);
+    } catch (_error) {
+      return false;
+    }
+
+    return (
+      url.hash &&
+      url.origin === window.location.origin &&
+      normalizePath(url.pathname) === normalizePath(window.location.pathname)
+    );
+  }
+
+  function handleHashLinkClick(event) {
+    var link = event.target.closest ? event.target.closest("a[href*='#']") : null;
+    if (!link || !isSamePageHashLink(link)) return;
+    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.target && link.target !== "_self") return;
+
+    var url = new URL(link.getAttribute("href"), window.location.href);
+    if (!findTarget(url.hash)) return;
+
+    event.preventDefault();
+    history.pushState(null, "", url.hash);
+    highlight(url.hash);
+  }
+
+  function highlightCurrentHash() {
+    if (!window.location.hash) return;
+
+    // Run twice: once quickly, once after Material/MathJax/layout plugins settle.
+    window.setTimeout(function () {
+      highlight(window.location.hash, { smooth: false });
+    }, 80);
+
+    window.setTimeout(function () {
+      highlight(window.location.hash, { smooth: false });
+    }, 520);
+  }
+
+  function upgradeLegacyBlockAnchors() {
+    var root = contentRoot();
+    if (!root || root.dataset.blockAnchorsUpgraded === "true") return;
+
+    // The build hook now creates these anchors. This fallback only covers older
+    // already-rendered pages or manually written HTML that still exposes ^ids.
+    var html = root.innerHTML;
+    var next = html
+      .replace(/(\S)\s*\^([a-zA-Z0-9_-]{4,})(\s*<br\s*\/?>|\s*<\/p>|\s*$)/gi, function (match, before, blockId, after) {
+        return document.getElementById(blockId)
+          ? match
+          : before + "<span id=\"" + blockId + "\" class=\"block-anchor\"></span>" + after;
+      })
+      .replace(/(<\/(?:strong|em|code|b|i|span|mark|u)>)\s*\^([a-zA-Z0-9_-]{4,})/gi, function (match, closingTag, blockId) {
+        return document.getElementById(blockId)
+          ? match
+          : closingTag + "<span id=\"" + blockId + "\" class=\"block-anchor\"></span>";
+      })
+      .replace(/<p>\s*\^([a-zA-Z0-9_-]{4,})\s*<\/p>/gi, function (match, blockId) {
+        return document.getElementById(blockId)
+          ? match
+          : "<p><span id=\"" + blockId + "\" class=\"block-anchor\"></span></p>";
+      });
+
+    if (next !== html) {
+      root.innerHTML = next;
+    }
+    root.dataset.blockAnchorsUpgraded = "true";
+  }
+
+  function run() {
+    upgradeLegacyBlockAnchors();
+    highlightCurrentHash();
+  }
+
+  document.addEventListener("click", handleHashLinkClick);
+  document.addEventListener("DOMContentLoaded", run);
+  window.addEventListener("hashchange", function () {
+    highlight(window.location.hash);
+  });
+
+  // MkDocs Material instant navigation support.
+  if (window.document$ && typeof window.document$.subscribe === "function") {
+    window.document$.subscribe(run);
+  }
+})();

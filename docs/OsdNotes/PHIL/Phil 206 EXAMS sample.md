@@ -24,7 +24,7 @@
   
 5. Wolff *accepted* as one of the fundamental principles of philosophy: "never to accept anything for true which I did not clearly know to be such."[[PHIL 206#^884802]]  
   沃尔夫*接受*以下原则为哲学的基本原则之一：“绝不将任何我无法明确确知为真的事物视为真实。”
-  **Ture**
+  **True**
   ***解释***：的确，沃尔夫接受了笛卡尔的怀疑方法。他足够自负[[PHIL 206#^bb33ea]]，认为一切都可以利用理性推导来回答，其对于理性的重视也*肯定了怀疑的方法*。
   
 6. Traditionally, under the influence of Aristotle, logic was not considered a branch of philosophy. 
@@ -169,7 +169,7 @@
 ## Quiz 2: Lec4 to Lec5
 1. ==**★**==Berkeley famously stated: “To be is to be perceived (and to perceive).”
   伯克利曾有句名言：“存在即被感知（且感知）。”
-  **Ture** [[PHIL 206#^b03e4e]]
+  **True** [[PHIL 206#^b03e4e]]
   ***解释***：
     *To be perceived（被感知）*： 指的是客体（如杯子、桌子）。它们的“存在”仅仅意味着它们正在被某个心灵看着、摸着、感觉着。如果没有任何心灵在感知它们，它们作为物理对象就不存在。
     *and to perceive（去感知）*： 指的是主体（如我们自己的心灵/灵魂，以及上帝）。反问：“我无法用眼睛看到我的心灵，无法用手摸到我的心灵，难道我的心灵就不存在了吗？” 贝克莱的答案是：主体的心灵虽然“不被感知”，但因为它正在执行“去感知”（the act of perceiving）这个主动动作，所以心灵是绝对存在的。
@@ -189,7 +189,7 @@
 3. Hume believed that beauty is an objectively intelligible substance.
   休谟认为，美是一种客观可理解的实体。
   **False**
-  *解释*：休谟经验主义怀疑论的后果之一就是对客观美学的摧毁[[PHIL 206#^6e5a52]]。休谟**绝对不认为**美（beauty）是一种“**客观可理解的实体**”（objectively intelligible substance）。相反，他认为*美*和*因果律*、*物质与精神实体*一样，仅仅是一种**主观的心理习惯（subjective psychological habits）
+  *解释*：休谟经验主义怀疑论的后果之一就是对客观美学的摧毁[[PHIL 206#^6e5a52]]。休谟**绝对不认为**美（beauty）是一种“**客观可理解的实体**”（objectively intelligible substance）。相反，他认为*美*和*因果律*、*物质与精神实体*一样，仅仅是一种**主观的心理习惯（subjective psychological habits）**
 > [!info] 对于美学：文艺复兴时期的艺术观与休谟的观点
 > - 文艺复兴时期的人们：事物本身拥有客观的“美与崇高”（beautiful and sublime），艺术的目的就是去展现这种客观的美。
 > - 休谟反驳：既然我们无法用感官直接“感知”到“美”这个东西本身（因为“美”不是一种可以通过看、听、摸直接获得的物理属性），那么美在客观上就是不存在的，它不是真实的
@@ -529,7 +529,7 @@
   
 ## Quiz 4: Final Sample Exam
 1. Rousseau was born in Geneva.
-  **Ture**
+  **True**
   [[PHIL 206#^c9f1e2]]
 2. Descartes used the “*wax argument*” to show that we recognize the substances of things intellectually and not sensibly.
   **True**
@@ -547,7 +547,7 @@
   **True**
   [[PHIL 206#^6cccf4]]
 6. Machiavelli refers to Cesar Borgia as a prime example of _virtú_.
-  **Ture**
+  **True**
   [[PHIL 206#^558908]]
 7. Berkeley accepted the _tabula-rasa_ empiricism developed by Locke.
   **False**
@@ -571,8 +571,8 @@
   斯宾诺莎认为**人类行为是预先决定的**。人类**没有形而上学上的自由（metaphysical freedom）**，但是有**心理学意义上的自由**，==用理性驾驭情绪的自由==
 13. Max Weber refers to the **Protestant work ethic** taught by the Puritans as a driving force of modern market economy.
   **True**
-  马克斯·韦伯在其著作《*The Protestant Work Ethic and the Spirit of Copitalism*（新教伦理与资本主义精神）》中提出，推动现代资本主义经济崛起的根本动力，正是宗教改革（特别是清教徒）所带来的“**新教工作伦理**”
-14. Berkeley was an Irish Anglican biship.
+  马克斯·韦伯在其著作《*The Protestant Work Ethic and the Spirit of Capitalism*（新教伦理与资本主义精神）》中提出，推动现代资本主义经济崛起的根本动力，正是宗教改革（特别是清教徒）所带来的“**新教工作伦理**”
+14. Berkeley was an Irish Anglican bishop.
   **True**
   [[PHIL 206#^cafd19]]
 15. Berkeley denied the permanent substance of the rational self.

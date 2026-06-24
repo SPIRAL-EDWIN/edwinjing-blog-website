@@ -7,12 +7,12 @@
 # ==============================================================================
 
 # --- 1. 基础项目信息 (Project Information) ---
-site_name: "Edwin JING's World"  # 网站标题，将显示在浏览器标签页
+site_name: "Chen JING's Personal Website"  # 网站标题，将显示在浏览器标签页
 site_url: https://edwinjing-blog.com/  # 生产环境的域名，用于生成 SEO 规范链接 (Canonical URL) [13]
-site_author: Edwin Jing
+site_author: Chen Jing
 site_description: "基于 MkDocs 构建的个人学术知识库与技术文档。"
 copyright: >-
-  <span class="footer-copyright">Copyright &copy; 2026 Edwin Jing.</span>
+  <span class="footer-copyright">Copyright &copy; 2026 Chen Jing.</span>
   <span class="site-status"><span class="site-status__dot" aria-hidden="true"></span>Syncing Knowledge Garden</span>
   <span class="footer-license">This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></span>
   
@@ -113,8 +113,21 @@ plugins:
       post_dir: blog_posts   # 指定存放文章的文件夹名字
       archive: true          # 开启归档功能
       categories: true       # 开启分类功能
+
+# 构建时根据内容文件和 Git 历史生成 HOME/Archive 页面
+hooks:
+  - hooks/archive.py
+
 extra:
   generator: false
+  archive:
+    default_author: "Chen Jing"
+    # 首页、目录页与纯 UI 页面不进入内容归档；单篇文章也可设置 archive: false
+    exclude:
+      - index.md
+      - HOME/**
+      - blog/index.md
+      - OsdNotes/index.md
   social: 
     - icon: fontawesome/brands/bilibili   #b站图标
       link: https://space.bilibili.com/3493263893858624   #个人主页
@@ -179,11 +192,11 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/typewriter.js
-  - javascripts/block-links.js  # Obsidian 风格块引用链接支持
+  - javascripts/block-links.js?v=20260624b  # Obsidian 风格块引用链接支持
   - javascripts/ui-perf.js
 
 extra_css:
-  - stylesheets/extra.css?v=20260320a       # 用于自定义 CSS 样式调整
+  - stylesheets/extra.css?v=20260624b       # 用于自定义 CSS 样式调整
   - stylesheets/typewriter.css?v=20260320a  # 首页打字效果
 
 # --- 7. 导航结构 (Navigation) ---

@@ -357,7 +357,7 @@ Kant's objection to Descartes's ontological argument, with which Cartesian metap
 > 伊壁鸠鲁提出了千古难题：上帝全能全善，为什么人间还有灾难和罪恶？
 > 莱布尼茨给出的哲学辩护（他发明了Theodicy神义论这个词）是：上帝在创造时，脑海中有无数个逻辑上可行的选项组合，上帝从中挑选了“总体最优”的版本。在这个最优世界里，上帝允许存在一些局部的“恶”，因为**这些恶是激发更高阶的“善”的必要条件**，**如果不允许恶，那种更伟大的善就无法实现** ^99b4e6
 #### Monadology 单子论
-- 单子（Monads）== 构成自然界存在的终极单位的***简单*** **非物质的（精神性的）** 实体。
+- 单子（Monads）--> 构成自然界存在的终极单位的***简单*** **非物质的（精神性的）** 实体。
 > - **“简单实体”（Simple substances）意味着没有部分，因此没有广延（物理体积）**：“简单”在哲学上的意思是“不可分割”。任何物质实体（不管多小，比如原子）在逻辑上或物理上总有空间广延，有空间广延就可以再分（被分为左半边和右半边）。既然单子是不可分割的“终极单位”，它就必然没有空间广延，因而是非物理的、非物质的。这就是为什么哲学界通常将单子理解为类似于“*灵魂*”、“*精神点*”或“感知的力量中心”。
 - 宇宙由无限多的单子组成
 - 没有两个单子是完全相同的
@@ -475,7 +475,7 @@ Kant's objection to Descartes's ontological argument, with which Cartesian metap
 - ***==洛克保留了笛卡尔的心物二元论==--->empirical realism 经验现实主义***[[PHIL 206#^7b28f0]]
   - 我们所拥有的只是外部物体属性的表象*representations*(观念 *ideas*)
   - 我们的经验无法触及这些实体的实质 (*substantial realities*)
-  - 洛克对抗理性主义：人类心智在出生时是一块**“白板”**。知识由观念组成，而所有观念都是由*经验* 形成的**。
+  - 洛克对抗理性主义：人类心智在出生时是一块**“白板”**。知识由观念组成，而所有观念都是由*经验*形成的。
 > 大脑是白板，不代表大脑没有“逻辑结构”。洛克认为人类大脑天生带有“联想能力/理解力/组织能力（Faculty of Understanding）”，但没有天生的“内容（ideas）”。我们用这个*先天联想功能*去组织后天由感官传来的“*数据（sensory data）*” ^49d76c
 #### Two Types of "Experiences" 经验的两种类型
 - **感觉（Sensation）与 反省（Reflection）**。 ^047957
@@ -494,7 +494,7 @@ Kant's objection to Descartes's ontological argument, with which Cartesian metap
 - **批判2：“小人问题”（homunculus problem）**：如果你需要心智里的一个“小人”来为你解释感官数据，那么这个小人的脑子里也需要另一个“小人”……导致无限倒退。 ^07fa7a
 - **批判3：实体矛盾。** 洛克认为我们只能知道外部物体的“性质”，对其“实体（substance）”一无所知。然而，他却全盘预设了笛卡尔的心物二元论[[PHIL 206#^7b28f0]]（即预设了外部实体的存在）。 ^e2ac48
 - **批判4：** 诺姆·乔姆斯基的“语言习得机制”。
-> - 洛克有两个致命漏洞。第一个是**小人问题**：如果感官数据是杂乱传入大脑的，而大脑需要主动去“组织”它们，那你的脑子里是不是住着一个小人（homunculus）在帮你拼积木？这个逻辑会导致无限套娃。**
+> - 洛克有两个致命漏洞。第一个是**小人问题**：如果感官数据是杂乱传入大脑的，而大脑需要主动去“组织”它们，那你的脑子里是不是住着一个小人（homunculus）在帮你拼积木？这个逻辑会导致无限套娃。
 > - 第二个是**实体危机**：既然我们只能通过感官知道物体的“形状”、“颜色”（性质），我们凭什么确信在这些性质背后真的有一个叫做“物质（substance）”的东西存在呢？洛克无法回答。这也直接引出了下周的内容：贝克莱和休谟为了解决这个漏洞，直接把外部物质世界给“抹除”了（存在即被感知）。
 ----
 ## Lecture 5: George Berkeley and David Hume: Empiricism, Idealism, and Skepticism
@@ -505,7 +505,7 @@ Kant's objection to Descartes's ontological argument, with which Cartesian metap
 > 洛克认为经验是获取知识的“必要”来源
 > 但贝克莱和休谟把这条原则推向了极端：“如果脱离了感官经验，一切都不存在”。顺着这条逻辑，如果一切知识只来自“看、听、摸”，而我们从没真正摸到过抽象的“物质实体”本身，那么物质根本不存在！这就直接引出了贝克莱的“*唯心主义*”和休谟的“*怀疑论*”。
 ### George Berkeley 乔治·贝克莱
-- 爱尔兰圣公会教主（Irish Anglican biship） ^cafd19
+- 爱尔兰圣公会教主（Irish Anglican bishop） ^cafd19
 - 加州大学伯克利分校（U.C. Berkeley）以他的名字命名
 - 15岁进入都柏林圣三一学院
 - 晚年计划在百慕大群岛建立一所大学（失败）
@@ -517,7 +517,7 @@ Kant's objection to Descartes's ontological argument, with which Cartesian metap
 - 我们能直接接触到的其实是在我们头脑中形成的事物的观念（仍然符合笛卡尔-洛克的观念理论）
 - 但如果这是真的，如果**存在等同于感知**和**被感知**，那么真正存在的只有我们用来感知的心智，以及被心智感知的观念。
   - --> ***在观念之上或背后，不存在任何“物质客体”***。
-  - 因此，贝克莱提出：**“存在即被感知（和感知）`Esse est percip`“ ^6cccf4
+  - 因此，贝克莱提出：**“存在即被感知（和感知）`Esse est percip`”** ^6cccf4
     - **To be is to be perceived (and to perceive)**
 > - *洛克*认为，虽然我们脑子里只有“观念/表象”，但这些观念是由外部真实的“物质实体”引发的（==经验现实主义/经验实在论 Empirical Realism==）。 ^7b1e32
 > - *贝克莱*直接抓住了洛克的致命逻辑漏洞：你既然说一切知识必须来自经验，那你什么时候“经验”过物质实体本身？你只看到了杯子的“红色”、摸到了它的“温度”和“硬度”。红色、温度、硬度全是主观观念。既然你从来没感知过“物质”这个概念，凭什么说它存在？
@@ -641,9 +641,9 @@ Kant's objection to Descartes's ontological argument, with which Cartesian metap
 > 2. 他参与起草的魏玛宪法，是在1806年神圣罗马帝国解体后，德国于1918年真正建立统一民主共和国的里程碑
 > 3. 韦伯的跨学科背景使他能够宏观地考察宗教信仰与社会经济结构之间的联系
 ### Max Weber's Thesis 韦伯的命题
-- 《新教伦理与资本主义精神 (*The Protestant Work Ethic and the Spirit of Copitalism*)》(1904-1905)
+- 《新教伦理与资本主义精神 (*The Protestant Work Ethic and the Spirit of Capitalism*)》(1904-1905)
 > 韦伯在他的书中在理论上把新教和资本主义联系了起来，提出了著名的***韦伯命题***：
-- ==>**新教改革(The Protestant Reformation)** 是**现代资本主义经济(Modern Capitalistic Economies)** 背后的主要驱动力：
+- ==>**新教改革(The Protestant Reformation)** 是**现代资本主义经济(Modern Capitalistic Economies)** 背后的主要驱动力： ^30140b
   1. 工作的神圣性(sanctity) --> 勤奋 ^594db4
   2. 敬虔的*禁欲* 理想(*ascetic* ideal of godliness) --> 节俭(frugality)
   3. *新教价值观(Protestant values)* 为工业革命和市场经济提供了肥沃的土壤
@@ -763,7 +763,7 @@ Scripture as "Spectacles" --> the inception of worldview Christianity
 
 -----
 ## Lecture 7: John Locke and the Beginnings of *Libertarianism* 约翰·洛克和*自由意志主义* 的开端
-### Libertaianism 自由意志主义
+### Libertarianism 自由意志主义
 - 这个词含义差别很大
 - 如今的普遍用法包括：
   1. 以公民自由（civil liberty）为核心原则
@@ -948,7 +948,7 @@ Scripture as "Spectacles" --> the inception of worldview Christianity
   运气（命运女神）就像一个女人，如果你懦弱她就会欺负你
   如果你像个大男子主义者一样强行制服她（哪怕使用暴力），她就会屈服于你
 > 这体现了他**极端的权力崇拜**
-##### Cesare Borgia the Virtuoso “大师”切萨雷·波吉（1476？-1507）
+##### Cesare Borgia the Virtuoso “大师”切萨雷·波吉（1476？-1507） ^558908
 ^893ba1
 > [!example] 
 > 这是一个极度血腥但又被马基雅维利极其推崇的真实历史案例
@@ -1134,8 +1134,8 @@ Scripture as "Spectacles" --> the inception of worldview Christianity
 > 卢梭和高更不同，卢梭认为，虽然文明带来了堕落，但**出路不在于“退回野蛮”，而在于“建立更好的契约”** [[PHIL 206#^06c443]]
 ### Civilization 文明
 > [!question] 为什么卢梭不主张退回到野蛮状态？
-> 在野蛮阶段，人们凭本能（instinct）行事。退回野蛮时代就等于放弃了人类特有的**“理性和自由意志”**，退化回凭本能行事的野兽**
-> 但在公民社会中，人们被迫“在听从自己的倾向（inclinations）之前先**咨询理智（consult reason）**”
+> 在野蛮阶段，人们凭本能（instinct）行事。退回野蛮时代就等于放弃了人类特有的**“理性和自由意志”**，退化回凭本能行事的野兽
+> 但在公民社会中，人们被迫“在听从自己的倾向（inclinations）之前先 <strong>咨询理智（consult reason）</strong>”
 > 作为理性物种的人类的尊严/高贵 (nobility)，只有在公民社会中才会闪耀出来
 - 人类有别于野兽：动物也有同情心和自我保存的冲动，但**人类拥有理性的自由意志（rational free will）**，因此具有人类本性可臻于完美的潜能（potential perfectibility）
 ### *The Social Contract/Principles of Political Right* 《社会契约论》
