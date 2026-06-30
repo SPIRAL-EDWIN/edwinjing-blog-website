@@ -201,6 +201,239 @@
       });
   }
 
+  function visitorFallbackMarkup(state) {
+    var title = state === "failed" ? "Visitor map unavailable" : "Visitor map loading";
+    var meta = state === "failed"
+      ? "Please view with a VPN."
+      : "The page remains ready while the external map responds.";
+
+    return [
+      '<div class="visitor-fallback">',
+      '  <span class="visitor-fallback__eyebrow">Global Footprints</span>',
+      '  <span class="visitor-fallback__title">' + title + '</span>',
+      '  <span class="visitor-fallback__meta">' + meta + '</span>',
+      '</div>'
+    ].join("");
+  }
+
+  function visitorContentWidth(container) {
+    var style = window.getComputedStyle(container);
+    var paddingLeft = parseFloat(style.paddingLeft) || 0;
+    var paddingRight = parseFloat(style.paddingRight) || 0;
+    var width = container.clientWidth - paddingLeft - paddingRight;
+
+    return Math.max(180, Math.round(width || container.clientWidth || 300));
+  }
+
+  function visitorBackgroundUrl(map) {
+    if (!map) return "";
+
+    var backgroundImage = map.style.backgroundImage || window.getComputedStyle(map).backgroundImage || "";
+    var match = backgroundImage.match(/url\((['"]?)(.*?)\1\)/);
+    return match ? match[2] : "";
+  }
+
+  function visitorSizedBackgroundUrl(url, width) {
+    if (!url || !width) return url;
+
+    return url.replace(/bg-w_[^-/.?]+/, "bg-w_" + width);
+  }
+
+  function setVisitorBackgroundUrl(map, url) {
+    if (!map || !url) return;
+
+    map.style.backgroundImage = 'url("' + url.replace(/"/g, '\\"') + '")';
+  }
+
+  function normalizeVisitorMapSize(container) {
+    var widget = container.querySelector("#mapmyvisitors-widget");
+    var map = container.querySelector(".mapmyvisitors-map");
+    if (!widget || !map) return "";
+
+    var width = visitorContentWidth(container);
+    var height = Math.round(width / 2.04);
+
+    widget.style.width = width + "px";
+    map.style.width = width + "px";
+    map.style.height = height + "px";
+    map.style.backgroundPosition = "center center";
+    map.style.backgroundRepeat = "no-repeat";
+    map.style.backgroundSize = "100% 100%";
+
+    var backgroundUrl = visitorBackgroundUrl(map);
+    var sizedBackgroundUrl = visitorSizedBackgroundUrl(backgroundUrl, width);
+    if (sizedBackgroundUrl && sizedBackgroundUrl !== backgroundUrl) {
+      setVisitorBackgroundUrl(map, sizedBackgroundUrl);
+      backgroundUrl = sizedBackgroundUrl;
+    }
+
+    return backgroundUrl;
+  }
+
+  function visitorMapHasData(container) {
+    var text = (container.textContent || "").replace(/\s+/g, " ").trim();
+    if (/Loading data/i.test(text)) return false;
+    if (/Total Pageviews|Pageviews/i.test(text)) return true;
+
+    return !!container.querySelector("#mapmyvisitors-widget .jvectormap-container svg");
+  }
+
+  function nudgeVisitorMapSize() {
+    var trigger = function () {
+      window.dispatchEvent(new Event("resize"));
+    };
+
+    if (window.requestAnimationFrame) {
+      window.requestAnimationFrame(trigger);
+      return;
+    }
+
+    window.setTimeout(trigger, 0);
+  }
+
+  function startVisitorMapLoad(container) {
+    if (!container || container.dataset.visitorMapState === "loaded") return;
+    if (container.dataset.visitorMapState === "loading") return;
+
+    var mapSrc = container.getAttribute("data-map-src");
+    if (!mapSrc) return;
+
+    container.dataset.visitorMapState = "loading";
+    container.innerHTML = visitorFallbackMarkup("loading");
+
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.id = "mapmyvisitors";
+    script.async = true;
+    script.src = mapSrc;
+
+    var observer;
+    var timeout;
+    var settled = false;
+    var pendingBackgroundUrl = "";
+    var loadedBackgroundUrl = "";
+
+    var fail = function () {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timeout);
+      if (observer) observer.disconnect();
+      container.dataset.visitorMapState = "failed";
+      container.innerHTML = visitorFallbackMarkup("failed");
+    };
+
+    var markLoaded = function () {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timeout);
+      if (observer) observer.disconnect();
+      container.dataset.visitorMapState = "loaded";
+      var fallback = container.querySelector(".visitor-fallback");
+      if (fallback) fallback.remove();
+      normalizeVisitorMapSize(container);
+      nudgeVisitorMapSize();
+    };
+
+    var verifyVisitorBackground = function (backgroundUrl) {
+      if (!backgroundUrl) return;
+      if (backgroundUrl === loadedBackgroundUrl) {
+        markLoaded();
+        return;
+      }
+      if (backgroundUrl === pendingBackgroundUrl) return;
+
+      pendingBackgroundUrl = backgroundUrl;
+
+      var image = new Image();
+      image.onload = function () {
+        if (settled || pendingBackgroundUrl !== backgroundUrl) return;
+
+        if (image.naturalWidth > 1 && image.naturalHeight > 1) {
+          loadedBackgroundUrl = backgroundUrl;
+          markLoaded();
+          return;
+        }
+
+        fail();
+      };
+      image.onerror = fail;
+      image.src = new URL(backgroundUrl, window.location.href).href;
+    };
+
+    var markLoadedIfReady = function () {
+      if (!visitorMapHasData(container)) return;
+      verifyVisitorBackground(normalizeVisitorMapSize(container));
+    };
+
+    observer = new MutationObserver(markLoadedIfReady);
+    observer.observe(container, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ["class", "style"]
+    });
+
+    timeout = window.setTimeout(fail, 15000);
+
+    script.addEventListener("load", function () {
+      var fallback = container.querySelector(".visitor-fallback");
+      if (fallback) fallback.remove();
+      nudgeVisitorMapSize();
+      window.setTimeout(markLoadedIfReady, 250);
+    });
+
+    script.addEventListener("error", function () {
+      window.clearTimeout(timeout);
+      fail();
+    });
+
+    container.appendChild(script);
+  }
+
+  function afterWindowLoad(callback) {
+    var run = function () {
+      window.setTimeout(callback, 900);
+    };
+
+    if (document.readyState === "complete") {
+      run();
+      return;
+    }
+
+    window.addEventListener("load", run, { once: true });
+  }
+
+  function setupVisitorMap() {
+    var containers = document.querySelectorAll("[data-visitor-map]");
+    if (!containers.length) return;
+
+    containers.forEach(function (container) {
+      if (container.dataset.visitorMapObserved === "1") return;
+      container.dataset.visitorMapObserved = "1";
+      container.dataset.visitorMapState = container.dataset.visitorMapState || "idle";
+
+      var scheduleLoad = function () {
+        afterWindowLoad(function () {
+          startVisitorMapLoad(container);
+        });
+      };
+
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            observer.disconnect();
+            scheduleLoad();
+          });
+        }, { rootMargin: "220px 0px" });
+        observer.observe(container);
+      } else {
+        scheduleLoad();
+      }
+    });
+  }
+
   function ensureHomeProfileLayout() {
     var pathname = (window.location.pathname || "").replace(/\/+$/, "");
     var shouldUseProfileShell = /\/HOME\/(?:Archive|friends)(?:\/index\.html)?$/i.test(pathname);
@@ -324,6 +557,7 @@
     ensureHomeProfileLayout();
     updateBeijingTime();
     updateFriendCount();
+    setupVisitorMap();
     fixOrderedListContinuity();
   }
 

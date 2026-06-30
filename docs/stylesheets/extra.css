@@ -2742,16 +2742,74 @@ body[data-md-color-scheme="slate"] .academic-home-layout .news-text strong {
 }
 
 .visitor-container {
+    position: relative;
+    display: block;
     overflow: hidden;
-    min-height: 9rem;
+    min-height: 16rem;
     padding: 1rem;
     text-align: center;
+}
+
+.visitor-fallback {
+    display: grid;
+    gap: 0.35rem;
+    place-items: center;
+    min-height: 14rem;
+    padding: 0.75rem;
+    color: var(--academic-muted);
+}
+
+.visitor-fallback__eyebrow {
+    color: var(--academic-accent);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.visitor-fallback__title {
+    color: var(--academic-ink);
+    font-size: 0.98rem;
+    font-weight: 750;
+}
+
+.visitor-fallback__meta {
+    max-width: 17rem;
+    color: var(--academic-muted);
+    font-size: 0.78rem;
+    line-height: 1.45;
 }
 
 .visitor-container iframe,
 .visitor-container img,
 .visitor-container canvas {
+    display: block;
+    width: 100%;
     max-width: 100%;
+    margin: 0 auto;
+}
+
+.visitor-container #mapmyvisitors-widget {
+    display: block;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+}
+
+.visitor-container .mapmyvisitors-map-container,
+.visitor-container .mapmyvisitors-map {
+    max-width: 100% !important;
+}
+
+.visitor-container .mapmyvisitors-map {
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+}
+
+.visitor-container .jvectormap-container {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 @media screen and (max-width: 58rem) {
@@ -4591,5 +4649,57 @@ body[data-md-color-scheme="slate"] .friend-desc {
 
     .md-source__icon svg {
         transform: scale(1.05) !important;
+    }
+}
+
+/* ==========================================================================
+   Narrow viewport guardrails
+   ========================================================================== */
+
+@media screen and (max-width: 58rem) {
+    .academic-home-layout {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 2rem !important;
+        width: 100% !important;
+    }
+
+    .academic-sidebar {
+        position: static !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .academic-content {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .academic-home-layout .profile-card {
+        align-items: center !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .profile-avatar {
+        width: min(17rem, 100%) !important;
+        max-width: min(17rem, 100%) !important;
+        margin: 0 auto 1rem !important;
+    }
+
+    .profile-name-wrap,
+    .profile-followers,
+    .profile-meta {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .profile-meta li,
+    .profile-social-left {
+        justify-content: center !important;
+    }
+
+    .visitor-container {
+        width: 100% !important;
+        min-width: 0 !important;
     }
 }

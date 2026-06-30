@@ -11,18 +11,24 @@
  *    重新包裹为 <span class="arithmatex">...</span>，让 MathJax 接管渲染。
  * 2. 同时显式调用 typesetPromise 处理整个文档。
  * ============================================================================== */
-window.MathJax = {
-  tex: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    processEscapes: true,
-    processEnvironments: true
-  },
-  options: {
-    ignoreHtmlClass: ".*|",
-    processHtmlClass: "arithmatex"
-  }
-};
+(function () {
+  "use strict";
+
+  var MATHJAX_SRC = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+  var mathJaxRequested = false;
+
+  window.MathJax = {
+    tex: {
+      inlineMath: [["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      ignoreHtmlClass: ".*|",
+      processHtmlClass: "arithmatex"
+    }
+  };
 
 /**
  * 把目录中所有含 inline math 分隔符的文本节点包成 .arithmatex 容器，
@@ -73,11 +79,41 @@ function wrapTocMath() {
   });
 }
 
-// MkDocs Material 暴露 document$ Observable（基于 RxJS），
-// 每次内容变更（含 instant navigation）都会触发。
-document$.subscribe(() => {
+function pageNeedsMath() {
+  var root = document.querySelector(".md-content__inner") || document.body;
+  if (!root) return false;
+  if (root.querySelector(".arithmatex")) return true;
+  return /\\\(|\\\[/.test(root.textContent || "");
+}
+
+function loadMathJax() {
+  if (mathJaxRequested) return;
+  mathJaxRequested = true;
+
+  var script = document.createElement("script");
+  script.src = MATHJAX_SRC;
+  script.async = true;
+  script.id = "mathjax-runtime";
+  document.head.appendChild(script);
+}
+
+function typesetWhenNeeded() {
   wrapTocMath();
+  if (!pageNeedsMath()) return;
+
   if (window.MathJax && MathJax.typesetPromise) {
     MathJax.typesetPromise();
+    return;
   }
-});
+
+  loadMathJax();
+}
+
+// MkDocs Material 暴露 document$ Observable（基于 RxJS），
+// 每次内容变更（含 instant navigation）都会触发。
+if (window.document$ && typeof window.document$.subscribe === "function") {
+  window.document$.subscribe(typesetWhenNeeded);
+} else {
+  document.addEventListener("DOMContentLoaded", typesetWhenNeeded);
+}
+})();
