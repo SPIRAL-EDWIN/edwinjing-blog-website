@@ -128,7 +128,7 @@
       '  <div class="profile-followers">',
       '    <a href="' + siteHref("HOME/friends/") + '" class="follower-link">',
       '      <svg class="meta-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.68 1.5 1.5 0 0 0-.14-2.828.75.75 0 0 1-.714-.807l.006-.051A1.5 1.5 0 0 0 11 4Z"></path></svg>',
-      '      <span class="follower-text"><span class="follower-count" id="friend-count">2</span> follower <span class="follower-separator">&middot;</span> following</span>',
+      '      <span class="follower-text"><span class="follower-count" id="friend-count">2</span> followers <span class="follower-separator">&middot;</span> followings</span>',
       '    </a>',
       '  </div>',
       '  <ul class="profile-meta">',
@@ -225,6 +225,10 @@
     return Math.max(180, Math.round(width || container.clientWidth || 300));
   }
 
+  function visitorAssetWidth(displayWidth) {
+    return Math.min(1200, Math.max(300, Math.round(displayWidth || 300)));
+  }
+
   function visitorBackgroundUrl(map) {
     if (!map) return "";
 
@@ -252,6 +256,7 @@
 
     var width = visitorContentWidth(container);
     var height = Math.round(width / 2.04);
+    var assetWidth = visitorAssetWidth(width);
 
     widget.style.width = width + "px";
     map.style.width = width + "px";
@@ -261,7 +266,7 @@
     map.style.backgroundSize = "100% 100%";
 
     var backgroundUrl = visitorBackgroundUrl(map);
-    var sizedBackgroundUrl = visitorSizedBackgroundUrl(backgroundUrl, width);
+    var sizedBackgroundUrl = visitorSizedBackgroundUrl(backgroundUrl, assetWidth);
     if (sizedBackgroundUrl && sizedBackgroundUrl !== backgroundUrl) {
       setVisitorBackgroundUrl(map, sizedBackgroundUrl);
       backgroundUrl = sizedBackgroundUrl;
@@ -374,7 +379,7 @@
       attributeFilter: ["class", "style"]
     });
 
-    timeout = window.setTimeout(fail, 15000);
+    timeout = window.setTimeout(fail, 22000);
 
     script.addEventListener("load", function () {
       var fallback = container.querySelector(".visitor-fallback");

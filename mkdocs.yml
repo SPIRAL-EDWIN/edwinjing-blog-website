@@ -184,10 +184,10 @@ extra_javascript:
   # 必须在 docs/javascripts/ 目录下创建 mathjax.js 文件 (内容见报告正文)
   - javascripts/mathjax.js
   - javascripts/block-links.js?v=20260624b  # Obsidian 风格块引用链接支持
-  - javascripts/ui-perf.js?v=20260630c
+  - javascripts/ui-perf.js?v=20260701b
 
 extra_css:
-  - stylesheets/extra.css?v=20260630c       # 用于自定义 CSS 样式调整
+  - stylesheets/extra.css?v=20260701b       # 用于自定义 CSS 样式调整
 
 # --- 7. 导航结构 (Navigation) ---
 # 如果不配置此项，MkDocs 会按文件目录自动生成。建议手动配置以控制顺序。

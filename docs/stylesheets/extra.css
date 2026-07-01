@@ -4703,3 +4703,677 @@ body[data-md-color-scheme="slate"] .friend-desc {
         min-width: 0 !important;
     }
 }
+
+/* ==========================================================================
+   GitHub profile density and responsive flow
+   ========================================================================== */
+
+body.is-homepage .md-content__inner,
+body.is-home-profile-page .md-content__inner,
+body:has(.academic-home-layout) .md-content__inner {
+    padding: clamp(0.75rem, 1.55vw, 1.15rem) clamp(0.9rem, 3.4vw, 2rem) 4rem !important;
+}
+
+body.is-homepage .academic-home-layout,
+body.is-home-profile-page .academic-home-layout,
+body:has(.academic-home-layout) .academic-home-layout {
+    grid-template-columns: 260px minmax(0, 1fr) !important;
+    gap: clamp(1.75rem, 3.4vw, 2.5rem) !important;
+    width: min(100%, 80rem) !important;
+}
+
+body.is-homepage .academic-sidebar,
+body.is-home-profile-page .academic-sidebar,
+body:has(.academic-home-layout) .academic-sidebar {
+    top: calc(var(--compact-header-height, var(--md-header-height, 48px)) + 1.15rem) !important;
+}
+
+body.is-homepage .academic-home-layout .profile-card,
+body.is-home-profile-page .academic-home-layout .profile-card,
+body:has(.academic-home-layout) .academic-home-layout .profile-card {
+    align-items: flex-start !important;
+    text-align: left !important;
+}
+
+body.is-homepage .profile-avatar,
+body.is-home-profile-page .profile-avatar,
+body:has(.academic-home-layout) .profile-avatar {
+    width: 100% !important;
+    max-width: 260px !important;
+    margin: 0 0 0.8rem 0 !important;
+}
+
+body.is-homepage .profile-name-wrap,
+body.is-home-profile-page .profile-name-wrap,
+body:has(.academic-home-layout) .profile-name-wrap {
+    width: 100% !important;
+    margin: 0 0 0.75rem 0 !important;
+    text-align: left !important;
+}
+
+body.is-homepage .md-typeset .profile-name,
+body.is-home-profile-page .md-typeset .profile-name,
+body:has(.academic-home-layout) .md-typeset .profile-name {
+    font-size: 1.34rem !important;
+    font-weight: 600 !important;
+    line-height: 1.22 !important;
+}
+
+body.is-homepage .profile-pronouns,
+body.is-home-profile-page .profile-pronouns,
+body:has(.academic-home-layout) .profile-pronouns {
+    font-size: 1.02rem !important;
+    line-height: 1.22 !important;
+    transform: none !important;
+}
+
+body.is-homepage .profile-role,
+body.is-home-profile-page .profile-role,
+body:has(.academic-home-layout) .profile-role {
+    margin-top: 0.12rem !important;
+    font-size: 0.84rem !important;
+    line-height: 1.32 !important;
+}
+
+body.is-homepage .profile-actions,
+body.is-home-profile-page .profile-actions,
+body:has(.academic-home-layout) .profile-actions,
+body.is-homepage .profile-followers,
+body.is-home-profile-page .profile-followers,
+body:has(.academic-home-layout) .profile-followers {
+    margin-bottom: 0.72rem !important;
+}
+
+body.is-homepage .md-typeset .btn-github-action,
+body.is-homepage .md-typeset .btn-github-action:hover,
+body.is-homepage .md-typeset .btn-github-action:focus,
+body.is-home-profile-page .md-typeset .btn-github-action,
+body.is-home-profile-page .md-typeset .btn-github-action:hover,
+body.is-home-profile-page .md-typeset .btn-github-action:focus,
+body:has(.academic-home-layout) .md-typeset .btn-github-action,
+body:has(.academic-home-layout) .md-typeset .btn-github-action:hover,
+body:has(.academic-home-layout) .md-typeset .btn-github-action:focus {
+    min-height: 26px !important;
+    height: 26px !important;
+    padding: 0 12px !important;
+    font-size: 0.78rem !important;
+    line-height: 1 !important;
+}
+
+body.is-homepage .md-typeset .follower-link,
+body.is-homepage .md-typeset .follower-text,
+body.is-homepage .md-typeset .profile-meta li,
+body.is-home-profile-page .md-typeset .follower-link,
+body.is-home-profile-page .md-typeset .follower-text,
+body.is-home-profile-page .md-typeset .profile-meta li,
+body:has(.academic-home-layout) .md-typeset .follower-link,
+body:has(.academic-home-layout) .md-typeset .follower-text,
+body:has(.academic-home-layout) .md-typeset .profile-meta li {
+    font-size: 0.84rem !important;
+    line-height: 1.45 !important;
+}
+
+body.is-homepage .md-typeset .profile-meta,
+body.is-home-profile-page .md-typeset .profile-meta,
+body:has(.academic-home-layout) .md-typeset .profile-meta {
+    gap: 0.28rem !important;
+    margin-bottom: 0.65rem !important;
+}
+
+body.is-homepage .md-typeset .profile-meta li,
+body.is-home-profile-page .md-typeset .profile-meta li,
+body:has(.academic-home-layout) .md-typeset .profile-meta li {
+    gap: 0.45rem !important;
+}
+
+body.is-homepage .md-typeset .profile-meta .meta-icon,
+body.is-homepage .follower-link .meta-icon,
+body.is-home-profile-page .md-typeset .profile-meta .meta-icon,
+body.is-home-profile-page .follower-link .meta-icon,
+body:has(.academic-home-layout) .md-typeset .profile-meta .meta-icon,
+body:has(.academic-home-layout) .follower-link .meta-icon {
+    width: 15px !important;
+    height: 15px !important;
+}
+
+body.is-homepage .profile-social-left,
+body.is-home-profile-page .profile-social-left,
+body:has(.academic-home-layout) .profile-social-left {
+    justify-content: flex-start !important;
+    gap: 0.66rem !important;
+    margin-top: 0.15rem !important;
+}
+
+body.is-homepage .md-typeset .profile-social-left a,
+body.is-homepage .md-typeset .profile-social-left a:hover,
+body.is-homepage .md-typeset .profile-social-left a:focus,
+body.is-home-profile-page .md-typeset .profile-social-left a,
+body.is-home-profile-page .md-typeset .profile-social-left a:hover,
+body.is-home-profile-page .md-typeset .profile-social-left a:focus,
+body:has(.academic-home-layout) .md-typeset .profile-social-left a,
+body:has(.academic-home-layout) .md-typeset .profile-social-left a:hover,
+body:has(.academic-home-layout) .md-typeset .profile-social-left a:focus {
+    width: 1.55rem !important;
+    height: 1.55rem !important;
+}
+
+body.is-homepage .profile-social-left .social-icon,
+body.is-home-profile-page .profile-social-left .social-icon,
+body:has(.academic-home-layout) .profile-social-left .social-icon {
+    width: 0.92rem !important;
+    height: 0.92rem !important;
+}
+
+body.is-homepage .academic-content,
+body.is-home-profile-page .academic-content,
+body:has(.academic-home-layout) .academic-content {
+    gap: clamp(1.15rem, 2vw, 1.7rem) !important;
+}
+
+body.is-homepage .section-title,
+body.is-home-profile-page .section-title,
+body:has(.academic-home-layout) .section-title {
+    gap: 0.55rem !important;
+    margin-bottom: 0.85rem !important;
+    font-size: 1.16rem !important;
+    line-height: 1.28 !important;
+}
+
+body.is-homepage .title-dash,
+body.is-home-profile-page .title-dash,
+body:has(.academic-home-layout) .title-dash {
+    width: 1.45rem !important;
+}
+
+body.is-homepage .academic-section p,
+body.is-homepage .md-typeset .about-focus-list li,
+body.is-homepage .news-text,
+body.is-homepage .md-typeset .pub-title,
+body.is-homepage .md-typeset .proj-header h3,
+body.is-homepage .project-card p,
+body.is-homepage .md-typeset .education-school,
+body.is-homepage .education-degree,
+body.is-homepage .education-time,
+body.is-homepage .md-typeset .cv-title,
+body.is-homepage .cv-subtitle,
+body.is-homepage .cv-desc,
+body.is-homepage .award-list li,
+body.is-homepage .personalities-list li,
+body.is-home-profile-page .academic-section p,
+body.is-home-profile-page .md-typeset .about-focus-list li,
+body.is-home-profile-page .news-text,
+body.is-home-profile-page .md-typeset .pub-title,
+body.is-home-profile-page .md-typeset .proj-header h3,
+body.is-home-profile-page .project-card p,
+body.is-home-profile-page .md-typeset .education-school,
+body.is-home-profile-page .education-degree,
+body.is-home-profile-page .education-time,
+body.is-home-profile-page .md-typeset .cv-title,
+body.is-home-profile-page .cv-subtitle,
+body.is-home-profile-page .cv-desc,
+body.is-home-profile-page .award-list li,
+body.is-home-profile-page .personalities-list li,
+body:has(.academic-home-layout) .academic-section p,
+body:has(.academic-home-layout) .md-typeset .about-focus-list li,
+body:has(.academic-home-layout) .news-text,
+body:has(.academic-home-layout) .md-typeset .pub-title,
+body:has(.academic-home-layout) .md-typeset .proj-header h3,
+body:has(.academic-home-layout) .project-card p,
+body:has(.academic-home-layout) .md-typeset .education-school,
+body:has(.academic-home-layout) .education-degree,
+body:has(.academic-home-layout) .education-time,
+body:has(.academic-home-layout) .md-typeset .cv-title,
+body:has(.academic-home-layout) .cv-subtitle,
+body:has(.academic-home-layout) .cv-desc,
+body:has(.academic-home-layout) .award-list li,
+body:has(.academic-home-layout) .personalities-list li {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+}
+
+body.is-homepage .award-year,
+body.is-homepage .cv-time,
+body.is-homepage .proj-year,
+body.is-homepage .news-date,
+body.is-home-profile-page .award-year,
+body.is-home-profile-page .cv-time,
+body.is-home-profile-page .proj-year,
+body.is-home-profile-page .news-date,
+body:has(.academic-home-layout) .award-year,
+body:has(.academic-home-layout) .cv-time,
+body:has(.academic-home-layout) .proj-year,
+body:has(.academic-home-layout) .news-date {
+    font-size: 0.7rem !important;
+}
+
+body.is-homepage .pub-card,
+body.is-homepage .project-card,
+body.is-homepage .education-card,
+body.is-homepage .visitor-container,
+body.is-home-profile-page .pub-card,
+body.is-home-profile-page .project-card,
+body.is-home-profile-page .education-card,
+body.is-home-profile-page .visitor-container,
+body:has(.academic-home-layout) .pub-card,
+body:has(.academic-home-layout) .project-card,
+body:has(.academic-home-layout) .education-card,
+body:has(.academic-home-layout) .visitor-container {
+    padding: 0.85rem !important;
+}
+
+body.is-homepage .pub-card,
+body.is-home-profile-page .pub-card,
+body:has(.academic-home-layout) .pub-card {
+    grid-template-columns: 7.25rem minmax(0, 1fr) !important;
+    gap: 0.9rem !important;
+}
+
+body.is-homepage .pub-image,
+body.is-homepage .placeholder-img,
+body.is-home-profile-page .pub-image,
+body.is-home-profile-page .placeholder-img,
+body:has(.academic-home-layout) .pub-image,
+body:has(.academic-home-layout) .placeholder-img {
+    min-height: 4.25rem !important;
+}
+
+body.is-homepage .project-card,
+body.is-home-profile-page .project-card,
+body:has(.academic-home-layout) .project-card {
+    min-height: 8.4rem !important;
+}
+
+body.is-homepage .education-card,
+body.is-home-profile-page .education-card,
+body:has(.academic-home-layout) .education-card {
+    grid-template-columns: 5.4rem minmax(0, 1fr) !important;
+    gap: 0.95rem !important;
+}
+
+body.is-homepage .education-logo,
+body.is-home-profile-page .education-logo,
+body:has(.academic-home-layout) .education-logo {
+    width: 4.4rem !important;
+    height: 4.4rem !important;
+}
+
+@media screen and (max-width: 63.25em) {
+    body.is-homepage .academic-home-layout,
+    body.is-home-profile-page .academic-home-layout,
+    body:has(.academic-home-layout) .academic-home-layout {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 1.6rem !important;
+        width: min(100%, 56rem) !important;
+    }
+
+    body.is-homepage .academic-sidebar,
+    body.is-home-profile-page .academic-sidebar,
+    body:has(.academic-home-layout) .academic-sidebar {
+        position: static !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        padding-bottom: 1.2rem !important;
+        margin-bottom: 0 !important;
+        border-bottom: 1px solid var(--academic-card-border) !important;
+    }
+
+    body.is-homepage .academic-home-layout .profile-card,
+    body.is-home-profile-page .academic-home-layout .profile-card,
+    body:has(.academic-home-layout) .academic-home-layout .profile-card {
+        display: grid !important;
+        grid-template-columns: 10rem minmax(0, 1fr) !important;
+        column-gap: 1.35rem !important;
+        row-gap: 0.45rem !important;
+        align-items: start !important;
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    body.is-homepage .profile-avatar,
+    body.is-home-profile-page .profile-avatar,
+    body:has(.academic-home-layout) .profile-avatar {
+        grid-column: 1 !important;
+        grid-row: 1 / span 4 !important;
+        max-width: 10rem !important;
+        margin: 0 !important;
+    }
+
+    body.is-homepage .profile-name-wrap,
+    body.is-home-profile-page .profile-name-wrap,
+    body:has(.academic-home-layout) .profile-name-wrap {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        margin-bottom: 0.25rem !important;
+        text-align: left !important;
+    }
+
+    body.is-homepage .profile-actions,
+    body.is-home-profile-page .profile-actions,
+    body:has(.academic-home-layout) .profile-actions {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        max-width: 16rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    body.is-homepage .profile-followers,
+    body.is-home-profile-page .profile-followers,
+    body:has(.academic-home-layout) .profile-followers {
+        grid-column: 2 !important;
+        grid-row: 3 !important;
+        width: 100% !important;
+        margin-bottom: 0 !important;
+        text-align: left !important;
+    }
+
+    body.is-homepage .md-typeset .profile-meta,
+    body.is-home-profile-page .md-typeset .profile-meta,
+    body:has(.academic-home-layout) .md-typeset .profile-meta {
+        grid-column: 1 / -1 !important;
+        grid-row: 5 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 0.42rem 1rem !important;
+        margin: 0.65rem 0 0 !important;
+    }
+
+    body.is-homepage .md-typeset .profile-meta li,
+    body.is-home-profile-page .md-typeset .profile-meta li,
+    body:has(.academic-home-layout) .md-typeset .profile-meta li {
+        width: auto !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+    }
+
+    body.is-homepage .profile-social-left,
+    body.is-home-profile-page .profile-social-left,
+    body:has(.academic-home-layout) .profile-social-left {
+        grid-column: 1 / -1 !important;
+        grid-row: 6 !important;
+        justify-content: flex-start !important;
+        margin-top: 0.45rem !important;
+    }
+}
+
+@media screen and (max-width: 48em) {
+    body.is-homepage .md-content__inner,
+    body.is-home-profile-page .md-content__inner,
+    body:has(.academic-home-layout) .md-content__inner {
+        padding: 0.8rem 0.85rem 3rem !important;
+    }
+
+    body.is-homepage .academic-home-layout,
+    body.is-home-profile-page .academic-home-layout,
+    body:has(.academic-home-layout) .academic-home-layout {
+        gap: 1.2rem !important;
+        width: 100% !important;
+    }
+
+    body.is-homepage .academic-home-layout .profile-card,
+    body.is-home-profile-page .academic-home-layout .profile-card,
+    body:has(.academic-home-layout) .academic-home-layout .profile-card {
+        grid-template-columns: 5.4rem minmax(0, 1fr) !important;
+        column-gap: 0.85rem !important;
+        row-gap: 0.35rem !important;
+    }
+
+    body.is-homepage .profile-avatar,
+    body.is-home-profile-page .profile-avatar,
+    body:has(.academic-home-layout) .profile-avatar {
+        grid-row: 1 / span 3 !important;
+        max-width: 5.4rem !important;
+    }
+
+    body.is-homepage .md-typeset .profile-name,
+    body.is-home-profile-page .md-typeset .profile-name,
+    body:has(.academic-home-layout) .md-typeset .profile-name {
+        font-size: 1.16rem !important;
+    }
+
+    body.is-homepage .profile-pronouns,
+    body.is-home-profile-page .profile-pronouns,
+    body:has(.academic-home-layout) .profile-pronouns {
+        font-size: 0.92rem !important;
+    }
+
+    body.is-homepage .profile-actions,
+    body.is-home-profile-page .profile-actions,
+    body:has(.academic-home-layout) .profile-actions,
+    body.is-homepage .profile-followers,
+    body.is-home-profile-page .profile-followers,
+    body:has(.academic-home-layout) .profile-followers {
+        grid-column: 2 !important;
+    }
+
+    body.is-homepage .md-typeset .profile-meta,
+    body.is-home-profile-page .md-typeset .profile-meta,
+    body:has(.academic-home-layout) .md-typeset .profile-meta,
+    body.is-homepage .profile-social-left,
+    body.is-home-profile-page .profile-social-left,
+    body:has(.academic-home-layout) .profile-social-left {
+        grid-column: 1 / -1 !important;
+    }
+
+    body.is-homepage .pub-card,
+    body.is-home-profile-page .pub-card,
+    body:has(.academic-home-layout) .pub-card,
+    body.is-homepage .education-card,
+    body.is-home-profile-page .education-card,
+    body:has(.academic-home-layout) .education-card {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+
+body.is-homepage .md-typeset .about-focus-list li,
+body.is-homepage .project-card p,
+body.is-homepage .cv-desc,
+body.is-homepage .award-list li,
+body.is-homepage .personalities-list li,
+body.is-home-profile-page .md-typeset .about-focus-list li,
+body.is-home-profile-page .project-card p,
+body.is-home-profile-page .cv-desc,
+body.is-home-profile-page .award-list li,
+body.is-home-profile-page .personalities-list li,
+body:has(.academic-home-layout) .md-typeset .about-focus-list li,
+body:has(.academic-home-layout) .project-card p,
+body:has(.academic-home-layout) .cv-desc,
+body:has(.academic-home-layout) .award-list li,
+body:has(.academic-home-layout) .personalities-list li {
+    font-size: 0.76rem !important;
+    line-height: 1.48 !important;
+}
+
+body.is-homepage .md-typeset .pub-title,
+body.is-homepage .md-typeset .proj-header h3,
+body.is-homepage .md-typeset .education-school,
+body.is-homepage .md-typeset .cv-title,
+body.is-home-profile-page .md-typeset .pub-title,
+body.is-home-profile-page .md-typeset .proj-header h3,
+body.is-home-profile-page .md-typeset .education-school,
+body.is-home-profile-page .md-typeset .cv-title,
+body:has(.academic-home-layout) .md-typeset .pub-title,
+body:has(.academic-home-layout) .md-typeset .proj-header h3,
+body:has(.academic-home-layout) .md-typeset .education-school,
+body:has(.academic-home-layout) .md-typeset .cv-title {
+    font-size: 0.84rem !important;
+    line-height: 1.35 !important;
+}
+
+body.is-homepage .md-typeset .btn-github-action,
+body.is-homepage .md-typeset .btn-github-action:hover,
+body.is-homepage .md-typeset .btn-github-action:focus,
+body.is-home-profile-page .md-typeset .btn-github-action,
+body.is-home-profile-page .md-typeset .btn-github-action:hover,
+body.is-home-profile-page .md-typeset .btn-github-action:focus,
+body:has(.academic-home-layout) .md-typeset .btn-github-action,
+body:has(.academic-home-layout) .md-typeset .btn-github-action:hover,
+body:has(.academic-home-layout) .md-typeset .btn-github-action:focus {
+    font-size: 0.72rem !important;
+    line-height: 1.2 !important;
+}
+
+@media screen and (max-width: 48em) {
+    body.is-homepage .md-typeset .about-focus-list li,
+    body.is-homepage .project-card p,
+    body.is-homepage .cv-desc,
+    body.is-homepage .award-list li,
+    body.is-homepage .personalities-list li,
+    body.is-home-profile-page .md-typeset .about-focus-list li,
+    body.is-home-profile-page .project-card p,
+    body.is-home-profile-page .cv-desc,
+    body.is-home-profile-page .award-list li,
+    body.is-home-profile-page .personalities-list li,
+    body:has(.academic-home-layout) .md-typeset .about-focus-list li,
+    body:has(.academic-home-layout) .project-card p,
+    body:has(.academic-home-layout) .cv-desc,
+    body:has(.academic-home-layout) .award-list li,
+    body:has(.academic-home-layout) .personalities-list li {
+        font-size: 0.74rem !important;
+    }
+}
+
+/* Final density pass: Material's root font is larger than GitHub's, so
+   overview copy needs a lower rem value to land near GitHub's 14-16px rhythm. */
+body.is-homepage .md-typeset .profile-name,
+body.is-home-profile-page .md-typeset .profile-name,
+body:has(.academic-home-layout) .md-typeset .profile-name {
+    font-size: 1.24rem !important;
+    line-height: 1.18 !important;
+}
+
+body.is-homepage .profile-pronouns,
+body.is-home-profile-page .profile-pronouns,
+body:has(.academic-home-layout) .profile-pronouns {
+    font-size: 0.92rem !important;
+    line-height: 1.2 !important;
+}
+
+body.is-homepage .profile-role,
+body.is-home-profile-page .profile-role,
+body:has(.academic-home-layout) .profile-role {
+    font-size: 0.76rem !important;
+    line-height: 1.25 !important;
+}
+
+body.is-homepage .btn-github-action,
+body.is-home-profile-page .btn-github-action,
+body:has(.academic-home-layout) .btn-github-action,
+body.is-homepage .profile-followers,
+body.is-homepage .profile-followers a,
+body.is-home-profile-page .profile-followers,
+body.is-home-profile-page .profile-followers a,
+body:has(.academic-home-layout) .profile-followers,
+body:has(.academic-home-layout) .profile-followers a,
+body.is-homepage .md-typeset .profile-meta li,
+body.is-homepage .md-typeset .profile-meta a,
+body.is-home-profile-page .md-typeset .profile-meta li,
+body.is-home-profile-page .md-typeset .profile-meta a,
+body:has(.academic-home-layout) .md-typeset .profile-meta li,
+body:has(.academic-home-layout) .md-typeset .profile-meta a {
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+}
+
+body.is-homepage .section-title,
+body.is-home-profile-page .section-title,
+body:has(.academic-home-layout) .section-title {
+    font-size: 1.06rem !important;
+    line-height: 1.22 !important;
+}
+
+body.is-homepage .academic-section p,
+body.is-homepage .academic-section li,
+body.is-homepage .news-text,
+body.is-homepage .pub-authors,
+body.is-homepage .pub-venue,
+body.is-homepage .education-degree,
+body.is-homepage .education-time,
+body.is-homepage .cv-subtitle,
+body.is-homepage .cv-time,
+body.is-homepage .award-copy,
+body.is-homepage .personalities-list li,
+body.is-home-profile-page .academic-section p,
+body.is-home-profile-page .academic-section li,
+body.is-home-profile-page .news-text,
+body.is-home-profile-page .pub-authors,
+body.is-home-profile-page .pub-venue,
+body.is-home-profile-page .education-degree,
+body.is-home-profile-page .education-time,
+body.is-home-profile-page .cv-subtitle,
+body.is-home-profile-page .cv-time,
+body.is-home-profile-page .award-copy,
+body.is-home-profile-page .personalities-list li,
+body:has(.academic-home-layout) .academic-section p,
+body:has(.academic-home-layout) .academic-section li,
+body:has(.academic-home-layout) .news-text,
+body:has(.academic-home-layout) .pub-authors,
+body:has(.academic-home-layout) .pub-venue,
+body:has(.academic-home-layout) .education-degree,
+body:has(.academic-home-layout) .education-time,
+body:has(.academic-home-layout) .cv-subtitle,
+body:has(.academic-home-layout) .cv-time,
+body:has(.academic-home-layout) .award-copy,
+body:has(.academic-home-layout) .personalities-list li {
+    font-size: 0.76rem !important;
+    line-height: 1.48 !important;
+}
+
+body.is-homepage .pub-title,
+body.is-homepage .project-card h3,
+body.is-homepage .education-school,
+body.is-homepage .cv-title,
+body.is-home-profile-page .pub-title,
+body.is-home-profile-page .project-card h3,
+body.is-home-profile-page .education-school,
+body.is-home-profile-page .cv-title,
+body:has(.academic-home-layout) .pub-title,
+body:has(.academic-home-layout) .project-card h3,
+body:has(.academic-home-layout) .education-school,
+body:has(.academic-home-layout) .cv-title {
+    font-size: 0.84rem !important;
+    line-height: 1.35 !important;
+}
+
+body.is-homepage .news-date,
+body.is-homepage .proj-year,
+body.is-homepage .award-year,
+body.is-homepage .proj-tags span,
+body.is-home-profile-page .news-date,
+body.is-home-profile-page .proj-year,
+body.is-home-profile-page .award-year,
+body.is-home-profile-page .proj-tags span,
+body:has(.academic-home-layout) .news-date,
+body:has(.academic-home-layout) .proj-year,
+body:has(.academic-home-layout) .award-year,
+body:has(.academic-home-layout) .proj-tags span {
+    font-size: 0.64rem !important;
+    line-height: 1.25 !important;
+}
+
+@media screen and (max-width: 48em) {
+    body.is-homepage .md-typeset .profile-name,
+    body.is-home-profile-page .md-typeset .profile-name,
+    body:has(.academic-home-layout) .md-typeset .profile-name {
+        font-size: 1.06rem !important;
+    }
+
+    body.is-homepage .profile-pronouns,
+    body.is-home-profile-page .profile-pronouns,
+    body:has(.academic-home-layout) .profile-pronouns {
+        font-size: 0.82rem !important;
+    }
+
+    body.is-homepage .profile-role,
+    body.is-home-profile-page .profile-role,
+    body:has(.academic-home-layout) .profile-role,
+    body.is-homepage .academic-section p,
+    body.is-homepage .academic-section li,
+    body.is-home-profile-page .academic-section p,
+    body.is-home-profile-page .academic-section li,
+    body:has(.academic-home-layout) .academic-section p,
+    body:has(.academic-home-layout) .academic-section li {
+        font-size: 0.74rem !important;
+    }
+}
